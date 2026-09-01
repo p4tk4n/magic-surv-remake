@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SplitOnHit" format=3 uid="uid://c51gr4cjfksc7"]
+
+[ext_resource type="Script" uid="uid://baqbniu7fv55d" path="res://strategies/on_hits/split_on_hit.gd" id="1_6la2q"]
+[ext_resource type="Resource" uid="uid://sfxy1uksq2uy" path="res://spells/resources/magic_bolt/fireworks_fragment_onhit.tres" id="1_tqi6w"]
+
+[resource]
+script = ExtResource("1_6la2q")
+split_count = 5
+fragment_on_hit = ExtResource("1_tqi6w")
+metadata/_custom_type_script = "uid://baqbniu7fv55d"

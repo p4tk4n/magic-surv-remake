@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://8ucshlbbw7a3"]
+
+[ext_resource type="Texture2D" uid="uid://b6i7efbh78l3e" path="res://sprites/fireball_demo.png" id="1_3oguy"]
+[ext_resource type="Script" uid="uid://3txainw81mfc" path="res://upgrades/upgrade.gd" id="1_rgapa"]
+
+[node name="Upgrade" type="Button" unique_id=1117297740]
+custom_minimum_size = Vector2(400, 150)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -752.0
+offset_bottom = -498.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_rgapa")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=598727280]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="BoxContainer3" type="BoxContainer" parent="MarginContainer" unique_id=920291945]
+layout_mode = 2
+alignment = 1
+
+[node name="SpellIcon" type="TextureRect" parent="MarginContainer/BoxContainer3" unique_id=1675347049]
+layout_mode = 2
+texture = ExtResource("1_3oguy")
+expand_mode = 3
+
+[node name="BoxContainer2" type="BoxContainer" parent="MarginContainer/BoxContainer3" unique_id=1395514]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+vertical = true
+
+[node name="SpellName" type="Label" parent="MarginContainer/BoxContainer3/BoxContainer2" unique_id=1081964044]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Magic Bolt"
+
+[node name="SpellDesc" type="Label" parent="MarginContainer/BoxContainer3/BoxContainer2" unique_id=1137844979]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "basic shot"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="OrbitEmission" format=3 uid="uid://b5van5x5eqwgc"]
+
+[ext_resource type="Script" uid="uid://bxosvxo06djbe" path="res://strategies/emissions/orbit_emission.gd" id="1_le12j"]
+
+[resource]
+script = ExtResource("1_le12j")
+metadata/_custom_type_script = "uid://bxosvxo06djbe"

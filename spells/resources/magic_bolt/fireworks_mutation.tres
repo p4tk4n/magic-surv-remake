@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="MutationData" format=3 uid="uid://bg88jl1g8rixp"]
+
+[ext_resource type="Texture2D" uid="uid://bq8i7oxnse6gd" path="res://sprites/magic_bolt_demo.png" id="1_03vj0"]
+[ext_resource type="Script" uid="uid://bfncdiijhxowh" path="res://spells/base/mutation_data.gd" id="1_ml5lg"]
+[ext_resource type="Resource" uid="uid://bituu7okg8m2h" path="res://spells/resources/magic_bolt/magic_bolt_lvl7.tres" id="2_vd8cg"]
+[ext_resource type="Resource" uid="uid://c51gr4cjfksc7" path="res://spells/resources/magic_bolt/fireworks_split_onhit.tres" id="3_epmhi"]
+
+[resource]
+script = ExtResource("1_ml5lg")
+mutation_name = "Fireworks"
+icon = ExtResource("1_03vj0")
+description = "Splits on impact"
+on_hit_strategy = ExtResource("3_epmhi")
+mutated_stats = ExtResource("2_vd8cg")
+metadata/_custom_type_script = "uid://bfncdiijhxowh"

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="DamageNoDestroyOnHit" format=3 uid="uid://ctyyc8epduotw"]
+
+[ext_resource type="Script" uid="uid://cj7p1j2cec4fp" path="res://strategies/on_hits/damage_no_destroy_onhit.gd" id="1_aph2f"]
+
+[resource]
+script = ExtResource("1_aph2f")
+metadata/_custom_type_script = "uid://cj7p1j2cec4fp"

@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://c05ppy8n6menq"]
+
+[ext_resource type="Script" uid="uid://catgohf1kfvao" path="res://map/map.gd" id="1_4hjbm"]
+[ext_resource type="PackedScene" uid="uid://bopi6neojhcw3" path="res://player/player.tscn" id="1_a0dt8"]
+[ext_resource type="Texture2D" uid="uid://b8vfnv6oistgc" path="res://sprites/tiles_demo.png" id="2_lgq1i"]
+[ext_resource type="Script" uid="uid://4a4r7cke3xdw" path="res://map/enemy_manager.gd" id="4_kffv2"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lgq1i"]
+texture = ExtResource("2_lgq1i")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_3xd07"]
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_lgq1i")
+
+[node name="map" type="Node2D" unique_id=426478845]
+script = ExtResource("1_4hjbm")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=811323427]
+tile_set = SubResource("TileSet_3xd07")
+
+[node name="player" parent="." unique_id=302319716 instance=ExtResource("1_a0dt8")]
+
+[node name="EnemyManager" type="Node" parent="." unique_id=414225939 node_paths=PackedStringArray("player")]
+script = ExtResource("4_kffv2")
+player = NodePath("../player")

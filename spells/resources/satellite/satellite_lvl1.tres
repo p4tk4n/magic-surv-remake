@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="SpellLevelData" format=3 uid="uid://brngg01ol0wa0"]
+
+[ext_resource type="Script" uid="uid://dv4pxyladt4xv" path="res://spells/base/spell_level_data.gd" id="1_kf6li"]
+
+[resource]
+script = ExtResource("1_kf6li")
+metadata/_custom_type_script = "uid://dv4pxyladt4xv"

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="SingleHitOnHit" format=3 uid="uid://sfxy1uksq2uy"]
+
+[ext_resource type="Script" uid="uid://cl2eh66auh7fp" path="res://strategies/on_hits/single_hit_on_hit.gd" id="1_n7eu1"]
+
+[resource]
+script = ExtResource("1_n7eu1")
+metadata/_custom_type_script = "uid://cl2eh66auh7fp"

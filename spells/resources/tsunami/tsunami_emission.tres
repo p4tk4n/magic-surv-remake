@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ScreenEdgeWaveEmission" format=3 uid="uid://dlmeqd7jf1yil"]
+
+[ext_resource type="Script" uid="uid://coh7dpfg56itt" path="res://strategies/emissions/screen_edge_wave_emission.gd" id="1_q4inp"]
+
+[resource]
+script = ExtResource("1_q4inp")
+metadata/_custom_type_script = "uid://coh7dpfg56itt"

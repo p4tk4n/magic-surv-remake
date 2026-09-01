@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="SpellData" format=3 uid="uid://dfstc44h35usy"]
+
+[ext_resource type="Script" uid="uid://dv4pxyladt4xv" path="res://spells/base/spell_level_data.gd" id="1_pfy2x"]
+[ext_resource type="Resource" uid="uid://wmjxwj8vsmbw" path="res://spells/resources/magic_bolt/magic_bolt_emission.tres" id="1_picq8"]
+[ext_resource type="Script" uid="uid://cyfvv4pm34y4i" path="res://spells/base/spell_data.gd" id="2_1ysnt"]
+[ext_resource type="Texture2D" uid="uid://bngfph5obd7b8" path="res://sprites/proj_demo.png" id="2_woq5b"]
+[ext_resource type="Resource" uid="uid://bksfmghdixo3d" path="res://spells/resources/magic_bolt/magic_bolt_lvl1.tres" id="3_woq5b"]
+[ext_resource type="Resource" uid="uid://boaie7845x7bx" path="res://spells/resources/magic_bolt/magic_bolt_lvl2.tres" id="4_6xpts"]
+[ext_resource type="Resource" uid="uid://yy06iplqf6a0" path="res://spells/resources/magic_bolt/magic_bolt_lvl3.tres" id="5_gw5ib"]
+[ext_resource type="Resource" uid="uid://0ll7nalw6od2" path="res://spells/resources/magic_bolt/magic_bolt_lvl4.tres" id="6_jgk62"]
+[ext_resource type="Resource" uid="uid://j2uw5lxj4hj1" path="res://spells/resources/magic_bolt/magic_bolt_lvl5.tres" id="7_cl6mw"]
+[ext_resource type="Resource" uid="uid://cvbcviwrv48aw" path="res://spells/resources/magic_bolt/magic_bolt_lvl6.tres" id="8_sjgxk"]
+[ext_resource type="Resource" uid="uid://do1lbebweyu2" path="res://spells/resources/magic_bolt/magic_bolt_movement.tres" id="9_7a4sr"]
+[ext_resource type="Resource" uid="uid://cmfctiu2b1e83" path="res://spells/resources/magic_bolt/magic_bolt_onhit.tres" id="10_0hh0p"]
+[ext_resource type="Resource" uid="uid://bg88jl1g8rixp" path="res://spells/resources/magic_bolt/fireworks_mutation.tres" id="11_6xpts"]
+[ext_resource type="PackedScene" uid="uid://bvryhkw5tw7s8" path="res://projectile/projectile.tscn" id="11_dkb03"]
+[ext_resource type="Texture2D" uid="uid://bq8i7oxnse6gd" path="res://sprites/magic_bolt_demo.png" id="14_gw5ib"]
+
+[resource]
+script = ExtResource("2_1ysnt")
+spell_name = "Magic Bolt"
+icon = ExtResource("2_woq5b")
+projectile_scene = ExtResource("11_dkb03")
+projectile_sprite = ExtResource("14_gw5ib")
+levels = Array[ExtResource("1_pfy2x")]([ExtResource("3_woq5b"), ExtResource("4_6xpts"), ExtResource("5_gw5ib"), ExtResource("6_jgk62"), ExtResource("7_cl6mw"), ExtResource("8_sjgxk")])
+emission_strategy = ExtResource("1_picq8")
+movement_strategy = ExtResource("9_7a4sr")
+on_hit_strategy = ExtResource("10_0hh0p")
+mutation = ExtResource("11_6xpts")
+metadata/_custom_type_script = "uid://cyfvv4pm34y4i"
