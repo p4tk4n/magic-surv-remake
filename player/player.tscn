@@ -1,10 +1,17 @@
 [gd_scene format=3 uid="uid://bopi6neojhcw3"]
 
 [ext_resource type="Script" uid="uid://k80lv8rxc4nw" path="res://player/player.gd" id="1_rkbax"]
+[ext_resource type="Shader" uid="uid://cbmr478u0us4b" path="res://shaders/burn_shader.gdshader" id="2_boad6"]
 [ext_resource type="Texture2D" uid="uid://b3dawjvh4uxqg" path="res://sprites/player_anim_sheet_demo.png" id="2_g1dw6"]
 [ext_resource type="Script" uid="uid://2out7nuyfo2l" path="res://spells/base/spell_manager.gd" id="3_g1dw6"]
+[ext_resource type="Texture2D" uid="uid://dyvl3huyyq0nt" path="res://shaders/burn_texture.tres" id="3_rgyib"]
 [ext_resource type="Texture2D" uid="uid://d2s53thrpsb7v" path="res://sprites/player_demo.png" id="4_yw30f"]
 [ext_resource type="Script" uid="uid://cguwv74qsfh7" path="res://player/level_manager.gd" id="5_qjkh3"]
+[ext_resource type="Texture2D" uid="uid://dd7vv2pt0injp" path="res://sprites/menu_panel.png" id="7_rgyib"]
+
+[sub_resource type="Gradient" id="Gradient_rgyib"]
+offsets = PackedFloat32Array(0, 0.42978725, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0.9999997, 0.8171827, 0.25257418, 1, 0.4293192, 0.8393953, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4xfga"]
 size = Vector2(32, 32)
@@ -12,14 +19,35 @@ size = Vector2(32, 32)
 [sub_resource type="CircleShape2D" id="CircleShape2D_3xd07"]
 radius = 192.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qjkh3"]
+shader = ExtResource("2_boad6")
+shader_parameter/percentage = 1.0
+shader_parameter/burn_texture = ExtResource("3_rgyib")
+shader_parameter/layer_1 = Color(0.2, 0.2, 0.2, 1)
+shader_parameter/size_1 = 0.05
+shader_parameter/layer_2 = Color(1, 0, 0, 1)
+shader_parameter/size_2 = 0.05
+shader_parameter/layer_3 = Color(1, 0.5, 0, 1)
+shader_parameter/size_3 = 0.05
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3xd07"]
 size = Vector2(64, 64)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hg6s5"]
+bg_color = Color(0.22670749, 0.22670752, 0.2267074, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8t03j"]
+bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g1dw6"]
 texture = ExtResource("4_yw30f")
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_boad6"]
+texture = ExtResource("7_rgyib")
+
 [node name="player" type="CharacterBody2D" unique_id=302319716 groups=["player"]]
 script = ExtResource("1_rkbax")
+health_gradient = SubResource("Gradient_rgyib")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1039361450]
 shape = SubResource("RectangleShape2D_4xfga")
@@ -33,6 +61,7 @@ shape = SubResource("CircleShape2D_3xd07")
 debug_color = Color(0.96104735, 0, 0.5153212, 0.41960785)
 
 [node name="Sprite2D" type="Sprite2D" parent="PickupArea" unique_id=642414609]
+material = SubResource("ShaderMaterial_qjkh3")
 texture = ExtResource("2_g1dw6")
 hframes = 3
 vframes = 3
@@ -49,7 +78,17 @@ shape = SubResource("RectangleShape2D_3xd07")
 [node name="SpellManager" type="Node" parent="." unique_id=996543739]
 script = ExtResource("3_g1dw6")
 
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=1100414153]
+offset_left = -37.0
+offset_top = 33.0
+offset_right = 37.0
+offset_bottom = 42.0
+theme_override_styles/background = SubResource("StyleBoxFlat_hg6s5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8t03j")
+show_percentage = false
+
 [node name="UICanvasLayer" type="CanvasLayer" parent="." unique_id=1645117073]
+process_mode = 3
 
 [node name="UI" type="Control" parent="UICanvasLayer" unique_id=73427575]
 layout_mode = 3
@@ -67,8 +106,61 @@ offset_bottom = 18.0
 grow_horizontal = 2
 theme_override_styles/fill = SubResource("StyleBoxTexture_g1dw6")
 max_value = 10.0
-step = 1.0
+step = 0.1
 show_percentage = false
+
+[node name="DeathScreen" type="Panel" parent="UICanvasLayer" unique_id=1652293947]
+visible = false
+custom_minimum_size = Vector2(500, 500)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_boad6")
+
+[node name="BoxContainer" type="BoxContainer" parent="UICanvasLayer/DeathScreen" unique_id=1271706729]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 80
+alignment = 1
+vertical = true
+
+[node name="BoxContainer" type="BoxContainer" parent="UICanvasLayer/DeathScreen/BoxContainer" unique_id=1510345757]
+layout_mode = 2
+alignment = 1
+vertical = true
+
+[node name="Label" type="Label" parent="UICanvasLayer/DeathScreen/BoxContainer/BoxContainer" unique_id=857424679]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
+text = "Run Over"
+horizontal_alignment = 1
+
+[node name="time" type="Label" parent="UICanvasLayer/DeathScreen/BoxContainer/BoxContainer" unique_id=863870857]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "14:16"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="UICanvasLayer/DeathScreen/BoxContainer" unique_id=352046511]
+custom_minimum_size = Vector2(100, 50)
+custom_maximum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Play Again"
 
 [node name="LevelManager" type="Node" parent="." unique_id=94570466 node_paths=PackedStringArray("ui_xp_bar", "ui_control")]
 script = ExtResource("5_qjkh3")
@@ -77,3 +169,4 @@ ui_control = NodePath("../UICanvasLayer/UI")
 
 [connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]
 [connection signal="value_changed" from="UICanvasLayer/UI/XpBar" to="." method="_on_xp_bar_value_changed"]
+[connection signal="pressed" from="UICanvasLayer/DeathScreen/BoxContainer/Button" to="." method="_on_button_pressed"]

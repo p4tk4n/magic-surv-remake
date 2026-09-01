@@ -9,12 +9,20 @@ extends Node
 var queued_upgrade_windows: int = 0
 var window_open: bool = false
 
+func _ready() -> void:
+	SignalBus.run_over.connect(reset)
+
+func reset():
+	ui_xp_bar.value = 0.0
+	queued_upgrade_windows = 0
+	window_open = false
+	
 func level_up_player():
 	ui_xp_bar.value = 0.0
 	trigger_upgrade_window()
 
-func progress_xp_bar():
-	var xp_added = global.current_xp_value * global.xp_value_mult
+func progress_xp_bar(mult):
+	var xp_added = global.current_xp_value * global.xp_value_mult * mult
 	ui_xp_bar.value += xp_added
 	global.player_xp += xp_added
 

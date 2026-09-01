@@ -3,7 +3,10 @@ extends Node
 var xp_scene: PackedScene = preload("res://experience/experience.tscn")
 var current_xp_value: float = 1.0
 var xp_value_mult: float = 1.0
-var player_xp: int = 0
+var player_xp: float = 0
+var elite_xp_mult: float = 2.0
+
+var enemy_damage: float = 10.0
 
 var spells = [
 	"Magic Bolt",

@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 	if spawn_grace_period > 0.0:
 		spawn_grace_period -= delta
 	_check_offscreen_cleanup()
-	_update_rotation()
+	update_rotation()
 	_tick_lifetime(delta)
 	
 func _on_area_entered(area: Area2D) -> void:
@@ -56,7 +56,7 @@ func _check_offscreen_cleanup() -> void:
 	if not bounds.has_point(global_position):
 		_despawn()
 
-func _update_rotation() -> void:
+func update_rotation() -> void:
 	if direction != Vector2.ZERO:
 		rotation = direction.angle() + deg_to_rad(180)
 

@@ -15,6 +15,11 @@ func add_spell(data: SpellData) -> void:
 	controller.setup(data, player)
 	active_spells[data.spell_name] = controller
 
+func reset() -> void:
+	for controller in active_spells.values():
+		controller.queue_free()
+	active_spells.clear()
+
 func upgrade_spell(spell_name: String) -> void:
 	if active_spells.has(spell_name):
 		active_spells[spell_name].level_up()

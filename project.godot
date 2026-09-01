@@ -30,6 +30,8 @@ window/stretch/aspect="expand"
 
 player=""
 enemy=""
+pickup=""
+projectile=""
 
 [input]
 

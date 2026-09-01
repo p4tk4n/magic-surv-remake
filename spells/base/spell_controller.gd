@@ -86,6 +86,7 @@ func spawn_projectile(spawn_pos: Vector2 = Vector2.INF, override_on_hit: OnHitSt
 	proj.global_position = spawn_pos if spawn_pos != Vector2.INF else player.global_position
 	if data.projectile_sprite:
 		proj.sprite = data.projectile_sprite
+	proj.update_rotation()
 	get_tree().current_scene.add_child.call_deferred(proj)
 	_live_projectiles.append(proj)
 	proj.tree_exited.connect(func(): _live_projectiles.erase(proj))

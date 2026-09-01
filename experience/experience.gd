@@ -9,6 +9,8 @@ extends Area2D
 var target: Player = null
 var _chasing: bool = true
 
+var xp_mult: float = 1.0
+
 func start_chase(player: Player) -> void:
 	target = player
 	_chasing = true
@@ -28,5 +30,5 @@ func _process(delta: float) -> void:
 	global_position += target_dist.normalized() * chase_speed * delta
 	
 func _collect():
-	target.collected_xp.emit()
+	target.collected_xp.emit(xp_mult)
 	queue_free()
