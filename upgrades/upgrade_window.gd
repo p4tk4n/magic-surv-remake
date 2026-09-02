@@ -12,8 +12,7 @@ func shuffle_spells():
 	if box_container.get_children().size() < 3:
 		var upgrade_instance = upgrade_scene.instantiate()
 		box_container.add_child(upgrade_instance)
-		print("dead child making new one")
-		
+
 	for child: Upgrade in box_container.get_children():
 		if available_spells.size() >= 1:
 			var rand_spell = available_spells.front()

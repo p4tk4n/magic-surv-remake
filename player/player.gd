@@ -23,8 +23,8 @@ var health_bar_style: StyleBoxFlat
 var is_dead: bool = false
 
 func _ready() -> void:
-	var mb_data: SpellData = load("res://spells/resources/magic_bolt/magic_bolt.tres")
-	spell_manager.add_spell(mb_data)
+	var starting_spell: SpellData = load("res://spells/resources/magic_bolt/magic_bolt.tres")
+	spell_manager.add_spell(starting_spell)
 	collected_xp.connect(level_manager.progress_xp_bar)
 	current_health = max_health
 	
@@ -41,7 +41,7 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	if not get_tree().paused and timer_running:
 		elapsed_run_time += delta
-		
+
 func movement(delta):
 	var dir_x = Input.get_axis("player_left","player_right")
 	var dir_y = Input.get_axis("player_up", "player_down")
@@ -52,7 +52,7 @@ func movement(delta):
 		velocity = Vector2.ZERO
 		
 	position += velocity
-	
+
 	move_and_slide()
 
 func take_damage(amount) -> void:

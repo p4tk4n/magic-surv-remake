@@ -36,8 +36,6 @@ func setup(spell_data: SpellData, p: Node2D) -> void:
 	else:
 		active_emission.emit(self)
 	
-	print("player ref: ", player)
-	
 func level_up() -> void:
 	if is_mutated:
 		return
@@ -48,7 +46,10 @@ func level_up() -> void:
 		_apply_mutation(data.mutation)
 		global.unavailable_spells.append(data.spell_name)
 		return
-
+	elif level > data.levels.size() and not data.mutation:
+		global.unavailable_spells.append(data.spell_name)
+		return
+		
 	if level <= data.levels.size():
 		current_stats = data.levels[level - 1]
 		active_emission.emit(self)
