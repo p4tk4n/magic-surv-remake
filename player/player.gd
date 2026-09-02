@@ -22,7 +22,7 @@ signal collected_xp(mult)
 var health_bar_style: StyleBoxFlat
 
 func _ready() -> void:
-	var mb_data: SpellData = load("res://spells/resources/magic_bolt/magic_bolt.tres")
+	var mb_data: SpellData = load("res://spells/resources/tsunami/tsunami.tres")
 	spell_manager.add_spell(mb_data)
 	collected_xp.connect(level_manager.progress_xp_bar)
 	current_health = max_health
@@ -40,9 +40,7 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	if not get_tree().paused and timer_running:
 		elapsed_run_time += delta
-	
-	
-	
+		
 func movement(delta):
 	var dir_x = Input.get_axis("player_left","player_right")
 	var dir_y = Input.get_axis("player_up", "player_down")
@@ -65,6 +63,10 @@ func take_damage(amount) -> void:
 		timer_running = false
 		die()
 
+func _update_health_bar() -> void:
+	health_bar.value = current_health
+	health_bar_style.bg_color = health_to_color(current_health, max_health)
+	
 func die():
 	var tween = create_tween()
 	tween.tween_method(tween_shader, 1.0, 0.0, 0.5)
@@ -102,6 +104,9 @@ func _start_new_run():
 	global_position = Vector2.ZERO
 	velocity = Vector2.ZERO
 	
+	get_tree().paused = false
+	
+	_update_health_bar()
 	death_screen.visible = false
 	
 func _on_button_pressed() -> void:

@@ -6,7 +6,7 @@ extends CharacterBody2D
 var current_health: float
 var is_dead: bool = false
 
-var is_elite: bool = true
+var is_elite: bool = false
 
 
 var current_xp_mult: float = 1.0
