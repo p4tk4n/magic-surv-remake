@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://2out7nuyfo2l" path="res://spells/base/spell_manager.gd" id="3_g1dw6"]
 [ext_resource type="Texture2D" uid="uid://dyvl3huyyq0nt" path="res://shaders/burn_texture.tres" id="3_rgyib"]
 [ext_resource type="Texture2D" uid="uid://d2s53thrpsb7v" path="res://sprites/player_demo.png" id="4_yw30f"]
+[ext_resource type="Script" uid="uid://ccfg0kqja7idh" path="res://player/camera_2d.gd" id="5_hg6s5"]
 [ext_resource type="Script" uid="uid://cguwv74qsfh7" path="res://player/level_manager.gd" id="5_qjkh3"]
 [ext_resource type="Texture2D" uid="uid://dd7vv2pt0injp" path="res://sprites/menu_panel.png" id="7_rgyib"]
 
@@ -68,6 +69,7 @@ hframes = 3
 vframes = 3
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=721817792]
+script = ExtResource("5_hg6s5")
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=997992745]
 collision_layer = 4

@@ -20,9 +20,10 @@ var timer_running: bool = true
 
 signal collected_xp(mult)
 var health_bar_style: StyleBoxFlat
+var is_dead: bool = false
 
 func _ready() -> void:
-	var mb_data: SpellData = load("res://spells/resources/tsunami/tsunami.tres")
+	var mb_data: SpellData = load("res://spells/resources/magic_bolt/magic_bolt.tres")
 	spell_manager.add_spell(mb_data)
 	collected_xp.connect(level_manager.progress_xp_bar)
 	current_health = max_health
@@ -35,7 +36,7 @@ func _ready() -> void:
 	health_bar_style.bg_color = health_to_color(current_health, max_health)
 	
 func _physics_process(delta: float) -> void:
-	movement(delta)
+	if not is_dead: movement(delta)
 
 func _process(delta: float) -> void:
 	if not get_tree().paused and timer_running:
@@ -55,6 +56,7 @@ func movement(delta):
 	move_and_slide()
 
 func take_damage(amount) -> void:
+	SignalBus.shake_screen.emit(0.8, 0.5)
 	current_health -= amount
 	health_bar.value = current_health
 	health_bar_style.bg_color = health_to_color(current_health, max_health)
@@ -73,7 +75,8 @@ func die():
 	get_tree().paused = true
 	death_screen.visible = true
 	run_time_label.text = format_time(elapsed_run_time)
-
+	is_dead = true
+	
 func format_time(seconds: float) -> String:
 	var total_sec := int(seconds)
 	var mins := total_sec / 60
@@ -103,7 +106,7 @@ func _start_new_run():
 	current_health = max_health
 	global_position = Vector2.ZERO
 	velocity = Vector2.ZERO
-	
+	is_dead = false
 	get_tree().paused = false
 	
 	_update_health_bar()

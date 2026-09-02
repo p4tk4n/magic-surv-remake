@@ -13,12 +13,14 @@
 [ext_resource type="PackedScene" uid="uid://bvryhkw5tw7s8" path="res://projectile/projectile.tscn" id="9_g3x7d"]
 [ext_resource type="Resource" uid="uid://da7s7mbktshvf" path="res://spells/resources/satellite/satellite_movement.tres" id="10_axy2l"]
 [ext_resource type="Resource" uid="uid://bvnyv5b3mbxe0" path="res://spells/resources/satellite/satellite_onhit.tres" id="11_32ee8"]
+[ext_resource type="Texture2D" uid="uid://b6i7efbh78l3e" path="res://sprites/fireball_demo.png" id="13_axy2l"]
 
 [resource]
 script = ExtResource("2_id4f1")
 spell_name = "Satellite"
 icon = ExtResource("1_xdnlg")
 projectile_scene = ExtResource("9_g3x7d")
+projectile_sprite = ExtResource("13_axy2l")
 levels = Array[ExtResource("1_pjwx1")]([ExtResource("3_53ugb"), ExtResource("4_sac43"), ExtResource("5_pag0d"), ExtResource("6_axy2l"), ExtResource("7_32ee8"), ExtResource("8_8m4l0")])
 is_persistent = true
 emission_strategy = ExtResource("1_pag0d")
