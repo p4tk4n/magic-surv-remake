@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="NearestEnemyEmission" format=3 uid="uid://c3y5f3mfrh6ui"]
+
+[ext_resource type="Script" uid="uid://botrwxsq357qr" path="res://strategies/emissions/nearest_enemy_emission.gd" id="1_vsjk6"]
+
+[resource]
+script = ExtResource("1_vsjk6")
+metadata/_custom_type_script = "uid://botrwxsq357qr"

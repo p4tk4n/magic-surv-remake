@@ -1,0 +1,13 @@
+todo list:
+-add incineration
+
+Done:
+-add fireball
+
+Spell adding process:
+	1.[spellname].tres file - spelldata resourrce
+	2.spell level data files for each level
+	3.all 3 strategies - emission, movement, onhit
+	4.mutation file - optional but every spell will get like 3 once
+	5.add the spell to global script, into spell_data, spellbook and spells. 
+	

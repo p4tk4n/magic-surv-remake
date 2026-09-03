@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="SpellData" format=3 uid="uid://bkghjt0gvd2vo"]
+
+[ext_resource type="Texture2D" uid="uid://cgx3xjpx21nei" path="res://sprites/fireball_proj_demo.png" id="1_aio44"]
+[ext_resource type="Script" uid="uid://dv4pxyladt4xv" path="res://spells/base/spell_level_data.gd" id="1_hv05d"]
+[ext_resource type="Resource" uid="uid://c3y5f3mfrh6ui" path="res://spells/resources/fireball/fireball_emission.tres" id="1_qyy6f"]
+[ext_resource type="Script" uid="uid://cyfvv4pm34y4i" path="res://spells/base/spell_data.gd" id="2_leoyd"]
+[ext_resource type="PackedScene" uid="uid://bvryhkw5tw7s8" path="res://projectile/projectile.tscn" id="3_tbhb3"]
+[ext_resource type="Resource" uid="uid://b0uglwd65vjhr" path="res://spells/resources/fireball/fireball_lvl1.tres" id="4_d23nq"]
+[ext_resource type="Resource" uid="uid://xcqvjkrc11m1" path="res://spells/resources/fireball/fireball_movement.tres" id="4_huaop"]
+[ext_resource type="Resource" uid="uid://cfjrr4vy3pjsm" path="res://spells/resources/fireball/fireball_lvl2.tres" id="5_8a8hk"]
+[ext_resource type="Resource" uid="uid://d1yfj2c8mtth1" path="res://spells/resources/fireball/fireball_onhit.tres" id="5_uwl0s"]
+[ext_resource type="Resource" uid="uid://b1gg6gu1qacrc" path="res://spells/resources/fireball/fireball_lvl3.tres" id="6_xb4yy"]
+[ext_resource type="Resource" uid="uid://dv17dxsqydmau" path="res://spells/resources/fireball/fireball_lvl4.tres" id="7_7hjk6"]
+[ext_resource type="Resource" uid="uid://dg0ei2sxivsb8" path="res://spells/resources/fireball/fireball_lvl5.tres" id="8_tck3w"]
+[ext_resource type="Resource" uid="uid://c8mcnlnrj6l5j" path="res://spells/resources/fireball/fireball_lvl6.tres" id="9_ffk8q"]
+
+[resource]
+script = ExtResource("2_leoyd")
+spell_name = "Fireball"
+icon = ExtResource("1_aio44")
+projectile_scene = ExtResource("3_tbhb3")
+projectile_sprite = ExtResource("1_aio44")
+cooldown = 3.0
+levels = Array[ExtResource("1_hv05d")]([ExtResource("4_d23nq"), ExtResource("5_8a8hk"), ExtResource("6_xb4yy"), ExtResource("7_7hjk6"), ExtResource("8_tck3w"), ExtResource("9_ffk8q")])
+emission_strategy = ExtResource("1_qyy6f")
+movement_strategy = ExtResource("4_huaop")
+on_hit_strategy = ExtResource("5_uwl0s")
+metadata/_custom_type_script = "uid://cyfvv4pm34y4i"

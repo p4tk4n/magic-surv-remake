@@ -22,15 +22,21 @@ signal collected_xp(mult)
 var health_bar_style: StyleBoxFlat
 var is_dead: bool = false
 
+var is_god: bool = true
+
 func _ready() -> void:
-	var starting_spell: SpellData = load("res://spells/resources/magic_bolt/magic_bolt.tres")
+	var starting_spell: SpellData = load("res://spells/resources/fireball/fireball.tres")
 	spell_manager.add_spell(starting_spell)
 	collected_xp.connect(level_manager.progress_xp_bar)
 	current_health = max_health
 	
 	health_bar.min_value = 0
 	health_bar.max_value = max_health
-	health_bar.value = current_health
+	if not is_god: 
+		health_bar.value = current_health 
+	else:
+		health_bar.value = INF
+		current_health = INF
 	
 	health_bar_style = health_bar.get_theme_stylebox("fill")
 	health_bar_style.bg_color = health_to_color(current_health, max_health)

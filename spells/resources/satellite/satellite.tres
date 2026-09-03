@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bvryhkw5tw7s8" path="res://projectile/projectile.tscn" id="9_g3x7d"]
 [ext_resource type="Resource" uid="uid://da7s7mbktshvf" path="res://spells/resources/satellite/satellite_movement.tres" id="10_axy2l"]
 [ext_resource type="Resource" uid="uid://bvnyv5b3mbxe0" path="res://spells/resources/satellite/satellite_onhit.tres" id="11_32ee8"]
-[ext_resource type="Texture2D" uid="uid://b6i7efbh78l3e" path="res://sprites/fireball_demo.png" id="13_axy2l"]
+[ext_resource type="Texture2D" uid="uid://b6i7efbh78l3e" path="res://sprites/satellite_demo.png" id="13_axy2l"]
 
 [resource]
 script = ExtResource("2_id4f1")
