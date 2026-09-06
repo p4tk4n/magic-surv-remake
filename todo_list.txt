@@ -1,5 +1,9 @@
 todo list:
 -add incineration
+-more enemy types
+-big boss enemies
+-boss/elite waves every 2:30 minutes
+-ground pickups like health, kill all magic stone, pick up all exp magic stone, big health pickup from bosses
 
 Done:
 -add fireball

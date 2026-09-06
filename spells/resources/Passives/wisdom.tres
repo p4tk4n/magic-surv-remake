@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PassiveSpellData" format=3 uid="uid://we6awqouv0eb"]
+
+[ext_resource type="Script" uid="uid://bt00rve3w37u4" path="res://spells/base/passive_spell_data.gd" id="1_cloio"]
+
+[resource]
+script = ExtResource("1_cloio")
+spell_name = "Wisdom"
+stat_increase = "base_attack"
+metadata/_custom_type_script = "uid://bt00rve3w37u4"

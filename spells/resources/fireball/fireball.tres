@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cgx3xjpx21nei" path="res://sprites/fireball_proj_demo.png" id="1_aio44"]
 [ext_resource type="Script" uid="uid://dv4pxyladt4xv" path="res://spells/base/spell_level_data.gd" id="1_hv05d"]
 [ext_resource type="Resource" uid="uid://c3y5f3mfrh6ui" path="res://spells/resources/fireball/fireball_emission.tres" id="1_qyy6f"]
+[ext_resource type="Texture2D" uid="uid://c2t0v2yrc01ji" path="res://sprites/fireball_icon_demo.png" id="2_8a8hk"]
 [ext_resource type="Script" uid="uid://cyfvv4pm34y4i" path="res://spells/base/spell_data.gd" id="2_leoyd"]
 [ext_resource type="PackedScene" uid="uid://bvryhkw5tw7s8" path="res://projectile/projectile.tscn" id="3_tbhb3"]
 [ext_resource type="Resource" uid="uid://b0uglwd65vjhr" path="res://spells/resources/fireball/fireball_lvl1.tres" id="4_d23nq"]
@@ -17,7 +18,7 @@
 [resource]
 script = ExtResource("2_leoyd")
 spell_name = "Fireball"
-icon = ExtResource("1_aio44")
+icon = ExtResource("2_8a8hk")
 projectile_scene = ExtResource("3_tbhb3")
 projectile_sprite = ExtResource("1_aio44")
 cooldown = 3.0

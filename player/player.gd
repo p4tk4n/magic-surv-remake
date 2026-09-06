@@ -11,9 +11,9 @@ extends CharacterBody2D
 
 @export var health_gradient: Gradient
 
-var default_move_speed: float = 220.0
+var default_move_speed: float = global.player_stats.stats["base_move_speed"]
 var current_health: float
-var max_health: float = 100.0
+var max_health: float = global.player_stats.stats["base_health"]
 
 var elapsed_run_time: float = 0.0
 var timer_running: bool = true

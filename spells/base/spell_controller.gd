@@ -44,10 +44,10 @@ func level_up() -> void:
 	
 	if level > data.levels.size() and data.mutation:
 		_apply_mutation(data.mutation)
-		global.unavailable_spells.append(data.spell_name)
+		global.unavailable_upgrades.append(data.spell_name)
 		return
 	elif level > data.levels.size() and not data.mutation:
-		global.unavailable_spells.append(data.spell_name)
+		global.unavailable_upgrades.append(data.spell_name)
 		return
 		
 	if level <= data.levels.size():
@@ -83,7 +83,7 @@ func spawn_projectile(spawn_pos: Vector2 = Vector2.INF, override_on_hit: OnHitSt
 	proj.movement = active_movement
 	proj.on_hit = override_on_hit if override_on_hit else active_on_hit
 	proj.speed = current_stats.speed
-	proj.damage = current_stats.damage
+	proj.damage = calc_damage()
 	proj.global_position = spawn_pos if spawn_pos != Vector2.INF else player.global_position
 	if data.projectile_sprite:
 		proj.sprite = data.projectile_sprite
@@ -92,6 +92,15 @@ func spawn_projectile(spawn_pos: Vector2 = Vector2.INF, override_on_hit: OnHitSt
 	_live_projectiles.append(proj)
 	proj.tree_exited.connect(func(): _live_projectiles.erase(proj))
 	return proj
+
+func calc_damage():
+	var base = global.player_stats.stats["base_attack"]
+	var spell_coeff := current_stats.damage
+	var increase_mult: float= 1.0 + global.player_stats.stats["damage_increase"]
+	var amp: float = global.player_stats.stats["damage_amplifier"]
+	var coeff: float = global.player_stats.stats["damage_coefficient"]
+	
+	return base * spell_coeff * increase_mult * amp * coeff
 	
 func clear_projectiles() -> void:
 	print("clearing ", _live_projectiles.size(), " projectiles")

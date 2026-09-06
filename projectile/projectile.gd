@@ -8,14 +8,15 @@ var movement: MovementStrategy
 var on_hit: OnHitStrategy
 
 var direction := Vector2.ZERO
-var orbit_angle_offset := 0.0
-var speed: float = 0.0
-var damage: float = 0.0
 var sprite: Texture2D
 var lifetime: float = -1.0
 
 var spawn_grace_period: float = 0.0
 var has_hit := false
+
+var speed: float
+var damage: float = 0.0
+var orbit_angle_offset: float = 0.0
 
 func _ready() -> void:
 	area_entered.connect(_on_area_entered)

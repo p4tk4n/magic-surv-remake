@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="SingleHitOnHit" format=3 uid="uid://d1yfj2c8mtth1"]
+[gd_resource type="Resource" script_class="ExplodeOnHit" format=3 uid="uid://d1yfj2c8mtth1"]
 
-[ext_resource type="Script" uid="uid://cl2eh66auh7fp" path="res://strategies/on_hits/single_hit_on_hit.gd" id="1_875bt"]
+[ext_resource type="Script" uid="uid://catnavkulekwg" path="res://strategies/on_hits/explode_onhit.gd" id="1_875bt"]
 
 [resource]
 script = ExtResource("1_875bt")
-metadata/_custom_type_script = "uid://cl2eh66auh7fp"
+explosion_radius = 200.0
+metadata/_custom_type_script = "uid://catnavkulekwg"

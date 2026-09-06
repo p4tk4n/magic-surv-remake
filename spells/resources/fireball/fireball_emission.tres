@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="NearestEnemyEmission" format=3 uid="uid://c3y5f3mfrh6ui"]
+[gd_resource type="Resource" script_class="UniqueTargetEmission" format=3 uid="uid://c3y5f3mfrh6ui"]
 
-[ext_resource type="Script" uid="uid://botrwxsq357qr" path="res://strategies/emissions/nearest_enemy_emission.gd" id="1_vsjk6"]
+[ext_resource type="Script" uid="uid://cnbpnws77ixuo" path="res://strategies/emissions/unique_nearest_target_emission.gd" id="1_vsjk6"]
 
 [resource]
 script = ExtResource("1_vsjk6")
-metadata/_custom_type_script = "uid://botrwxsq357qr"
+metadata/_custom_type_script = "uid://cnbpnws77ixuo"

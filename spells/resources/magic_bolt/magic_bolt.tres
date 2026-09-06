@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dv4pxyladt4xv" path="res://spells/base/spell_level_data.gd" id="1_pfy2x"]
 [ext_resource type="Resource" uid="uid://wmjxwj8vsmbw" path="res://spells/resources/magic_bolt/magic_bolt_emission.tres" id="1_picq8"]
 [ext_resource type="Script" uid="uid://cyfvv4pm34y4i" path="res://spells/base/spell_data.gd" id="2_1ysnt"]
-[ext_resource type="Texture2D" uid="uid://bngfph5obd7b8" path="res://sprites/proj_demo.png" id="2_woq5b"]
+[ext_resource type="Texture2D" uid="uid://fqyllg6isbne" path="res://sprites/magic_bolt_icon_demo.png" id="2_gw5ib"]
 [ext_resource type="Resource" uid="uid://bksfmghdixo3d" path="res://spells/resources/magic_bolt/magic_bolt_lvl1.tres" id="3_woq5b"]
 [ext_resource type="Resource" uid="uid://boaie7845x7bx" path="res://spells/resources/magic_bolt/magic_bolt_lvl2.tres" id="4_6xpts"]
 [ext_resource type="Resource" uid="uid://yy06iplqf6a0" path="res://spells/resources/magic_bolt/magic_bolt_lvl3.tres" id="5_gw5ib"]
@@ -19,7 +19,7 @@
 [resource]
 script = ExtResource("2_1ysnt")
 spell_name = "Magic Bolt"
-icon = ExtResource("2_woq5b")
+icon = ExtResource("2_gw5ib")
 projectile_scene = ExtResource("11_dkb03")
 projectile_sprite = ExtResource("14_gw5ib")
 levels = Array[ExtResource("1_pfy2x")]([ExtResource("3_woq5b"), ExtResource("4_6xpts"), ExtResource("5_gw5ib"), ExtResource("6_jgk62"), ExtResource("7_cl6mw"), ExtResource("8_sjgxk")])

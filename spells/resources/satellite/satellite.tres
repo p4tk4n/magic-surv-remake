@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://b5van5x5eqwgc" path="res://spells/resources/satellite/satellite_emission.tres" id="1_pag0d"]
 [ext_resource type="Script" uid="uid://dv4pxyladt4xv" path="res://spells/base/spell_level_data.gd" id="1_pjwx1"]
-[ext_resource type="Texture2D" uid="uid://bngfph5obd7b8" path="res://sprites/proj_demo.png" id="1_xdnlg"]
+[ext_resource type="Texture2D" uid="uid://bjqi3e6p8w3bl" path="res://sprites/satellite_icon_demo.png" id="2_axy2l"]
 [ext_resource type="Script" uid="uid://cyfvv4pm34y4i" path="res://spells/base/spell_data.gd" id="2_id4f1"]
 [ext_resource type="Resource" uid="uid://brngg01ol0wa0" path="res://spells/resources/satellite/satellite_lvl1.tres" id="3_53ugb"]
 [ext_resource type="Resource" uid="uid://dwcftovo40ouw" path="res://spells/resources/satellite/satellite_lvl2.tres" id="4_sac43"]
@@ -18,7 +18,7 @@
 [resource]
 script = ExtResource("2_id4f1")
 spell_name = "Satellite"
-icon = ExtResource("1_xdnlg")
+icon = ExtResource("2_axy2l")
 projectile_scene = ExtResource("9_g3x7d")
 projectile_sprite = ExtResource("13_axy2l")
 levels = Array[ExtResource("1_pjwx1")]([ExtResource("3_53ugb"), ExtResource("4_sac43"), ExtResource("5_pag0d"), ExtResource("6_axy2l"), ExtResource("7_32ee8"), ExtResource("8_8m4l0")])
