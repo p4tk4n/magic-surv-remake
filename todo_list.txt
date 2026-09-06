@@ -4,9 +4,11 @@ todo list:
 -big boss enemies
 -boss/elite waves every 2:30 minutes
 -ground pickups like health, kill all magic stone, pick up all exp magic stone, big health pickup from bosses
+-stats data display in paused screen
 
 Done:
 -add fireball
+-player stat sheet (ms pause screen data)
 
 Spell adding process:
 	1.[spellname].tres file - spelldata resourrce

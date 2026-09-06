@@ -91,7 +91,7 @@ func format_time(seconds: float) -> String:
 	
 func tween_shader(object, percent):
 	object.material.set_shader_parameter("percentage", percent)
-	
+
 func _on_pickup_area_area_entered(area: Area2D) -> void:
 	if area is XPOrb:
 		area.start_chase(self)
