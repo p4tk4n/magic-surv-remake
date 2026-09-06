@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var death_screen: Panel = $UICanvasLayer/DeathScreen
 @onready var run_time_label: Label = $UICanvasLayer/DeathScreen/BoxContainer/BoxContainer/time
 @onready var health_bar: ProgressBar = $HealthBar
+@onready var virtual_joystick: VirtualJoystick = $UICanvasLayer/UI/MarginContainer/VirtualJoystick
 
 @export var health_gradient: Gradient
 
@@ -49,11 +50,9 @@ func _process(delta: float) -> void:
 		elapsed_run_time += delta
 
 func movement(delta):
-	var dir_x = Input.get_axis("player_left","player_right")
-	var dir_y = Input.get_axis("player_up", "player_down")
-	
-	if dir_x or dir_y:
-		velocity = Vector2(dir_x, dir_y).normalized() * default_move_speed * delta
+	var dir = Input.get_vector("player_left", "player_right", "player_up", "player_down")
+	if dir:
+		velocity = dir.normalized() * default_move_speed * delta
 	else:
 		velocity = Vector2.ZERO
 		

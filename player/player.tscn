@@ -100,6 +100,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="XpBar" type="ProgressBar" parent="UICanvasLayer/UI" unique_id=299105173]
 layout_mode = 1
@@ -111,6 +112,27 @@ theme_override_styles/fill = SubResource("StyleBoxTexture_g1dw6")
 max_value = 10.0
 step = 0.1
 show_percentage = false
+
+[node name="VirtualJoystick" type="VirtualJoystick" parent="UICanvasLayer/UI" unique_id=1935999008]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -500.0
+offset_top = -414.0
+offset_right = 500.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+joystick_mode = 1
+joystick_size = 300.0
+tip_size = 150.0
+action_left = &"player_left"
+action_right = &"player_right"
+action_up = &"player_up"
+action_down = &"player_down"
 
 [node name="DeathScreen" type="Panel" parent="UICanvasLayer" unique_id=1652293947]
 visible = false
