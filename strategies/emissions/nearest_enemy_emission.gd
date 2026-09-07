@@ -9,7 +9,10 @@ func emit(controller: SpellController) -> void:
 		if not target:
 			return
 		var proj := controller.spawn_projectile()
-		proj.direction = (target.global_position - proj.global_position).normalized()
-
+		var direction = (target.global_position - proj.global_position).normalized()
+		var angle = direction.angle()
+		proj.direction = direction
+		proj.rotation = angle
+		
 		if i < controller.current_stats.count - 1:
 			await controller.get_tree().create_timer(stagger_delay).timeout

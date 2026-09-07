@@ -5,7 +5,7 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3xd07"]
 
-[node name="Experience" type="Area2D" unique_id=1254741187]
+[node name="Experience" type="Area2D" unique_id=1254741187 groups=["experience"]]
 collision_layer = 8
 collision_mask = 0
 monitoring = false

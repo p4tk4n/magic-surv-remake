@@ -12,4 +12,4 @@ func set_params(new_icon: Texture2D, new_name: String, new_desc: String) -> void
 	queue_redraw()
 
 func _on_pressed() -> void:
-	get_parent().get_parent().spell_picked.emit(spell_name.text)
+	get_parent().get_parent().get_parent().spell_picked.emit(spell_name.text)

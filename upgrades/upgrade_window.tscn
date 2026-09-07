@@ -5,34 +5,39 @@
 
 [node name="UpgradeWindow" type="Panel" unique_id=657841370 groups=["upgradewindow"]]
 custom_minimum_size = Vector2(500, 600)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = -300.0
-offset_right = 250.0
-offset_bottom = 300.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_p3js2")
 
-[node name="BoxContainer" type="BoxContainer" parent="." unique_id=373067296]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1407258305]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="BoxContainer" type="BoxContainer" parent="MarginContainer" unique_id=373067296]
+layout_mode = 2
+theme_override_constants/separation = 50
 alignment = 1
 vertical = true
 
-[node name="Upgrade1" parent="BoxContainer" unique_id=2075299843 instance=ExtResource("2_pn7dx")]
+[node name="Upgrade1" parent="MarginContainer/BoxContainer" unique_id=2075299843 instance=ExtResource("2_pn7dx")]
 layout_mode = 2
+size_flags_horizontal = 1
 
-[node name="Upgrade2" parent="BoxContainer" unique_id=1434977044 instance=ExtResource("2_pn7dx")]
+[node name="Upgrade2" parent="MarginContainer/BoxContainer" unique_id=1434977044 instance=ExtResource("2_pn7dx")]
 layout_mode = 2
+size_flags_horizontal = 1
 
-[node name="Upgrade3" parent="BoxContainer" unique_id=815872079 instance=ExtResource("2_pn7dx")]
+[node name="Upgrade3" parent="MarginContainer/BoxContainer" unique_id=815872079 instance=ExtResource("2_pn7dx")]
 layout_mode = 2
+size_flags_horizontal = 1

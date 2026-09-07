@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://diwum7qscwe0c"]
+
+[ext_resource type="Script" uid="uid://lniqn3nvvw2u" path="res://spells/effects/explosion_effect.gd" id="1_dkdd5"]
+
+[node name="ExplosionEffect" type="AnimatedSprite2D" unique_id=1433624797]
+script = ExtResource("1_dkdd5")

@@ -6,7 +6,7 @@ extends Node
 var enemy_scene: PackedScene = preload("res://enemy/enemy.tscn")
 
 var current_wave: int = 0
-var enemies_in_wave: int = 5
+var enemies_in_wave: int = 6
 var next_wave_timer_max: float = 5.0
 var next_wave_timer: float = 0.0
 
@@ -30,6 +30,8 @@ func reset():
 	
 	current_wave = 0
 	next_wave_timer = 0.0
+	
+	spawn_wave()
 	
 func spawn_wave():
 	current_wave += 1

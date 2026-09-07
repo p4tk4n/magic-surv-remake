@@ -24,7 +24,9 @@ func add_spell(data) -> void:
 
 func reset() -> void:
 	for controller in active_spells.values():
-		controller.queue_free()
+		if is_instance_valid(controller):
+			controller.clear_projectiles()
+			controller.queue_free()
 		
 	active_spells.clear()
 	passive_spells.clear()

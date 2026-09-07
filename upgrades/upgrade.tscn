@@ -4,13 +4,11 @@
 [ext_resource type="Script" uid="uid://3txainw81mfc" path="res://upgrades/upgrade.gd" id="1_rgapa"]
 
 [node name="Upgrade" type="Button" unique_id=1117297740]
-custom_minimum_size = Vector2(400, 150)
+custom_minimum_size = Vector2(400, 300)
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -752.0
-offset_bottom = -498.0
+offset_bottom = 8.0
 grow_horizontal = 2
-grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_rgapa")

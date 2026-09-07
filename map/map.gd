@@ -19,3 +19,5 @@ func reset():
 		node.queue_free()
 	for node in get_tree().get_nodes_in_group("pickup"):
 		node.queue_free()
+	for node in get_tree().get_nodes_in_group("experience"):
+		node.queue_free()

@@ -1,8 +1,11 @@
 [gd_resource type="Resource" script_class="ExplodeOnHit" format=3 uid="uid://d1yfj2c8mtth1"]
 
 [ext_resource type="Script" uid="uid://catnavkulekwg" path="res://strategies/on_hits/explode_onhit.gd" id="1_875bt"]
+[ext_resource type="PackedScene" uid="uid://diwum7qscwe0c" path="res://spells/effects/explosion_effect.tscn" id="1_gr06d"]
+[ext_resource type="SpriteFrames" uid="uid://b5dc7a3e3812d" path="res://spells/effects/explosion_frames.tres" id="2_4dxyi"]
 
 [resource]
 script = ExtResource("1_875bt")
-explosion_radius = 200.0
+explosion_radius = 150.0
+explosion_frames = ExtResource("2_4dxyi")
 metadata/_custom_type_script = "uid://catnavkulekwg"

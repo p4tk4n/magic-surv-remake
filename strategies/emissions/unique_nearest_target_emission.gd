@@ -13,8 +13,11 @@ func emit(controller: SpellController) -> void:
 		already_targeted.append(target)
 
 		var proj := controller.spawn_projectile()
-		proj.direction = (target.global_position - proj.global_position).normalized()
-
+		var direction = (target.global_position - proj.global_position).normalized()
+		proj.direction = direction
+		var angle = direction.angle()
+		proj.rotation = angle
+		
 func _get_nearest_unhit_enemy(controller: SpellController, exclude: Array[Node2D]) -> Node2D:
 	var enemies := controller.get_tree().get_nodes_in_group("enemy")
 	var nearest: Node2D = null

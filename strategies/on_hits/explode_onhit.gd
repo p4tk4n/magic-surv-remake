@@ -5,6 +5,11 @@ extends OnHitStrategy
 @export var explosion_damage_ratio: float = 1.0   # % of the projectile's own damage dealt to splash targets
 @export var hits_original_target_directly: bool = true  # if true, primary target takes full damage, others take splash
 
+@export var explosion_effect_scene: PackedScene = preload("res://spells/effects/explosion_effect.tscn")
+@export var explosion_frames: SpriteFrames
+@export var explosion_scale: float = 1.0
+@export var sprite_size: float = 64.0
+
 func resolve(projectile: Projectile, enemy: Node2D) -> void:
 	var controller := projectile.controller
 	var center := projectile.global_position
@@ -27,4 +32,11 @@ func resolve(projectile: Projectile, enemy: Node2D) -> void:
 	projectile._despawn()
 
 func _spawn_explosion_visual(controller: SpellController, pos: Vector2) -> void:
-	pass  # optional — fill in once logic is confirmed working
+	if not explosion_frames: return
+	
+	var effect := explosion_effect_scene.instantiate() as ExplosionEffect
+	effect.sprite_frames = explosion_frames
+	effect.global_position = pos
+	effect.scale = Vector2.ONE * (explosion_radius / sprite_size) #sprite size
+	controller.get_tree().current_scene.add_child.call_deferred(effect)
+	

@@ -25,3 +25,4 @@ func emit(controller: SpellController) -> void:
 		
 		proj.global_position = (spawn_center + Vector2(random_offset_x,random_offset_y)) + spread_dir * offset
 		proj.direction = travel_dir
+		proj.rotation = travel_dir.angle() + deg_to_rad(180)

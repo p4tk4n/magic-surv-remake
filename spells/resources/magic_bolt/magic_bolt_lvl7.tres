@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_7fgx3")
 damage = 50.0
-count = 8
+count = 5
 speed = 400.0
-cooldown_reduction = 0.5
+cooldown_reduction = 0.4
 metadata/_custom_type_script = "uid://dv4pxyladt4xv"

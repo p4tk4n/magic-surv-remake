@@ -26,14 +26,13 @@ var is_dead: bool = false
 var is_god: bool = true
 
 func _ready() -> void:
-	var starting_spell: SpellData = load("res://spells/resources/fireball/fireball.tres")
-	spell_manager.add_spell(starting_spell)
+	_add_starting_spell()
 	collected_xp.connect(level_manager.progress_xp_bar)
 	current_health = max_health
 	
 	health_bar.min_value = 0
 	health_bar.max_value = max_health
-	if not is_god: 
+	if not is_god or OS.has_feature("mobile"): 
 		health_bar.value = current_health 
 	else:
 		health_bar.value = INF
@@ -41,9 +40,13 @@ func _ready() -> void:
 	
 	health_bar_style = health_bar.get_theme_stylebox("fill")
 	health_bar_style.bg_color = health_to_color(current_health, max_health)
-	
+
+func _add_starting_spell():
+	var starting_spell: SpellData = load("res://spells/resources/magic_bolt/magic_bolt.tres")
+	spell_manager.add_spell(starting_spell)
+	print(spell_manager.active_spells)
 func _physics_process(delta: float) -> void:
-	if not is_dead: movement(delta)
+	if not is_dead and not get_tree().paused: movement(delta)
 
 func _process(delta: float) -> void:
 	if not get_tree().paused and timer_running:
@@ -106,6 +109,7 @@ func health_to_color(current: float, max: float) -> Color:
 func _start_new_run():
 	global.player_xp = 0
 	SignalBus.run_over.emit()
+	spell_manager.reset()
 	elapsed_run_time = 0.0
 	timer_running = true
 	current_health = max_health
@@ -114,8 +118,10 @@ func _start_new_run():
 	is_dead = false
 	get_tree().paused = false
 	
+	global.unavailable_upgrades = []
 	_update_health_bar()
 	death_screen.visible = false
+	_add_starting_spell()
 	
 func _on_button_pressed() -> void:
 	_start_new_run()

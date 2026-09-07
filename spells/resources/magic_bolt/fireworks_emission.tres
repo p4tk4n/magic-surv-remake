@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SpreadNearestEnemyEmission" format=3 uid="uid://c4rovg3xy2y83"]
+
+[ext_resource type="Script" uid="uid://dvkljyv525b2i" path="res://strategies/emissions/shotgun_spread_nearest_enemy_emission.gd" id="1_7ifa7"]
+
+[resource]
+script = ExtResource("1_7ifa7")
+stagger_delay = 0.08
+spread_angle = 30.0
+metadata/_custom_type_script = "uid://dvkljyv525b2i"

@@ -9,6 +9,12 @@ todo list:
 Done:
 -add fireball
 -player stat sheet (ms pause screen data)
+-individual proj sprites for mutations
+-fixed bugs in reset state at the runover signal
+-fixed xp not despawning
+-added explosion spritesheet export to exploding onhit
+-resized ui to fit mobile better
+
 
 Spell adding process:
 	1.[spellname].tres file - spelldata resourrce

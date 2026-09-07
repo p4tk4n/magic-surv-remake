@@ -1,6 +1,6 @@
 extends Panel
 
-@onready var box_container: BoxContainer = $BoxContainer
+@onready var box_container: BoxContainer = $MarginContainer/BoxContainer
 @onready var upgrade_scene: PackedScene = preload("res://upgrades/upgrade.tscn")
 signal spell_picked(spell)
 

@@ -58,9 +58,10 @@ func _check_offscreen_cleanup() -> void:
 		_despawn()
 
 func update_rotation() -> void:
-	if direction != Vector2.ZERO:
-		rotation = direction.angle() + deg_to_rad(180)
-
+	#if direction != Vector2.ZERO:
+		#rotation = direction.angle()
+	pass
+	
 func _despawn():
 	var tween = create_tween()
 	tween.tween_property(proj_sprite, "modulate:a", 0.0, 0.5)

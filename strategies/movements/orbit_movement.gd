@@ -5,6 +5,11 @@ extends MovementStrategy
 @export var angular_speed: float = 2.0
 
 func move(projectile: Projectile, delta: float) -> void:
+	if not is_instance_valid(projectile.controller):
+		projectile.queue_free()
+		return
+	
+	
 	projectile.orbit_angle_offset += angular_speed * delta
 	var pivot := projectile.controller.player.global_position
 	projectile.global_position = pivot + Vector2.RIGHT.rotated(projectile.orbit_angle_offset) * radius

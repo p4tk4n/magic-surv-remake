@@ -17,6 +17,8 @@ var active_on_hit: OnHitStrategy
 
 var _live_projectiles: Array[Projectile] = []
 
+var projectile_sprite: Texture2D
+
 func setup(spell_data: SpellData, p: Node2D) -> void:
 	data = spell_data
 	player = p
@@ -70,7 +72,10 @@ func _apply_mutation(mutation: MutationData) -> void:
 		print("mutation.on_hit_strategy was NULL, active_on_hit unchanged: ", active_on_hit)
 	if mutation.cooldown > 0:
 		timer.wait_time = mutation.cooldown
-
+	
+	if mutation.projectile_sprite:
+		projectile_sprite = mutation.projectile_sprite
+	
 	current_stats = mutation.mutated_stats
 	is_mutated = true
 	mutated.emit(mutation)
@@ -87,6 +92,8 @@ func spawn_projectile(spawn_pos: Vector2 = Vector2.INF, override_on_hit: OnHitSt
 	proj.global_position = spawn_pos if spawn_pos != Vector2.INF else player.global_position
 	if data.projectile_sprite:
 		proj.sprite = data.projectile_sprite
+	if projectile_sprite:
+		proj.sprite = projectile_sprite
 	proj.update_rotation()
 	get_tree().current_scene.add_child.call_deferred(proj)
 	_live_projectiles.append(proj)

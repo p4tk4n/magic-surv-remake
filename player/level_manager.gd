@@ -32,6 +32,7 @@ func trigger_upgrade_window():
 		print("didnt open window")
 	else:
 		var upgrade_window = upgrade_window_scene.instantiate()
+		get_tree().paused = true
 		upgrade_window.spell_picked.connect(show_next_window)
 		ui_control.add_child(upgrade_window)
 		window_open = true
@@ -46,6 +47,7 @@ func _upgrade_picked_spell(spell_name: String):
 func show_next_window(spell):
 	_upgrade_picked_spell(spell)
 	get_tree().get_first_node_in_group("upgradewindow").queue_free()
+	get_tree().paused = false
 	window_open = false
 	if queued_upgrade_windows > 0:
 		trigger_upgrade_window()

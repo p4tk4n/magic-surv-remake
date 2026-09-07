@@ -16,11 +16,12 @@ func resolve(projectile: Projectile, enemy: Node2D) -> void:
 
 	for i in split_count:
 		var angle := (TAU / split_count) * i
-		var angle_offset := deg_to_rad(randi_range(-10, 10))
+		var angle_offset := deg_to_rad(randi_range(-15, 15))
 		var frag := controller.spawn_projectile(hit_pos, fragment_on_hit)
 		frag.spawn_grace_period = 0.05
 		frag.direction = Vector2.RIGHT.rotated(angle + angle_offset)
 		frag.damage = projectile.damage * split_damage_ratio
 		frag.speed = projectile.speed * fragment_speed_multiplier
 		frag.lifetime = 0.8
+		frag.rotation = angle + angle_offset
 	projectile.queue_free()
