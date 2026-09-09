@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://djxxysvx3cyf5"]
+
+[ext_resource type="Script" uid="uid://bthsulky7pjad" path="res://menus/main_menu.gd" id="1_8gy84"]
+[ext_resource type="Texture2D" uid="uid://cypy0wtj7iir" path="res://sprites/settings_icon.png" id="2_ij7vn"]
+[ext_resource type="Script" uid="uid://6ohiei1opxkn" path="res://menus/bob_animation.gd" id="2_oblsv"]
+[ext_resource type="Texture2D" uid="uid://deumdm3g3gp6o" path="res://sprites/play_button.png" id="2_yjgyn"]
+[ext_resource type="Script" uid="uid://ynoedqt0jq1f" path="res://menus/juicy_button.gd" id="4_a63lr"]
+[ext_resource type="Texture2D" uid="uid://ddwqrg6rda0pp" path="res://sprites/quit_icon.png" id="4_rqbgu"]
+
+[sub_resource type="Gradient" id="Gradient_a63lr"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pwbes"]
+gradient = SubResource("Gradient_a63lr")
+
+[node name="MainMenu" type="Control" unique_id=1981796075]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8gy84")
+
+[node name="BackgroundRect" type="TextureRect" parent="." unique_id=954567505]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_pwbes")
+
+[node name="GameTitle" type="Label" parent="." unique_id=568138872]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.224
+anchor_right = 0.5
+anchor_bottom = 0.224
+offset_left = -345.5
+offset_right = 345.5
+offset_bottom = 137.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 100
+text = "Magic Survival"
+metadata/_edit_use_anchors_ = true
+
+[node name="BobAnimation" type="Node" parent="GameTitle" unique_id=711707897 node_paths=PackedStringArray("target")]
+script = ExtResource("2_oblsv")
+target = NodePath("..")
+metadata/_custom_type_script = "uid://6ohiei1opxkn"
+
+[node name="StartButton" type="TextureButton" parent="." unique_id=1061589261]
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_yjgyn")
+stretch_mode = 0
+script = ExtResource("4_a63lr")
+
+[node name="BobAnimation" type="Node" parent="StartButton" unique_id=1246856259 node_paths=PackedStringArray("target")]
+script = ExtResource("2_oblsv")
+target = NodePath("..")
+amplitude = 3.0
+speed = 2.5
+metadata/_custom_type_script = "uid://6ohiei1opxkn"
+
+[node name="SettingsButton" type="TextureButton" parent="." unique_id=1351033435]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_bottom = 200.0
+grow_horizontal = 0
+offset_transform_position = Vector2(-60, 20)
+texture_normal = ExtResource("2_ij7vn")
+stretch_mode = 0
+script = ExtResource("4_a63lr")
+
+[node name="BobAnimation" type="Node" parent="SettingsButton" unique_id=1231529425 node_paths=PackedStringArray("target")]
+script = ExtResource("2_oblsv")
+target = NodePath("..")
+amplitude = 3.0
+metadata/_custom_type_script = "uid://6ohiei1opxkn"
+
+[node name="QuitButton" type="TextureButton" parent="." unique_id=253654753]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+offset_transform_position = Vector2(60, 20)
+texture_normal = ExtResource("4_rqbgu")
+stretch_mode = 0
+script = ExtResource("4_a63lr")
+
+[node name="BobAnimation" type="Node" parent="QuitButton" unique_id=767048208 node_paths=PackedStringArray("target")]
+script = ExtResource("2_oblsv")
+target = NodePath("..")
+amplitude = 3.0
+metadata/_custom_type_script = "uid://6ohiei1opxkn"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

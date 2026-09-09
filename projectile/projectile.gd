@@ -18,6 +18,8 @@ var speed: float
 var damage: float = 0.0
 var orbit_angle_offset: float = 0.0
 
+var _hit_cooldowns: Dictionary = {}
+
 func _ready() -> void:
 	area_entered.connect(_on_area_entered)
 	if sprite:
@@ -28,17 +30,44 @@ func _process(delta: float) -> void:
 		movement.move(self, delta)
 	if spawn_grace_period > 0.0:
 		spawn_grace_period -= delta
-	_check_offscreen_cleanup()
+	#_check_offscreen_cleanup()
 	update_rotation()
 	_tick_lifetime(delta)
+	_tick_hit_cooldowns(delta)
+	if not has_hit and on_hit and "tick_interval" in on_hit:
+		_check_continuous_overlaps()
 	
 func _on_area_entered(area: Area2D) -> void:
-	if spawn_grace_period > 0.0 or has_hit: 
+	if spawn_grace_period > 0.0 or has_hit: return
+	_try_hit(area)
+
+func _check_continuous_overlaps()-> void:
+	if spawn_grace_period > 0.0:
 		return
-	var target := _resolve_enemy(area)
-	if target and on_hit:
+	for area in get_overlapping_areas():
+		_try_hit(area)
+
+func _try_hit(area: Area2D) -> void:
+	if has_hit: return
+	
+	var target = _resolve_enemy(area)
+	if not target or not on_hit: return
+	
+	var id = target.get_instance_id()
+	if _hit_cooldowns.has(id): return #hit this enemy (with the id) recently (still on cd)
+	
+	on_hit.resolve(self, target)
+	
+	if "tick_interval" in on_hit:
+		_hit_cooldowns[id] = on_hit.tick_interval
+	else:
 		has_hit = true
-		on_hit.resolve(self, target)
+	
+func _tick_hit_cooldowns(delta):
+	for id in _hit_cooldowns.keys():
+		_hit_cooldowns[id] -= delta
+		if _hit_cooldowns[id] <= 0.0:
+			_hit_cooldowns.erase(id)
 
 func _resolve_enemy(area: Area2D) -> Node2D:
 	if area.is_in_group("enemy"):
@@ -49,11 +78,7 @@ func _resolve_enemy(area: Area2D) -> Node2D:
 	return null
 
 func _check_offscreen_cleanup() -> void:
-	if not controller:
-		return
-	var rect := controller.get_camera_world_rect()
-	var margin := 300.0  # generous buffer so it's well clear before freeing
-	var bounds := rect.grow(margin)
+	var bounds := global.camera_rect_cache.grow(global.camera_rect_bounds)
 	if not bounds.has_point(global_position):
 		_despawn()
 

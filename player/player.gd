@@ -25,7 +25,14 @@ var is_dead: bool = false
 
 var is_god: bool = true
 
+var starting: bool = false
+var start_timer_delay: float = 3.0
+var current_start_timer: float = 0.0
+
 func _ready() -> void:
+	starting = true
+	get_tree().paused = true
+	
 	_add_starting_spell()
 	collected_xp.connect(level_manager.progress_xp_bar)
 	current_health = max_health
@@ -41,6 +48,14 @@ func _ready() -> void:
 	health_bar_style = health_bar.get_theme_stylebox("fill")
 	health_bar_style.bg_color = health_to_color(current_health, max_health)
 
+func _starting_timer(delta):
+	if current_start_timer < start_timer_delay:
+		current_start_timer += delta
+	else:
+		current_start_timer = 0.0
+		get_tree().paused = false
+		starting = false
+	
 func _add_starting_spell():
 	var starting_spell: SpellData = load("res://spells/resources/magic_bolt/magic_bolt.tres")
 	spell_manager.add_spell(starting_spell)
@@ -49,9 +64,11 @@ func _physics_process(delta: float) -> void:
 	if not is_dead and not get_tree().paused: movement(delta)
 
 func _process(delta: float) -> void:
+	if starting: _starting_timer(delta)
+	if starting: return
 	if not get_tree().paused and timer_running:
 		elapsed_run_time += delta
-
+		
 func movement(delta):
 	var dir = Input.get_vector("player_left", "player_right", "player_up", "player_down")
 	if dir:

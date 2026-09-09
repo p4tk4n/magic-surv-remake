@@ -79,6 +79,7 @@ collision_mask = 0
 shape = SubResource("RectangleShape2D_3xd07")
 
 [node name="SpellManager" type="Node" parent="." unique_id=996543739]
+process_mode = 1
 script = ExtResource("3_g1dw6")
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=1100414153]

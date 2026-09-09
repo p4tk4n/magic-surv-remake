@@ -10,6 +10,23 @@ var player_stats: PlayerStats = load("res://player/stats.tres")
 
 var enemy_damage: float = 10.0 #neni scaleable ani nic co je TRAPNEEE
 
+var camera_rect_cache: Rect2
+var camera_rect_bounds: float = 300.0
+
+func _process(delta: float) -> void:
+	camera_rect_cache = _calc_camera_rect()
+	
+func _calc_camera_rect():
+	var cam = get_viewport().get_camera_2d()
+	if not cam: return Rect2()
+	
+	var viewport_size = get_viewport().get_visible_rect().size
+	var zoom = cam.zoom
+	var half_size = (viewport_size / zoom) / 2
+	
+	return Rect2(cam.global_position - half_size, half_size * 2.0)
+	
+
 var upgrades = [ #lowk mozno obsolete, ig ze by slo pouzit keys zo spellbook dictionary v zozname namiesto tohto
 	"Magic Bolt",
 	"Satellite",

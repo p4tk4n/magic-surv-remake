@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="MagicSurv"
-run/main_scene="uid://c05ppy8n6menq"
+run/main_scene="uid://djxxysvx3cyf5"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
 
