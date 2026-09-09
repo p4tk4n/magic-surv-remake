@@ -1,5 +1,17 @@
 [gd_scene format=3 uid="uid://ca04yau1su1jb"]
 
+[ext_resource type="Script" uid="uid://4k3odt081qsl" path="res://menus/settings_menu.gd" id="1_83qjl"]
+[ext_resource type="Texture2D" uid="uid://bs6gflsjoxbhj" path="res://sprites/back_icon.png" id="2_v0bl3"]
+[ext_resource type="Script" uid="uid://6ohiei1opxkn" path="res://menus/bob_animation.gd" id="3_n4a8d"]
+
+[sub_resource type="Gradient" id="Gradient_a63lr"]
+colors = PackedColorArray(0.14767182, 0.14767179, 0.14767179, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uymxy"]
+gradient = SubResource("Gradient_a63lr")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 1)
+
 [node name="SettingsMenu" type="Control" unique_id=1574923727]
 layout_mode = 3
 anchors_preset = 15
@@ -7,3 +19,58 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_83qjl")
+
+[node name="BackgroundRect" type="TextureRect" parent="." unique_id=2023075956]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_uymxy")
+
+[node name="BoxContainer" type="BoxContainer" parent="." unique_id=1407790508]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -29.5
+offset_top = -29.0
+offset_right = 29.5
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+vertical = true
+
+[node name="JoystickSizeLabel" type="Label" parent="BoxContainer" unique_id=932348629]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+text = "Joystick"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="JoystickSizeButton" type="Button" parent="BoxContainer" unique_id=2066605508]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+text = "Small"
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=1976470320]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("2_v0bl3")
+stretch_mode = 0
+
+[node name="BobAnimation" type="Node" parent="TextureButton" unique_id=1860725255 node_paths=PackedStringArray("target")]
+script = ExtResource("3_n4a8d")
+target = NodePath("..")
+amplitude = 3.0
+metadata/_custom_type_script = "uid://6ohiei1opxkn"
+
+[connection signal="pressed" from="BoxContainer/JoystickSizeButton" to="." method="_on_joystick_size_button_pressed"]
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

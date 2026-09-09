@@ -13,6 +13,15 @@ var enemy_damage: float = 10.0 #neni scaleable ani nic co je TRAPNEEE
 var camera_rect_cache: Rect2
 var camera_rect_bounds: float = 300.0
 
+var joystick_scales = [200.0,300.0,400.0]
+var current_joystick_size: int = 1
+
+var scenes: Dictionary = {
+	"main_menu": load("res://menus/main_menu.tscn"),
+	"settings": load("res://menus/settings_menu.tscn"),
+	"map": load("res://map/map.tscn")
+}
+
 func _process(delta: float) -> void:
 	camera_rect_cache = _calc_camera_rect()
 	

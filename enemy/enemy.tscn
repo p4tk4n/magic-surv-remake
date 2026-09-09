@@ -46,6 +46,7 @@ initial_state = NodePath("EnemyFollow")
 [node name="EnemyFollow" type="Node" parent="StateMachine" unique_id=1839037175 node_paths=PackedStringArray("enemy")]
 script = ExtResource("4_y5vj3")
 enemy = NodePath("../..")
+move_speed = 85.0
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=1359038784]
 collision_layer = 2

@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://ccfg0kqja7idh" path="res://player/camera_2d.gd" id="5_hg6s5"]
 [ext_resource type="Script" uid="uid://cguwv74qsfh7" path="res://player/level_manager.gd" id="5_qjkh3"]
 [ext_resource type="Texture2D" uid="uid://dd7vv2pt0injp" path="res://sprites/menu_panel.png" id="7_rgyib"]
+[ext_resource type="Script" uid="uid://mdyf6ywuq8fq" path="res://player/virtual_joystick.gd" id="8_8t03j"]
 
 [sub_resource type="Gradient" id="Gradient_rgyib"]
 offsets = PackedFloat32Array(0, 0.42978725, 1)
@@ -134,6 +135,18 @@ action_left = &"player_left"
 action_right = &"player_right"
 action_up = &"player_up"
 action_down = &"player_down"
+script = ExtResource("8_8t03j")
+
+[node name="TimeLabel" type="Label" parent="UICanvasLayer/UI" unique_id=2085247797]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
 
 [node name="DeathScreen" type="Panel" parent="UICanvasLayer" unique_id=1652293947]
 visible = false

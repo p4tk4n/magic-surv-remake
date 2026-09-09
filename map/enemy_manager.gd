@@ -5,13 +5,16 @@ extends Node
 
 var enemy_scene: PackedScene = preload("res://enemy/enemy.tscn")
 
-var current_wave: int = 0
-var enemies_in_wave: int = 6
-var next_wave_timer_max: float = 5.0
+@export_category("Base")
+@export var enemies_in_wave: int = 6
+@export var next_wave_timer_max: float = 5.0
+@export var enemy_amount_increase: float = 1.3
 var next_wave_timer: float = 0.0
+var current_wave: int = 0
 
+@export_category("Boss waves")
 var extra_wave: bool = true
-var extra_enemies_mult: float = 1.5
+@export var extra_enemies_mult: float = 1.5
 
 func _ready() -> void:
 	spawn_wave()
@@ -46,7 +49,7 @@ func spawn_wave():
 		)
 		enemy.global_position = random_circle_point(player.global_position, 500) + random_spawn_offset
 		add_child(enemy)
-	
+	enemies_in_wave = int(enemies_in_wave * enemy_amount_increase)
 func random_circle_point(center: Vector2, radius: float) -> Vector2:
 	var angle: float = randf_range(0.0, 2.0 * PI)
 	return center + Vector2(

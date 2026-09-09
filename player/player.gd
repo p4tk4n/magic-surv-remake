@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var run_time_label: Label = $UICanvasLayer/DeathScreen/BoxContainer/BoxContainer/time
 @onready var health_bar: ProgressBar = $HealthBar
 @onready var virtual_joystick: VirtualJoystick = $UICanvasLayer/UI/MarginContainer/VirtualJoystick
+@onready var time_label: Label = $UICanvasLayer/UI/TimeLabel
 
 @export var health_gradient: Gradient
 
@@ -36,7 +37,7 @@ func _ready() -> void:
 	_add_starting_spell()
 	collected_xp.connect(level_manager.progress_xp_bar)
 	current_health = max_health
-	
+
 	health_bar.min_value = 0
 	health_bar.max_value = max_health
 	if not is_god or OS.has_feature("mobile"): 
@@ -47,7 +48,9 @@ func _ready() -> void:
 	
 	health_bar_style = health_bar.get_theme_stylebox("fill")
 	health_bar_style.bg_color = health_to_color(current_health, max_health)
-
+	
+	time_label.text = format_time(elapsed_run_time)
+	
 func _starting_timer(delta):
 	if current_start_timer < start_timer_delay:
 		current_start_timer += delta
@@ -68,7 +71,7 @@ func _process(delta: float) -> void:
 	if starting: return
 	if not get_tree().paused and timer_running:
 		elapsed_run_time += delta
-		
+	time_label.text = format_time(elapsed_run_time)
 func movement(delta):
 	var dir = Input.get_vector("player_left", "player_right", "player_up", "player_down")
 	if dir:
