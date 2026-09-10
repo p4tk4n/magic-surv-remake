@@ -8,8 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://d2s53thrpsb7v" path="res://sprites/player_demo.png" id="4_yw30f"]
 [ext_resource type="Script" uid="uid://ccfg0kqja7idh" path="res://player/camera_2d.gd" id="5_hg6s5"]
 [ext_resource type="Script" uid="uid://cguwv74qsfh7" path="res://player/level_manager.gd" id="5_qjkh3"]
-[ext_resource type="Texture2D" uid="uid://dd7vv2pt0injp" path="res://sprites/menu_panel.png" id="7_rgyib"]
 [ext_resource type="Script" uid="uid://mdyf6ywuq8fq" path="res://player/virtual_joystick.gd" id="8_8t03j"]
+[ext_resource type="Texture2D" uid="uid://cxt6boidunfbp" path="res://sprites/nine_patch_rect.png" id="9_8t03j"]
 
 [sub_resource type="Gradient" id="Gradient_rgyib"]
 offsets = PackedFloat32Array(0, 0.42978725, 1)
@@ -43,9 +43,6 @@ bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g1dw6"]
 texture = ExtResource("4_yw30f")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_boad6"]
-texture = ExtResource("7_rgyib")
 
 [node name="player" type="CharacterBody2D" unique_id=302319716 groups=["player"]]
 process_mode = 3
@@ -149,7 +146,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 50
 
-[node name="DeathScreen" type="Panel" parent="UICanvasLayer" unique_id=1652293947]
+[node name="DeathScreen" type="NinePatchRect" parent="UICanvasLayer" unique_id=462704771]
 visible = false
 custom_minimum_size = Vector2(500, 500)
 anchors_preset = 8
@@ -157,13 +154,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_boad6")
+texture = ExtResource("9_8t03j")
+region_rect = Rect2(0, 0, 64, 64)
 
 [node name="BoxContainer" type="BoxContainer" parent="UICanvasLayer/DeathScreen" unique_id=1271706729]
 layout_mode = 1

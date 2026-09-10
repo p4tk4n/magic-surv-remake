@@ -2,9 +2,9 @@ class_name XPOrb
 extends Area2D
 
 @export var chase_speed: float = 0.0
-@export var max_chase_speed: float = 500.0
-@export var accel: float = 1000.0
-@export var collect_dist: float = 16.0
+@export var max_chase_speed: float = 700.0
+@export var accel: float = 1600.0
+@export var collect_dist: float = 10.0
 
 var target: Player = null
 var _chasing: bool = true
