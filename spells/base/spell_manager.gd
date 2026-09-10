@@ -39,7 +39,7 @@ func upgrade_spell(spell_name: String) -> void:
 	
 func get_spell_level(spell_name: String) -> int:
 	if 	active_spells.has(spell_name):
-		print(active_spells.get(spell_name).level)
+		#print(active_spells.get(spell_name).level)
 		return active_spells[spell_name].level
 	else:
 		return -1

@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://bt5xqdnwd3pee"]
+[gd_scene format=3 uid="uid://dpxhroew7ldjq"]
 
-[ext_resource type="Script" uid="uid://c7ewomowpdrcr" path="res://enemy/enemy.gd" id="1_p200p"]
+[ext_resource type="Script" uid="uid://c7ewomowpdrcr" path="res://enemy/basic_enemy/basic_enemy.gd" id="1_p200p"]
 [ext_resource type="Shader" uid="uid://cbmr478u0us4b" path="res://shaders/burn_shader.gdshader" id="2_1wwld"]
 [ext_resource type="Texture2D" uid="uid://dktvoadb6svqb" path="res://sprites/enemy_demo.png" id="2_pmsee"]
 [ext_resource type="Script" uid="uid://cf15fii4v33ha" path="res://enemy/enemy_state_machine.gd" id="3_1wwld"]
@@ -28,7 +28,7 @@ radius = 64.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_3xd07"]
 radius = 60.0
 
-[node name="enemy" type="CharacterBody2D" unique_id=1385120321 groups=["enemy"]]
+[node name="BasicEnemy" type="CharacterBody2D" unique_id=1385120321 groups=["enemy"]]
 script = ExtResource("1_p200p")
 base_health = 10.0
 

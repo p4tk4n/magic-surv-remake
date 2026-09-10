@@ -1,7 +1,7 @@
 extends Control
 
-@onready var joystick_size_label: Label = $BoxContainer/JoystickSizeLabel
-@onready var joystick_size_button: Button = $BoxContainer/JoystickSizeButton
+@onready var joystick_size_label: Label = $Settings/JoystickSizeLabel
+@onready var joystick_size_button: Button = $Settings/JoystickSizeButton
 
 enum joystick_sizes{
 	SMALL, MEDIUM, LARGE
@@ -11,7 +11,6 @@ func _ready() -> void:
 	joystick_size_button.text = str(joystick_sizes.find_key(global.current_joystick_size))
 
 func _on_joystick_size_button_pressed() -> void:
-	
 	if global.current_joystick_size < 2:
 		global.current_joystick_size += 1
 	else:

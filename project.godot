@@ -12,6 +12,7 @@ config_version=5
 
 config/name="MagicSurv"
 run/main_scene="uid://djxxysvx3cyf5"
+config/quit_on_go_back=false
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
 

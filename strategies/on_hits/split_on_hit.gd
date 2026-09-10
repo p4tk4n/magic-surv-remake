@@ -10,7 +10,6 @@ extends OnHitStrategy
 func resolve(projectile: Projectile, enemy: Node2D) -> void:
 	if enemy.has_method("take_damage"):
 		enemy.take_damage(projectile.damage)
-	print("fragged")
 	var controller := projectile.controller
 	var hit_pos := projectile.global_position
 

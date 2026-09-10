@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://4k3odt081qsl" path="res://menus/settings_menu.gd" id="1_83qjl"]
 [ext_resource type="Texture2D" uid="uid://bs6gflsjoxbhj" path="res://sprites/back_icon.png" id="2_v0bl3"]
+[ext_resource type="Script" uid="uid://ynoedqt0jq1f" path="res://menus/juicy_button.gd" id="3_7h2wy"]
 [ext_resource type="Script" uid="uid://6ohiei1opxkn" path="res://menus/bob_animation.gd" id="3_n4a8d"]
 
 [sub_resource type="Gradient" id="Gradient_a63lr"]
@@ -30,7 +31,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_uymxy")
 
-[node name="BoxContainer" type="BoxContainer" parent="." unique_id=1407790508]
+[node name="Settings" type="BoxContainer" parent="." unique_id=1407790508]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -46,25 +47,37 @@ grow_vertical = 2
 alignment = 1
 vertical = true
 
-[node name="JoystickSizeLabel" type="Label" parent="BoxContainer" unique_id=932348629]
+[node name="JoystickSizeLabel" type="Label" parent="Settings" unique_id=932348629]
 custom_minimum_size = Vector2(500, 100)
 layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
 text = "Joystick"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="JoystickSizeButton" type="Button" parent="BoxContainer" unique_id=2066605508]
+[node name="JoystickSizeButton" type="Button" parent="Settings" unique_id=2066605508]
 custom_minimum_size = Vector2(500, 100)
 layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
 text = "Small"
+
+[node name="MojIban" type="Label" parent="Settings" unique_id=1110695938]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "SK9311000000002937779921"
 
 [node name="TextureButton" type="TextureButton" parent="." unique_id=1976470320]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 1
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 216.0
+offset_bottom = 216.0
 texture_normal = ExtResource("2_v0bl3")
 stretch_mode = 0
+script = ExtResource("3_7h2wy")
 
 [node name="BobAnimation" type="Node" parent="TextureButton" unique_id=1860725255 node_paths=PackedStringArray("target")]
 script = ExtResource("3_n4a8d")
@@ -72,5 +85,5 @@ target = NodePath("..")
 amplitude = 3.0
 metadata/_custom_type_script = "uid://6ohiei1opxkn"
 
-[connection signal="pressed" from="BoxContainer/JoystickSizeButton" to="." method="_on_joystick_size_button_pressed"]
+[connection signal="pressed" from="Settings/JoystickSizeButton" to="." method="_on_joystick_size_button_pressed"]
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

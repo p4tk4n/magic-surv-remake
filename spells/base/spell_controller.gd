@@ -27,7 +27,6 @@ func setup(spell_data: SpellData, p: Node2D) -> void:
 	active_emission = data.emission_strategy
 	active_movement = data.movement_strategy
 	active_on_hit = data.on_hit_strategy
-	print(active_on_hit)
 	
 	if not data.is_persistent:
 		timer = Timer.new()
@@ -67,7 +66,7 @@ func _apply_mutation(mutation: MutationData) -> void:
 		active_movement = mutation.movement_strategy
 	if mutation.on_hit_strategy:
 		active_on_hit = mutation.on_hit_strategy
-		print("active_on_hit set to: ", active_on_hit, " (", active_on_hit.get_script(), ")")
+		#print("active_on_hit set to: ", active_on_hit, " (", active_on_hit.get_script(), ")")
 	else:
 		print("mutation.on_hit_strategy was NULL, active_on_hit unchanged: ", active_on_hit)
 	if mutation.cooldown > 0:
@@ -107,10 +106,11 @@ func calc_damage():
 	var amp: float = global.player_stats.stats["damage_amplifier"]
 	var coeff: float = global.player_stats.stats["damage_coefficient"]
 	
-	return base * spell_coeff * increase_mult * amp * coeff
+	var total_damage = base * spell_coeff * increase_mult * amp * coeff
+	return total_damage
 	
 func clear_projectiles() -> void:
-	print("clearing ", _live_projectiles.size(), " projectiles")
+	#print("clearing ", _live_projectiles.size(), " projectiles")
 	for p in _live_projectiles.duplicate():
 		if is_instance_valid(p):
 			p.queue_free()

@@ -30,7 +30,6 @@ func progress_xp_bar(mult):
 func trigger_upgrade_window():
 	if window_open:
 		queued_upgrade_windows += 1
-		print("didnt open window")
 	else:
 		var upgrade_window = upgrade_window_scene.instantiate()
 		get_tree().paused = true
@@ -44,7 +43,7 @@ func _upgrade_picked_spell(spell_name: String):
 		spell_manager.upgrade_spell(spell_name)
 	else:
 		spell_manager.add_spell(global.spell_data.get(spell_name))
-	
+
 func show_next_window(spell):
 	_upgrade_picked_spell(spell)
 	get_tree().get_first_node_in_group("upgradewindow").queue_free()

@@ -1,17 +1,20 @@
 class_name Player
 extends CharacterBody2D
 
+@export var health_gradient: Gradient
+
 @onready var spell_manager: SpellManager = $SpellManager
 @onready var level_manager: Node = $LevelManager
-@onready var xp_bar: ProgressBar = $UICanvasLayer/UI/XpBar
 @onready var sprite_2d: Sprite2D = $PickupArea/Sprite2D
 @onready var death_screen: Panel = $UICanvasLayer/DeathScreen
 @onready var run_time_label: Label = $UICanvasLayer/DeathScreen/BoxContainer/BoxContainer/time
 @onready var health_bar: ProgressBar = $HealthBar
 @onready var virtual_joystick: VirtualJoystick = $UICanvasLayer/UI/MarginContainer/VirtualJoystick
-@onready var time_label: Label = $UICanvasLayer/UI/TimeLabel
 
-@export var health_gradient: Gradient
+@onready var xp_bar: ProgressBar = $UICanvasLayer/UI/TopScreen/XpBar
+@onready var time_label: Label = $UICanvasLayer/UI/TopScreen/TimeLabel
+
+signal collected_xp(mult)
 
 var default_move_speed: float = global.player_stats.stats["base_move_speed"]
 var current_health: float
@@ -20,7 +23,6 @@ var max_health: float = global.player_stats.stats["base_health"]
 var elapsed_run_time: float = 0.0
 var timer_running: bool = true
 
-signal collected_xp(mult)
 var health_bar_style: StyleBoxFlat
 var is_dead: bool = false
 
@@ -62,7 +64,6 @@ func _starting_timer(delta):
 func _add_starting_spell():
 	var starting_spell: SpellData = load("res://spells/resources/magic_bolt/magic_bolt.tres")
 	spell_manager.add_spell(starting_spell)
-	print(spell_manager.active_spells)
 func _physics_process(delta: float) -> void:
 	if not is_dead and not get_tree().paused: movement(delta)
 

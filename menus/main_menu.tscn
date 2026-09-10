@@ -8,12 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://ddwqrg6rda0pp" path="res://sprites/quit_icon.png" id="4_rqbgu"]
 
 [sub_resource type="Gradient" id="Gradient_a63lr"]
-colors = PackedColorArray(0.14767182, 0.14767179, 0.14767179, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.17370892, 1)
+colors = PackedColorArray(0.41981336, 0.41981307, 0.4198131, 1, 0.2848504, 0.28485027, 0.28485012, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_pwbes"]
 gradient = SubResource("Gradient_a63lr")
-fill_from = Vector2(1, 0)
-fill_to = Vector2(0, 1)
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
 
 [node name="MainMenu" type="Control" unique_id=1981796075]
 layout_mode = 3
@@ -54,7 +55,7 @@ target = NodePath("..")
 metadata/_custom_type_script = "uid://6ohiei1opxkn"
 
 [node name="StartButton" type="TextureButton" parent="." unique_id=1061589261]
-custom_minimum_size = Vector2(600, 200)
+custom_minimum_size = Vector2(400, 200)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
