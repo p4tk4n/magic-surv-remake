@@ -38,7 +38,6 @@ func _calc_camera_rect():
 	
 	return Rect2(cam.global_position - half_size, half_size * 2.0)
 	
-
 var upgrades = [ #lowk mozno obsolete, ig ze by slo pouzit keys zo spellbook dictionary v zozname namiesto tohto
 	"Magic Bolt",
 	"Satellite",

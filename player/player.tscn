@@ -5,11 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://b3dawjvh4uxqg" path="res://sprites/player_anim_sheet_demo.png" id="2_g1dw6"]
 [ext_resource type="Script" uid="uid://2out7nuyfo2l" path="res://spells/base/spell_manager.gd" id="3_g1dw6"]
 [ext_resource type="Texture2D" uid="uid://dyvl3huyyq0nt" path="res://shaders/burn_texture.tres" id="3_rgyib"]
-[ext_resource type="Texture2D" uid="uid://d2s53thrpsb7v" path="res://sprites/player_demo.png" id="4_yw30f"]
 [ext_resource type="Script" uid="uid://ccfg0kqja7idh" path="res://player/camera_2d.gd" id="5_hg6s5"]
 [ext_resource type="Script" uid="uid://cguwv74qsfh7" path="res://player/level_manager.gd" id="5_qjkh3"]
 [ext_resource type="Script" uid="uid://mdyf6ywuq8fq" path="res://player/virtual_joystick.gd" id="8_8t03j"]
-[ext_resource type="Texture2D" uid="uid://cxt6boidunfbp" path="res://sprites/nine_patch_rect.png" id="9_8t03j"]
+[ext_resource type="Theme" uid="uid://b0gupevtmims3" path="res://base_theme.tres" id="9_2ieo8"]
+[ext_resource type="Texture2D" uid="uid://dct1assy5d2pj" path="res://sprites/progress_bar_under.png" id="9_ebec5"]
+[ext_resource type="Texture2D" uid="uid://c3u8dqk4a58ew" path="res://sprites/progress_bar_fill.png" id="10_yllr7"]
 
 [sub_resource type="Gradient" id="Gradient_rgyib"]
 offsets = PackedFloat32Array(0, 0.42978725, 1)
@@ -40,9 +41,6 @@ bg_color = Color(0.22670749, 0.22670752, 0.2267074, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8t03j"]
 bg_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g1dw6"]
-texture = ExtResource("4_yw30f")
 
 [node name="player" type="CharacterBody2D" unique_id=302319716 groups=["player"]]
 process_mode = 3
@@ -100,6 +98,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("9_2ieo8")
 
 [node name="VirtualJoystick" type="VirtualJoystick" parent="UICanvasLayer/UI" unique_id=1935999008]
 layout_mode = 1
@@ -132,13 +131,14 @@ grow_horizontal = 2
 alignment = 1
 vertical = true
 
-[node name="XpBar" type="ProgressBar" parent="UICanvasLayer/UI/TopScreen" unique_id=299105173]
+[node name="XpBar" type="TextureProgressBar" parent="UICanvasLayer/UI/TopScreen" unique_id=952493103]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
-theme_override_styles/fill = SubResource("StyleBoxTexture_g1dw6")
 max_value = 10.0
 step = 0.1
-show_percentage = false
+nine_patch_stretch = true
+texture_under = ExtResource("9_ebec5")
+texture_progress = ExtResource("10_yllr7")
 
 [node name="TimeLabel" type="Label" parent="UICanvasLayer/UI/TopScreen" unique_id=2085247797]
 layout_mode = 2
@@ -148,7 +148,7 @@ theme_override_font_sizes/font_size = 50
 
 [node name="DeathScreen" type="NinePatchRect" parent="UICanvasLayer" unique_id=462704771]
 visible = false
-custom_minimum_size = Vector2(500, 500)
+custom_minimum_size = Vector2(500, 800)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -160,8 +160,7 @@ offset_right = 250.0
 offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("9_8t03j")
-region_rect = Rect2(0, 0, 64, 64)
+texture = ExtResource("9_ebec5")
 
 [node name="BoxContainer" type="BoxContainer" parent="UICanvasLayer/DeathScreen" unique_id=1271706729]
 layout_mode = 1

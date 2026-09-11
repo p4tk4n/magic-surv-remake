@@ -1,0 +1,8 @@
+[gd_resource type="Theme" format=3 uid="uid://b0gupevtmims3"]
+
+[ext_resource type="FontFile" uid="uid://bdxvvs0pchx53" path="res://fonts/kunstraub/Kunstraub.ttf" id="1_6qegq"]
+
+[resource]
+default_font = ExtResource("1_6qegq")
+Button/fonts/font = ExtResource("1_6qegq")
+Label/fonts/font = ExtResource("1_6qegq")

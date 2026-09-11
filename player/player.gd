@@ -11,7 +11,7 @@ extends CharacterBody2D
 @onready var health_bar: ProgressBar = $HealthBar
 @onready var virtual_joystick: VirtualJoystick = $UICanvasLayer/UI/MarginContainer/VirtualJoystick
 
-@onready var xp_bar: ProgressBar = $UICanvasLayer/UI/TopScreen/XpBar
+@onready var xp_bar: TextureProgressBar = $UICanvasLayer/UI/TopScreen/XpBar
 @onready var time_label: Label = $UICanvasLayer/UI/TopScreen/TimeLabel
 
 signal collected_xp(mult)
@@ -26,7 +26,7 @@ var timer_running: bool = true
 var health_bar_style: StyleBoxFlat
 var is_dead: bool = false
 
-var is_god: bool = true
+var is_god: bool = false
 
 var starting: bool = false
 var start_timer_delay: float = 3.0

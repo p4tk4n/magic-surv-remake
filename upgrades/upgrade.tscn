@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://8ucshlbbw7a3"]
 
 [ext_resource type="Texture2D" uid="uid://b6i7efbh78l3e" path="res://sprites/satellite_demo.png" id="1_3oguy"]
+[ext_resource type="Theme" uid="uid://b0gupevtmims3" path="res://base_theme.tres" id="1_fvx8q"]
 [ext_resource type="Script" uid="uid://3txainw81mfc" path="res://upgrades/upgrade.gd" id="1_rgapa"]
 
 [node name="Upgrade" type="Button" unique_id=1117297740]
@@ -11,6 +12,7 @@ offset_bottom = 8.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme = ExtResource("1_fvx8q")
 script = ExtResource("1_rgapa")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=598727280]
