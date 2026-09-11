@@ -16,6 +16,9 @@ var camera_rect_bounds: float = 300.0
 var joystick_scales = [200.0,300.0,400.0]
 var current_joystick_size: int = 1
 
+var window_size_pc := Vector2i(1000,1000)
+var window_size_mobile := Vector2i(1000,2000)
+
 var scenes: Dictionary = {
 	"main_menu": load("res://menus/main_menu.tscn"),
 	"settings": load("res://menus/settings_menu.tscn"),

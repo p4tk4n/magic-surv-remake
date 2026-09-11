@@ -53,6 +53,7 @@ func _ready() -> void:
 	
 	time_label.text = format_time(elapsed_run_time)
 	
+
 func _starting_timer(delta):
 	if current_start_timer < start_timer_delay:
 		current_start_timer += delta
@@ -64,6 +65,7 @@ func _starting_timer(delta):
 func _add_starting_spell():
 	var starting_spell: SpellData = load("res://spells/resources/magic_bolt/magic_bolt.tres")
 	spell_manager.add_spell(starting_spell)
+	
 func _physics_process(delta: float) -> void:
 	if not is_dead and not get_tree().paused: movement(delta)
 

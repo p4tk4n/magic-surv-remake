@@ -21,11 +21,12 @@ config/icon="res://icon.svg"
 global="*uid://c621hr3ccfimk"
 SignalBus="*uid://cfmjjld4u20ui"
 Helpers="*uid://bke2gxmvuysb6"
+osSetup="*uid://ccy1rvcoqj6i1"
 
 [display]
 
 window/size/viewport_width=1000
-window/size/viewport_height=2000
+window/size/viewport_height=1500
 window/stretch/aspect="expand"
 window/handheld/orientation=1
 
