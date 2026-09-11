@@ -11,6 +11,8 @@
 [ext_resource type="Theme" uid="uid://b0gupevtmims3" path="res://base_theme.tres" id="9_2ieo8"]
 [ext_resource type="Texture2D" uid="uid://dct1assy5d2pj" path="res://sprites/progress_bar_under.png" id="9_ebec5"]
 [ext_resource type="Texture2D" uid="uid://c3u8dqk4a58ew" path="res://sprites/progress_bar_fill.png" id="10_yllr7"]
+[ext_resource type="Shader" uid="uid://coflurk872jy1" path="res://shaders/vignette.gdshader" id="11_ebec5"]
+[ext_resource type="Texture2D" uid="uid://b0uorlxlyvcd" path="res://sprites/red_vignette.png" id="12_yllr7"]
 
 [sub_resource type="Gradient" id="Gradient_rgyib"]
 offsets = PackedFloat32Array(0, 0.42978725, 1)
@@ -41,6 +43,16 @@ bg_color = Color(0.22670749, 0.22670752, 0.2267074, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8t03j"]
 bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ieo8"]
+shader = ExtResource("11_ebec5")
+shader_parameter/health_percent = 1.0
+shader_parameter/flash_amount = 0.0
+shader_parameter/vignette_color = Color(0.6, 0, 0, 1)
+shader_parameter/max_intensity = 0.50000002375
+shader_parameter/radius = 0.4
+shader_parameter/softness = 0.250000011875
+shader_parameter/health_threshold = 0.7
 
 [node name="player" type="CharacterBody2D" unique_id=302319716 groups=["player"]]
 process_mode = 3
@@ -198,6 +210,18 @@ custom_maximum_size = Vector2(300, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Play Again"
+
+[node name="ShaderCanvasLayer" type="CanvasLayer" parent="." unique_id=835648424]
+
+[node name="RedVignette" type="TextureRect" parent="ShaderCanvasLayer" unique_id=1946138978]
+material = SubResource("ShaderMaterial_2ieo8")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("12_yllr7")
 
 [node name="LevelManager" type="Node" parent="." unique_id=94570466 node_paths=PackedStringArray("ui_xp_bar", "ui_control")]
 script = ExtResource("5_qjkh3")

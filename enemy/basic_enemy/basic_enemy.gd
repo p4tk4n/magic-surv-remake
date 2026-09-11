@@ -5,10 +5,12 @@ extends CharacterBody2D
 @export var base_health: float = 100.0
 var current_health: float
 var is_dead: bool = false
-
 var is_elite: bool = false
-
 var xp_mult: float = 1.0
+
+var hit_interval: float = 1.0
+var _hit_timer: float = 0.0
+var _touching_player: Node = null
 
 func _ready() -> void:
 	current_health = base_health
@@ -19,7 +21,15 @@ func _ready() -> void:
 		current_health *= 2
 		sprite_2d.modulate = Color.DARK_RED
 		xp_mult = global.elite_xp_mult
+
+func _process(delta: float) -> void:
+	if not _touching_player: return
 		
+	_hit_timer -= delta
+	if _hit_timer <= 0.0:
+		_touching_player.take_damage(global.enemy_damage)
+		_hit_timer = hit_interval
+
 func _physics_process(delta: float) -> void:
 	move_and_slide()
 
@@ -54,4 +64,8 @@ func take_damage(amount):
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
 	if area.owner.is_in_group("player"):
-		area.owner.take_damage(global.enemy_damage)
+		_touching_player = area.owner
+		_hit_timer = 0.0
+
+func _on_hit_box_area_exited(area: Area2D) -> void:
+	_touching_player = null

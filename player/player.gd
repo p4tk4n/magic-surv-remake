@@ -10,15 +10,18 @@ extends CharacterBody2D
 @onready var run_time_label: Label = $UICanvasLayer/DeathScreen/BoxContainer/BoxContainer/time
 @onready var health_bar: ProgressBar = $HealthBar
 @onready var virtual_joystick: VirtualJoystick = $UICanvasLayer/UI/MarginContainer/VirtualJoystick
-
 @onready var xp_bar: TextureProgressBar = $UICanvasLayer/UI/TopScreen/XpBar
 @onready var time_label: Label = $UICanvasLayer/UI/TopScreen/TimeLabel
+@onready var red_vignette: TextureRect = $ShaderCanvasLayer/RedVignette
 
 signal collected_xp(mult)
 
 var default_move_speed: float = global.player_stats.stats["base_move_speed"]
 var current_health: float
 var max_health: float = global.player_stats.stats["base_health"]
+@export var hit_vignette_flash_max: float = 0.5
+@export var hit_vignette_flash_decay: float = 2.0
+var _flash_amount: float = 0.0
 
 var elapsed_run_time: float = 0.0
 var timer_running: bool = true
@@ -52,7 +55,6 @@ func _ready() -> void:
 	health_bar_style.bg_color = health_to_color(current_health, max_health)
 	
 	time_label.text = format_time(elapsed_run_time)
-	
 
 func _starting_timer(delta):
 	if current_start_timer < start_timer_delay:
@@ -74,7 +76,12 @@ func _process(delta: float) -> void:
 	if starting: return
 	if not get_tree().paused and timer_running:
 		elapsed_run_time += delta
+	if _flash_amount > 0.0:
+		_flash_amount = max(_flash_amount - hit_vignette_flash_decay * delta, 0.0)
+		red_vignette.material.set_shader_parameter("flash_amount", _flash_amount)
+	
 	time_label.text = format_time(elapsed_run_time)
+	
 func movement(delta):
 	var dir = Input.get_vector("player_left", "player_right", "player_up", "player_down")
 	if dir:
@@ -87,18 +94,20 @@ func movement(delta):
 	move_and_slide()
 
 func take_damage(amount) -> void:
-	SignalBus.shake_screen.emit(0.8, 0.5)
+	SignalBus.shake_screen.emit(1.2, 0.5)
 	current_health -= amount
-	health_bar.value = current_health
-	health_bar_style.bg_color = health_to_color(current_health, max_health)
-	
+	_update_health_bar()
+	_flash_amount = hit_vignette_flash_max
+	red_vignette.set_instance_shader_parameter("flash_amount", _flash_amount)
 	if current_health <= 0:
 		timer_running = false
 		die()
 
 func _update_health_bar() -> void:
+	health_bar_style.bg_color = health_to_color(current_health, max_health)
 	health_bar.value = current_health
 	health_bar_style.bg_color = health_to_color(current_health, max_health)
+	red_vignette.material.set_shader_parameter("health_percent", current_health/max_health)
 	
 func die():
 	var tween = create_tween()
@@ -128,10 +137,9 @@ func _on_xp_bar_value_changed(value: float) -> void:
 func health_to_color(current: float, max: float) -> Color:
 	var pct: float = clamp(current/max, 0.0, 1.0)
 	return health_gradient.sample(pct)
-	
-func _start_new_run():
+
+func reset():
 	global.player_xp = 0
-	SignalBus.run_over.emit()
 	spell_manager.reset()
 	elapsed_run_time = 0.0
 	timer_running = true
@@ -139,10 +147,15 @@ func _start_new_run():
 	global_position = Vector2.ZERO
 	velocity = Vector2.ZERO
 	is_dead = false
-	get_tree().paused = false
-	
 	global.unavailable_upgrades = []
 	_update_health_bar()
+	red_vignette.set_instance_shader_parameter("flash_amount", 0)
+	red_vignette.material.set_shader_parameter("health_percent", 1.0)
+	
+func _start_new_run():
+	reset()
+	SignalBus.run_over.emit()
+	get_tree().paused = false
 	death_screen.visible = false
 	_add_starting_spell()
 	
