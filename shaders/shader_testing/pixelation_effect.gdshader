@@ -1,0 +1,21 @@
+shader_type canvas_item;
+uniform float pixelation: hint_range(0.0, 1000.0, 1.0);
+
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	vec2 uv = UV;
+	vec2 pixelated_uv = floor(uv * (pixelation + .1))/pixelation;
+	
+	vec4 color = texture(TEXTURE, pixelated_uv);
+	COLOR = color;
+	
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
