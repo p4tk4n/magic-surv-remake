@@ -1,4 +1,4 @@
-class_name HurttBox
+class_name HurtBox
 extends Area2D
 
 @export_category("Layer & Mask")

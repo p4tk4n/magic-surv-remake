@@ -11,7 +11,8 @@ extends CharacterBody2D
 @onready var xp_bar: TextureProgressBar = $UICanvasLayer/UI/TopScreen/XpBar
 @onready var time_label: Label = $UICanvasLayer/UI/TopScreen/TimeLabel
 @onready var red_vignette: TextureRect = $ShaderCanvasLayer/RedVignette
-@onready var health_bar: HealthBar = $Sprite2D/HealthBar
+@onready var animation_manager: AnimationManager = $AnimationManager
+@onready var health_bar: HealthBar = $AnimatedSprite2D/HealthBar
 
 signal collected_xp(mult)
 
@@ -82,6 +83,8 @@ func _process(delta: float) -> void:
 	
 func movement(delta):
 	var dir = Input.get_vector("player_left", "player_right", "player_up", "player_down")
+	animation_manager.update_sprite_animation(dir)
+	print(dir)
 	if dir:
 		velocity = dir.normalized() * default_move_speed * delta
 	else:

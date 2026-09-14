@@ -1,11 +1,9 @@
 [gd_scene format=3 uid="uid://bopi6neojhcw3"]
 
 [ext_resource type="Script" uid="uid://k80lv8rxc4nw" path="res://player/player.gd" id="1_rkbax"]
-[ext_resource type="Shader" uid="uid://cbmr478u0us4b" path="res://shaders/burn_shader.gdshader" id="2_boad6"]
-[ext_resource type="Texture2D" uid="uid://b3dawjvh4uxqg" path="res://sprites/player_anim_sheet_demo.png" id="2_g1dw6"]
 [ext_resource type="Script" uid="uid://cc2orxcmr5cn2" path="res://node components/hurtbox/hurt_box.gd" id="2_kb6p2"]
 [ext_resource type="Script" uid="uid://2out7nuyfo2l" path="res://spells/base/spell_manager.gd" id="3_g1dw6"]
-[ext_resource type="Texture2D" uid="uid://dyvl3huyyq0nt" path="res://shaders/burn_texture.tres" id="3_rgyib"]
+[ext_resource type="Texture2D" uid="uid://81xn5mgpy5vm" path="res://sprites/player_spritesheet.png" id="3_wodsf"]
 [ext_resource type="Script" uid="uid://ccfg0kqja7idh" path="res://player/camera_2d.gd" id="5_hg6s5"]
 [ext_resource type="Script" uid="uid://cguwv74qsfh7" path="res://player/level_manager.gd" id="5_qjkh3"]
 [ext_resource type="Gradient" uid="uid://bjeas3ry3p3jg" path="res://node components/healthbar/health_gradient.tres" id="7_32hag"]
@@ -16,6 +14,7 @@
 [ext_resource type="Shader" uid="uid://coflurk872jy1" path="res://shaders/vignette.gdshader" id="11_ebec5"]
 [ext_resource type="Texture2D" uid="uid://b0uorlxlyvcd" path="res://sprites/red_vignette.png" id="12_yllr7"]
 [ext_resource type="Script" uid="uid://cidmv4ivmr0jd" path="res://node components/healthbar/health_bar.gd" id="15_wodsf"]
+[ext_resource type="Script" uid="uid://bjesy54oeyqf6" path="res://player/animation_manager.gd" id="17_tqiix"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4xfga"]
 size = Vector2(32, 32)
@@ -24,15 +23,93 @@ size = Vector2(32, 32)
 size = Vector2(64, 64)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qjkh3"]
-shader = ExtResource("2_boad6")
-shader_parameter/percentage = 1.0
-shader_parameter/burn_texture = ExtResource("3_rgyib")
-shader_parameter/layer_1 = Color(0.2, 0.2, 0.2, 1)
-shader_parameter/size_1 = 0.05
-shader_parameter/layer_2 = Color(1, 0, 0, 1)
-shader_parameter/size_2 = 0.05
-shader_parameter/layer_3 = Color(1, 0.5, 0, 1)
-shader_parameter/size_3 = 0.05
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32hag"]
+atlas = ExtResource("3_wodsf")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqiix"]
+atlas = ExtResource("3_wodsf")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7oew"]
+atlas = ExtResource("3_wodsf")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c35mf"]
+atlas = ExtResource("3_wodsf")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65viv"]
+atlas = ExtResource("3_wodsf")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7c3f"]
+atlas = ExtResource("3_wodsf")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjvpn"]
+atlas = ExtResource("3_wodsf")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kb6p2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32hag")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqiix")
+}],
+"loop": 1,
+"name": &"move_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7oew")
+}],
+"loop": 1,
+"name": &"move_lowerleft",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c35mf")
+}],
+"loop": 1,
+"name": &"move_lowerright",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65viv")
+}],
+"loop": 1,
+"name": &"move_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7c3f")
+}],
+"loop": 1,
+"name": &"move_upperleft",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjvpn")
+}],
+"loop": 1,
+"name": &"move_upperright",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3xd07"]
 radius = 192.0
@@ -64,13 +141,12 @@ metadata/_custom_type_script = "uid://cc2orxcmr5cn2"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=295920206]
 shape = SubResource("RectangleShape2D_6fhyq")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=642414609]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1138281442]
 material = SubResource("ShaderMaterial_qjkh3")
-texture = ExtResource("2_g1dw6")
-hframes = 3
-vframes = 3
+sprite_frames = SubResource("SpriteFrames_kb6p2")
+animation = &"move_lowerright"
 
-[node name="HealthBar" type="ProgressBar" parent="Sprite2D" unique_id=2099507207 node_paths=PackedStringArray("player")]
+[node name="HealthBar" type="ProgressBar" parent="AnimatedSprite2D" unique_id=2099507207 node_paths=PackedStringArray("player")]
 custom_minimum_size = Vector2(0, 10)
 offset_left = -38.0
 offset_top = 34.0
@@ -226,6 +302,10 @@ texture = ExtResource("12_yllr7")
 script = ExtResource("5_qjkh3")
 ui_xp_bar = NodePath("../UICanvasLayer/UI/TopScreen/XpBar")
 ui_control = NodePath("../UICanvasLayer/UI")
+
+[node name="AnimationManager" type="Node" parent="." unique_id=1870047453 node_paths=PackedStringArray("animated_sprite")]
+script = ExtResource("17_tqiix")
+animated_sprite = NodePath("../AnimatedSprite2D")
 
 [connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]
 [connection signal="value_changed" from="UICanvasLayer/UI/TopScreen/XpBar" to="." method="_on_xp_bar_value_changed"]

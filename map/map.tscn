@@ -3,18 +3,33 @@
 [ext_resource type="Script" uid="uid://catgohf1kfvao" path="res://map/map.gd" id="1_4hjbm"]
 [ext_resource type="PackedScene" uid="uid://bopi6neojhcw3" path="res://player/player.tscn" id="1_a0dt8"]
 [ext_resource type="Texture2D" uid="uid://b8vfnv6oistgc" path="res://sprites/tiles_demo.png" id="2_lgq1i"]
+[ext_resource type="Texture2D" uid="uid://bihn8bgd6xw62" path="res://sprites/grass_tile.png" id="3_kxmgb"]
+[ext_resource type="Texture2D" uid="uid://d1wxg3wdqmyag" path="res://sprites/grass_tile_2.png" id="4_e8e5r"]
 [ext_resource type="Script" uid="uid://4a4r7cke3xdw" path="res://map/enemy_manager.gd" id="4_kffv2"]
 [ext_resource type="Script" uid="uid://deyww7uvvf01a" path="res://enemy/enemy_type_data.gd" id="5_7lyie"]
 [ext_resource type="Resource" uid="uid://cqcy33mftskg3" path="res://enemy/basic_enemy/basic_enemy_data.tres" id="6_5jdw0"]
+[ext_resource type="Resource" uid="uid://chu714v6xgril" path="res://enemy/medium_enemy/medium_enemy_data.tres" id="6_kxmgb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lgq1i"]
 texture = ExtResource("2_lgq1i")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e8e5r"]
+texture = ExtResource("3_kxmgb")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_112ik"]
+texture = ExtResource("4_e8e5r")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_3xd07"]
 tile_size = Vector2i(128, 128)
 sources/0 = SubResource("TileSetAtlasSource_lgq1i")
+sources/1 = SubResource("TileSetAtlasSource_e8e5r")
+sources/2 = SubResource("TileSetAtlasSource_112ik")
 
 [node name="map" type="Node2D" unique_id=426478845]
 script = ExtResource("1_4hjbm")
@@ -27,5 +42,5 @@ tile_set = SubResource("TileSet_3xd07")
 [node name="EnemyManager" type="Node" parent="." unique_id=414225939 node_paths=PackedStringArray("player")]
 script = ExtResource("4_kffv2")
 player = NodePath("../player")
-enemy_types = Array[ExtResource("5_7lyie")]([ExtResource("6_5jdw0")])
+enemy_types = Array[ExtResource("5_7lyie")]([ExtResource("6_kxmgb"), ExtResource("6_5jdw0")])
 base_enemies_in_wave = 5
