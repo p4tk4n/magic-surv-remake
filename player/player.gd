@@ -1,18 +1,17 @@
 class_name Player
 extends CharacterBody2D
 
-@export var health_gradient: Gradient
-
 @onready var spell_manager: SpellManager = $SpellManager
 @onready var level_manager: Node = $LevelManager
 @onready var sprite_2d: Sprite2D = $PickupArea/Sprite2D
 @onready var death_screen: NinePatchRect = $UICanvasLayer/DeathScreen
 @onready var run_time_label: Label = $UICanvasLayer/DeathScreen/BoxContainer/BoxContainer/time
-@onready var health_bar: ProgressBar = $HealthBar
+#@onready var health_bar: ProgressBar = $HealthBar
 @onready var virtual_joystick: VirtualJoystick = $UICanvasLayer/UI/MarginContainer/VirtualJoystick
 @onready var xp_bar: TextureProgressBar = $UICanvasLayer/UI/TopScreen/XpBar
 @onready var time_label: Label = $UICanvasLayer/UI/TopScreen/TimeLabel
 @onready var red_vignette: TextureRect = $ShaderCanvasLayer/RedVignette
+@onready var health_bar: HealthBar = $Sprite2D/HealthBar
 
 signal collected_xp(mult)
 
@@ -41,18 +40,17 @@ func _ready() -> void:
 	
 	_add_starting_spell()
 	collected_xp.connect(level_manager.progress_xp_bar)
+	
 	current_health = max_health
-
 	health_bar.min_value = 0
 	health_bar.max_value = max_health
+	health_bar.update_health_bar()
+	
 	if not is_god or OS.has_feature("mobile"): 
 		health_bar.value = current_health 
 	else:
 		health_bar.value = INF
 		current_health = INF
-	
-	health_bar_style = health_bar.get_theme_stylebox("fill")
-	health_bar_style.bg_color = health_to_color(current_health, max_health)
 	
 	time_label.text = format_time(elapsed_run_time)
 
@@ -94,20 +92,17 @@ func movement(delta):
 	move_and_slide()
 
 func take_damage(amount) -> void:
+	print("took damage")
 	SignalBus.shake_screen.emit(1.2, 0.5)
 	current_health -= amount
-	_update_health_bar()
+	health_bar.update_health_bar()
+	#_update_health_bar()
+	red_vignette.material.set_shader_parameter("health_percent", current_health/max_health)
 	_flash_amount = hit_vignette_flash_max
 	red_vignette.set_instance_shader_parameter("flash_amount", _flash_amount)
 	if current_health <= 0:
 		timer_running = false
 		die()
-
-func _update_health_bar() -> void:
-	health_bar_style.bg_color = health_to_color(current_health, max_health)
-	health_bar.value = current_health
-	health_bar_style.bg_color = health_to_color(current_health, max_health)
-	red_vignette.material.set_shader_parameter("health_percent", current_health/max_health)
 	
 func die():
 	var tween = create_tween()
@@ -134,10 +129,6 @@ func _on_xp_bar_value_changed(value: float) -> void:
 	if xp_bar.value >=  xp_bar.max_value:
 		level_manager.level_up_player()
 
-func health_to_color(current: float, max: float) -> Color:
-	var pct: float = clamp(current/max, 0.0, 1.0)
-	return health_gradient.sample(pct)
-
 func reset():
 	global.player_xp = 0
 	spell_manager.reset()
@@ -148,7 +139,7 @@ func reset():
 	velocity = Vector2.ZERO
 	is_dead = false
 	global.unavailable_upgrades = []
-	_update_health_bar()
+	health_bar.update_health_bar()
 	red_vignette.set_instance_shader_parameter("flash_amount", 0)
 	red_vignette.material.set_shader_parameter("health_percent", 1.0)
 	

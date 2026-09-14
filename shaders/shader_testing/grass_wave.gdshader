@@ -13,6 +13,7 @@ void fragment() {
 	uv.x *= 1.3;
 	uv.x += .5;
 	
+	
 	if (uv.x > 1.0 || uv.x < 0.0){
 		discard;
 	}

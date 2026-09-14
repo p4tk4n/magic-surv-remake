@@ -2,7 +2,6 @@ todo list:
 -add incineration
 -more enemy types
 -big boss enemies
--boss/elite waves every 2:30 minutes
 -ground pickups like health, kill all magic stone, pick up all exp magic stone, big health pickup from bosses
 -stats data display in paused screen
 
@@ -14,7 +13,8 @@ Done:
 -fixed xp not despawning
 -added explosion spritesheet export to exploding onhit
 -resized ui to fit mobile better
-
+-healthbar is a custom component now
+-made the basic enemy smaller
 
 Spell adding process:
 	1.[spellname].tres file - spelldata resourrce

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ma7j7mwtlin6"]
 
-[ext_resource type="Shader" uid="uid://baxiet5fu8cmp" path="res://shaders/shader_testing/flag_wave.gdshader" id="1_xs1r1"]
+[ext_resource type="Shader" path="res://shaders/shader_testing/flag_wave.gdshader" id="1_xs1r1"]
 [ext_resource type="Texture2D" uid="uid://c4dpg1qxqrdry" path="res://icon.svg" id="2_g6ihl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xs1r1"]
