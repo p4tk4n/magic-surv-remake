@@ -4,6 +4,8 @@ extends Panel
 @onready var upgrade_scene: PackedScene = preload("res://upgrades/upgrade.tscn")
 signal spell_picked(spell)
 
+var spell_manager_ref: SpellManager
+
 func shuffle_spells():
 	var upgrades_and_spells: Array = Helpers.add_array(global.upgrades, global.passive_upgrades)
 	var available_upgrades: Array = Helpers.subtract_array(upgrades_and_spells, global.unavailable_upgrades)
@@ -31,5 +33,9 @@ func shuffle_spells():
 				rand_spell,
 				global.spellbook[rand_spell][0]
 			)
+			if not passives.has(rand_spell) and spell_manager_ref.active_spells.has(rand_spell):
+				if spell_manager_ref.active_spells[rand_spell].level == spell_manager_ref.active_spells[rand_spell].data.levels.size():
+					child.is_max_level = true
+			
 		else:
 			child.queue_free()

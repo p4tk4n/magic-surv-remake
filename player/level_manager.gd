@@ -32,6 +32,7 @@ func trigger_upgrade_window():
 		queued_upgrade_windows += 1
 	else:
 		var upgrade_window = upgrade_window_scene.instantiate()
+		upgrade_window.spell_manager_ref = spell_manager
 		get_tree().paused = true
 		upgrade_window.spell_picked.connect(show_next_window)
 		ui_control.add_child(upgrade_window)

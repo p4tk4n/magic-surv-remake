@@ -9,10 +9,11 @@ extends CharacterBody2D
 #@onready var health_bar: ProgressBar = $HealthBar
 @onready var virtual_joystick: VirtualJoystick = $UICanvasLayer/UI/MarginContainer/VirtualJoystick
 @onready var xp_bar: TextureProgressBar = $UICanvasLayer/UI/TopScreen/XpBar
-@onready var time_label: Label = $UICanvasLayer/UI/TopScreen/TimeLabel
 @onready var red_vignette: TextureRect = $ShaderCanvasLayer/RedVignette
 @onready var animation_manager: AnimationManager = $AnimationManager
 @onready var health_bar: HealthBar = $AnimatedSprite2D/HealthBar
+@onready var time_label: Label = $UICanvasLayer/UI/TimeLabel
+@onready var pause_screen: Panel = $UICanvasLayer/UI/PauseScreen
 
 signal collected_xp(mult)
 
@@ -84,7 +85,6 @@ func _process(delta: float) -> void:
 func movement(delta):
 	var dir = Input.get_vector("player_left", "player_right", "player_up", "player_down")
 	animation_manager.update_sprite_animation(dir)
-	print(dir)
 	if dir:
 		velocity = dir.normalized() * default_move_speed * delta
 	else:
@@ -155,3 +155,7 @@ func _start_new_run():
 	
 func _on_button_pressed() -> void:
 	_start_new_run()
+
+func _on_pause_button_pressed() -> void:
+	get_tree().paused = not get_tree().paused
+	pause_screen.visible = get_tree().paused

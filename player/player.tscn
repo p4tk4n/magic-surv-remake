@@ -12,7 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://dct1assy5d2pj" path="res://sprites/progress_bar_under.png" id="9_ebec5"]
 [ext_resource type="Texture2D" uid="uid://c3u8dqk4a58ew" path="res://sprites/progress_bar_fill.png" id="10_yllr7"]
 [ext_resource type="Shader" uid="uid://coflurk872jy1" path="res://shaders/vignette.gdshader" id="11_ebec5"]
+[ext_resource type="Texture2D" uid="uid://cx30aoxufrxj1" path="res://sprites/pause_button.png" id="12_32hag"]
 [ext_resource type="Texture2D" uid="uid://b0uorlxlyvcd" path="res://sprites/red_vignette.png" id="12_yllr7"]
+[ext_resource type="Script" uid="uid://ynoedqt0jq1f" path="res://menus/juicy_button.gd" id="13_tqiix"]
+[ext_resource type="Texture2D" uid="uid://dov20nv1emqbt" path="res://sprites/restart_icon.png" id="14_e7oew"]
 [ext_resource type="Script" uid="uid://cidmv4ivmr0jd" path="res://node components/healthbar/health_bar.gd" id="15_wodsf"]
 [ext_resource type="Script" uid="uid://bjesy54oeyqf6" path="res://player/animation_manager.gd" id="17_tqiix"]
 
@@ -187,6 +190,15 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("9_2ieo8")
 
+[node name="PauseScreen" type="Panel" parent="UICanvasLayer/UI" unique_id=1807089955]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="VirtualJoystick" type="VirtualJoystick" parent="UICanvasLayer/UI" unique_id=1935999008]
 layout_mode = 1
 anchors_preset = 7
@@ -213,7 +225,7 @@ script = ExtResource("8_8t03j")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 69.0
+offset_bottom = 20.0
 grow_horizontal = 2
 alignment = 1
 vertical = true
@@ -227,15 +239,37 @@ nine_patch_stretch = true
 texture_under = ExtResource("9_ebec5")
 texture_progress = ExtResource("10_yllr7")
 
-[node name="TimeLabel" type="Label" parent="UICanvasLayer/UI/TopScreen" unique_id=2085247797]
-layout_mode = 2
-size_flags_horizontal = 4
+[node name="TimeLabel" type="Label" parent="UICanvasLayer/UI" unique_id=2085247797]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.008
+anchor_right = 0.008
+offset_top = 24.0
+offset_right = 1.0
+offset_bottom = 87.0
+size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 50
+metadata/_edit_use_anchors_ = true
+
+[node name="PauseButton" type="TextureButton" parent="UICanvasLayer/UI" unique_id=2055457344]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.992
+anchor_top = 0.015999997
+anchor_right = 0.992
+anchor_bottom = 0.016
+offset_left = -32.0
+offset_bottom = 32.0
+grow_horizontal = 0
+texture_normal = ExtResource("12_32hag")
+stretch_mode = 0
+script = ExtResource("13_tqiix")
+metadata/_edit_use_anchors_ = true
 
 [node name="DeathScreen" type="NinePatchRect" parent="UICanvasLayer" unique_id=462704771]
-visible = false
-custom_minimum_size = Vector2(500, 800)
+custom_minimum_size = Vector2(800, 1000)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -267,24 +301,25 @@ vertical = true
 
 [node name="Label" type="Label" parent="UICanvasLayer/DeathScreen/BoxContainer/BoxContainer" unique_id=857424679]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 36
+theme_override_colors/font_color = Color(1, 0.11372549, 0.18039216, 1)
+theme_override_font_sizes/font_size = 55
 text = "Run Over"
 horizontal_alignment = 1
 
 [node name="time" type="Label" parent="UICanvasLayer/DeathScreen/BoxContainer/BoxContainer" unique_id=863870857]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 30
 text = "14:16"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="UICanvasLayer/DeathScreen/BoxContainer" unique_id=352046511]
-custom_minimum_size = Vector2(100, 50)
-custom_maximum_size = Vector2(300, 100)
+[node name="Button" type="TextureButton" parent="UICanvasLayer/DeathScreen/BoxContainer" unique_id=1514987895]
+custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Play Again"
+texture_normal = ExtResource("14_e7oew")
+stretch_mode = 0
+script = ExtResource("13_tqiix")
 
 [node name="ShaderCanvasLayer" type="CanvasLayer" parent="." unique_id=835648424]
 
@@ -309,4 +344,5 @@ animated_sprite = NodePath("../AnimatedSprite2D")
 
 [connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]
 [connection signal="value_changed" from="UICanvasLayer/UI/TopScreen/XpBar" to="." method="_on_xp_bar_value_changed"]
+[connection signal="pressed" from="UICanvasLayer/UI/PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="pressed" from="UICanvasLayer/DeathScreen/BoxContainer/Button" to="." method="_on_button_pressed"]

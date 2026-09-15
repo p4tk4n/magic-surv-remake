@@ -60,11 +60,11 @@ var spell_data = { #data for spell controllers, basically spell backend
 }
 
 var spellbook = {     #for upgrade purposes, like an atlas with names: [spell description, spell icon]
-	"Magic Bolt": ["blah blah blah", load("res://spells/resources/magic_bolt/magic_bolt.tres").icon],
-	"Satellite": ["blah blah blah", load("res://spells/resources/satellite/satellite.tres").icon],
-	"Tsunami": ["blah blah blah", load("res://spells/resources/tsunami/tsunami.tres").icon],
-	"Fireball": ["idk idk idk", load("res://spells/resources/fireball/fireball.tres").icon],
-	"Wisdom": ["passive passive passive", load("res://sprites/wisdom_icon_demo.png")]
+	"Magic Bolt": ["The default projectile", load("res://spells/resources/magic_bolt/magic_bolt.tres").icon],
+	"Satellite": ["An orbiting orb", load("res://spells/resources/satellite/satellite.tres").icon],
+	"Tsunami": ["A sweeping wave", load("res://spells/resources/tsunami/tsunami.tres").icon],
+	"Fireball": ["An exploding ball of fire", load("res://spells/resources/fireball/fireball.tres").icon],
+	"Wisdom": ["Damage % increase", load("res://sprites/wisdom_icon_demo.png")]
 }
 
 #btw vsetky komenty su moje, hlasim sa do sluzby ja, bajo jajo developer mega ultra max
