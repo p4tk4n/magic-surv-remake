@@ -116,13 +116,15 @@ func clear_projectiles() -> void:
 			p.queue_free()
 	_live_projectiles.clear()
 
-func get_nearest_enemy() -> Node2D:
+func get_nearest_enemy(exclude: Array = []) -> Node2D:
 	var enemies := get_tree().get_nodes_in_group("enemy")
 	if enemies.is_empty():
 		return null
-	var nearest: Node2D = enemies[0]
+	var valid_enemies = Helpers.subtract_array(enemies,exclude) if exclude else enemies
+	if valid_enemies.is_empty(): return null
+	var nearest: Node2D = valid_enemies[0]
 	var best_dist := player.global_position.distance_squared_to(nearest.global_position)
-	for e in enemies:
+	for e in valid_enemies:
 		var d := player.global_position.distance_squared_to(e.global_position)
 		if d < best_dist:
 			best_dist = d

@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://bovxr48p5i4nb"]
+
+[ext_resource type="Script" uid="uid://ebqw6735xg3t" path="res://enemy/elite_enemy/enemy_elite.gd" id="1_fil6k"]
+[ext_resource type="Texture2D" uid="uid://8lucse2l1aym" path="res://sprites/elite_enemy.png" id="1_vosot"]
+[ext_resource type="Script" uid="uid://cf15fii4v33ha" path="res://enemy/enemy_state_machine.gd" id="1_xqyu8"]
+[ext_resource type="Texture2D" uid="uid://bd8dmgcng2ks6" path="res://sprites/elite_xp.png" id="2_cl4q8"]
+[ext_resource type="Shader" uid="uid://cbmr478u0us4b" path="res://shaders/burn_shader.gdshader" id="2_ted1d"]
+[ext_resource type="Script" uid="uid://fg4pe3so1c1u" path="res://enemy/EnemyFollow.gd" id="2_tq6i6"]
+[ext_resource type="Texture2D" uid="uid://dyvl3huyyq0nt" path="res://shaders/burn_texture.tres" id="3_fkwij"]
+[ext_resource type="Script" uid="uid://dpdshd3cr65u8" path="res://node components/hitbox/hit_box.gd" id="4_fldlp"]
+[ext_resource type="Script" uid="uid://cc2orxcmr5cn2" path="res://node components/hurtbox/hurt_box.gd" id="5_ted1d"]
+[ext_resource type="Script" uid="uid://cidmv4ivmr0jd" path="res://node components/healthbar/health_bar.gd" id="10_cf4mr"]
+[ext_resource type="Gradient" uid="uid://bjeas3ry3p3jg" path="res://node components/healthbar/health_gradient.tres" id="11_2odkt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_112ik"]
+resource_local_to_scene = true
+shader = ExtResource("2_ted1d")
+shader_parameter/percentage = 1.0
+shader_parameter/burn_texture = ExtResource("3_fkwij")
+shader_parameter/layer_1 = Color(0.2, 0.2, 0.2, 1)
+shader_parameter/size_1 = 0.05
+shader_parameter/layer_2 = Color(1, 0, 0, 1)
+shader_parameter/size_2 = 0.05
+shader_parameter/layer_3 = Color(1, 0.5, 0, 1)
+shader_parameter/size_3 = 0.05
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fkwij"]
+radius = 48.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vosot"]
+radius = 96.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fldlp"]
+radius = 96.0
+
+[node name="enemy_elite" type="CharacterBody2D" unique_id=550760678 groups=["enemy"]]
+script = ExtResource("1_fil6k")
+xp_texture = ExtResource("2_cl4q8")
+xp_mult = 3.0
+is_elite = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1495631626]
+material = SubResource("ShaderMaterial_112ik")
+texture = ExtResource("1_vosot")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1653276070]
+shape = SubResource("CircleShape2D_fkwij")
+
+[node name="StateMachine" type="Node" parent="." unique_id=657297289 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("1_xqyu8")
+initial_state = NodePath("EnemyFollow")
+metadata/_custom_type_script = "uid://cf15fii4v33ha"
+
+[node name="EnemyFollow" type="Node" parent="StateMachine" unique_id=507804349 node_paths=PackedStringArray("enemy")]
+script = ExtResource("2_tq6i6")
+enemy = NodePath("../..")
+move_speed = 40.0
+metadata/_custom_type_script = "uid://fg4pe3so1c1u"
+
+[node name="HitBox" type="Area2D" parent="." unique_id=1288935886]
+script = ExtResource("4_fldlp")
+coll_mask = 3
+metadata/_custom_type_script = "uid://dpdshd3cr65u8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1678751719]
+shape = SubResource("CircleShape2D_vosot")
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=1787819499]
+script = ExtResource("5_ted1d")
+coll_layer = 2
+metadata/_custom_type_script = "uid://cc2orxcmr5cn2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=422677398]
+shape = SubResource("CircleShape2D_fldlp")
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=2122629186 node_paths=PackedStringArray("player")]
+offset_left = -81.0
+offset_top = 100.0
+offset_right = 81.0
+offset_bottom = 105.0
+show_percentage = false
+script = ExtResource("10_cf4mr")
+health_gradient = ExtResource("11_2odkt")
+player = NodePath("..")
+metadata/_custom_type_script = "uid://cidmv4ivmr0jd"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="entered" from="HitBox" to="." method="_on_hit_box_entered"]
+[connection signal="exited" from="HitBox" to="." method="_on_hit_box_exited"]

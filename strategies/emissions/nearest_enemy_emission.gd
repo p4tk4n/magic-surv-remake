@@ -4,10 +4,12 @@ extends EmissionStrategy
 @export var stagger_delay: float = 0.05
 
 func emit(controller: SpellController) -> void:
+	var shot_enemies = []
 	for i in controller.current_stats.count:
-		var target := controller.get_nearest_enemy()
+		var target := controller.get_nearest_enemy(shot_enemies)
 		if not target:
 			return
+		shot_enemies.append(target)
 		var proj := controller.spawn_projectile()
 		var direction = (target.global_position - proj.global_position).normalized()
 		var angle = direction.angle()

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyTypeData" format=3 uid="uid://gq0vwe45c7qd"]
+
+[ext_resource type="Script" uid="uid://deyww7uvvf01a" path="res://enemy/enemy_type_data.gd" id="1_6bkj0"]
+[ext_resource type="PackedScene" uid="uid://bovxr48p5i4nb" path="res://enemy/elite_enemy/enemy_elite.tscn" id="1_7aeg6"]
+
+[resource]
+script = ExtResource("1_6bkj0")
+enemy_scene = ExtResource("1_7aeg6")
+duration = 10.0
+metadata/_custom_type_script = "uid://deyww7uvvf01a"

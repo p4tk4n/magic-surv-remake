@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c7ewomowpdrcr" path="res://enemy/basic_enemy/basic_enemy.gd" id="1_p200p"]
 [ext_resource type="Shader" uid="uid://cbmr478u0us4b" path="res://shaders/burn_shader.gdshader" id="2_1wwld"]
+[ext_resource type="Texture2D" uid="uid://dxlnpnfmk38om" path="res://sprites/xp_demo.png" id="2_e355f"]
 [ext_resource type="Script" uid="uid://cf15fii4v33ha" path="res://enemy/enemy_state_machine.gd" id="3_1wwld"]
 [ext_resource type="Texture2D" uid="uid://dyvl3huyyq0nt" path="res://shaders/burn_texture.tres" id="3_y5vj3"]
 [ext_resource type="Texture2D" uid="uid://00jt11rnoyhn" path="res://sprites/basic_enemy.png" id="4_1wwld"]
@@ -32,7 +33,7 @@ radius = 48.010414
 
 [node name="BasicEnemy" type="CharacterBody2D" unique_id=1385120321 groups=["enemy"]]
 script = ExtResource("1_p200p")
-base_health = 10.0
+xp_texture = ExtResource("2_e355f")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=34220524]
 material = SubResource("ShaderMaterial_p200p")

@@ -2,7 +2,7 @@ class_name HealthBar
 extends ProgressBar
 
 @export var health_gradient: Gradient
-@export var player: Player
+@export var player: CharacterBody2D
 
 var health_bar_style
 

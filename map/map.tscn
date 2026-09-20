@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://deyww7uvvf01a" path="res://enemy/enemy_type_data.gd" id="5_7lyie"]
 [ext_resource type="Resource" uid="uid://cqcy33mftskg3" path="res://enemy/basic_enemy/basic_enemy_data.tres" id="6_5jdw0"]
 [ext_resource type="Resource" uid="uid://chu714v6xgril" path="res://enemy/medium_enemy/medium_enemy_data.tres" id="6_kxmgb"]
+[ext_resource type="Resource" uid="uid://gq0vwe45c7qd" path="res://enemy/elite_enemy/elite_enemy_data.tres" id="10_112ik"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lgq1i"]
 texture = ExtResource("2_lgq1i")
@@ -42,5 +43,5 @@ tile_set = SubResource("TileSet_3xd07")
 [node name="EnemyManager" type="Node" parent="." unique_id=414225939 node_paths=PackedStringArray("player")]
 script = ExtResource("4_kffv2")
 player = NodePath("../player")
-enemy_types = Array[ExtResource("5_7lyie")]([ExtResource("6_kxmgb"), ExtResource("6_5jdw0")])
+enemy_types = Array[ExtResource("5_7lyie")]([ExtResource("10_112ik"), ExtResource("6_5jdw0"), ExtResource("6_kxmgb")])
 base_enemies_in_wave = 5

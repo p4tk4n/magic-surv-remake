@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://dpbd3rxnkws7x"]
 
 [ext_resource type="Script" uid="uid://cf15fii4v33ha" path="res://enemy/enemy_state_machine.gd" id="1_2yrn5"]
-[ext_resource type="Script" uid="uid://c7ewomowpdrcr" path="res://enemy/basic_enemy/basic_enemy.gd" id="1_3i6hc"]
+[ext_resource type="Script" uid="uid://b6mw00ikngr3l" path="res://enemy/medium_enemy/enemy_medium.gd" id="1_7pkkj"]
+[ext_resource type="Texture2D" uid="uid://dxlnpnfmk38om" path="res://sprites/xp_demo.png" id="2_mfa1r"]
 [ext_resource type="Shader" uid="uid://cbmr478u0us4b" path="res://shaders/burn_shader.gdshader" id="2_o253a"]
 [ext_resource type="Script" uid="uid://fg4pe3so1c1u" path="res://enemy/EnemyFollow.gd" id="2_uh7kx"]
 [ext_resource type="Texture2D" uid="uid://dyvl3huyyq0nt" path="res://shaders/burn_texture.tres" id="3_7pkkj"]
@@ -31,7 +32,8 @@ radius = 63.0
 radius = 64.070274
 
 [node name="EnemyMedium" type="CharacterBody2D" unique_id=613232181 groups=["enemy"]]
-script = ExtResource("1_3i6hc")
+script = ExtResource("1_7pkkj")
+xp_texture = ExtResource("2_mfa1r")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=490525964]
 material = SubResource("ShaderMaterial_3i6hc")
@@ -48,7 +50,7 @@ metadata/_custom_type_script = "uid://cf15fii4v33ha"
 [node name="EnemyFollow" type="Node" parent="StateMachine" unique_id=143196325 node_paths=PackedStringArray("enemy")]
 script = ExtResource("2_uh7kx")
 enemy = NodePath("../..")
-move_speed = 60.0
+move_speed = 50.0
 metadata/_custom_type_script = "uid://fg4pe3so1c1u"
 
 [node name="HitBox" type="Area2D" parent="." unique_id=926469046]

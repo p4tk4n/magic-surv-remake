@@ -43,6 +43,8 @@ func _ready() -> void:
 	_add_starting_spell()
 	collected_xp.connect(level_manager.progress_xp_bar)
 	
+	death_screen.visible = false
+	
 	current_health = max_health
 	health_bar.min_value = 0
 	health_bar.max_value = max_health
@@ -67,6 +69,11 @@ func _starting_timer(delta):
 func _add_starting_spell():
 	var starting_spell: SpellData = load("res://spells/resources/magic_bolt/magic_bolt.tres")
 	spell_manager.add_spell(starting_spell)
+	spell_manager.upgrade_spell("Magic Bolt")
+	spell_manager.upgrade_spell("Magic Bolt")
+	spell_manager.upgrade_spell("Magic Bolt")
+	spell_manager.upgrade_spell("Magic Bolt")
+	spell_manager.upgrade_spell("Magic Bolt")
 	
 func _physics_process(delta: float) -> void:
 	if not is_dead and not get_tree().paused: movement(delta)
@@ -152,10 +159,11 @@ func _start_new_run():
 	get_tree().paused = false
 	death_screen.visible = false
 	_add_starting_spell()
-	
-func _on_button_pressed() -> void:
-	_start_new_run()
 
 func _on_pause_button_pressed() -> void:
 	get_tree().paused = not get_tree().paused
 	pause_screen.visible = get_tree().paused
+
+
+func _on_replay_button_pressed() -> void:
+	_start_new_run()

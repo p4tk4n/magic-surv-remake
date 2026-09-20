@@ -20,7 +20,7 @@ func reset():
 func level_up_player():
 	ui_xp_bar.value = 0.0
 	trigger_upgrade_window()
-	ui_xp_bar.max_value = ui_xp_bar.max_value * 1.3
+	ui_xp_bar.max_value = ui_xp_bar.max_value * global.level_xpreq_increase
 	
 func progress_xp_bar(mult):
 	var xp_added = global.current_xp_value * global.xp_value_mult * mult

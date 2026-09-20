@@ -18,8 +18,6 @@ func _ready() -> void:
 	
 func _on_area_entered(area: Area2D) -> void:
 	entered.emit(area)
-	print("hitbox entered")
 
 func _on_area_exited(area: Area2D) -> void:
 	exited.emit(area)
-	print("hitbox exited")

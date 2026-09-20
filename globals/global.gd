@@ -1,10 +1,10 @@
 extends Node
 
-var xp_scene: PackedScene = preload("res://experience/experience.tscn")
 var current_xp_value: float = 1.0
 var xp_value_mult: float = 1.0
 var player_xp: float = 0
 var elite_xp_mult: float = 2.0
+var level_xpreq_increase: float = 1.15
 
 var player_stats: PlayerStats = load("res://player/stats.tres")
 

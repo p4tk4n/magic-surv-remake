@@ -13,7 +13,9 @@ func set_params(new_icon: Texture2D, new_name: String, new_desc: String) -> void
 	spell_desc.text = new_desc
 	if is_max_level:
 		spell_name.add_theme_color_override("font_color", Color.LIGHT_SEA_GREEN)
-	
+		spell_desc.add_theme_color_override("font_color", Color.CYAN)
+		spell_desc.text = "Mutation(s) available!"
+		
 	queue_redraw()
 
 func _on_pressed() -> void:
