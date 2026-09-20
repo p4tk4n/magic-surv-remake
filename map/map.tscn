@@ -43,5 +43,5 @@ tile_set = SubResource("TileSet_3xd07")
 [node name="EnemyManager" type="Node" parent="." unique_id=414225939 node_paths=PackedStringArray("player")]
 script = ExtResource("4_kffv2")
 player = NodePath("../player")
-enemy_types = Array[ExtResource("5_7lyie")]([ExtResource("10_112ik"), ExtResource("6_5jdw0"), ExtResource("6_kxmgb")])
+enemy_types = Array[ExtResource("5_7lyie")]([ExtResource("6_kxmgb"), ExtResource("6_5jdw0"), ExtResource("10_112ik")])
 base_enemies_in_wave = 5

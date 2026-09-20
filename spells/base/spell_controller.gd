@@ -102,7 +102,7 @@ func spawn_projectile(spawn_pos: Vector2 = Vector2.INF, override_on_hit: OnHitSt
 func calc_damage():
 	var base = global.player_stats.stats["base_attack"]
 	var spell_coeff := current_stats.damage
-	var increase_mult: float= 1.0 + global.player_stats.stats["damage_increase"]
+	var increase_mult: float = 1.0 + global.player_stats.stats["damage_increase"]
 	var amp: float = global.player_stats.stats["damage_amplifier"]
 	var coeff: float = global.player_stats.stats["damage_coefficient"]
 	

@@ -36,6 +36,7 @@ radius = 96.0
 [node name="enemy_elite" type="CharacterBody2D" unique_id=550760678 groups=["enemy"]]
 script = ExtResource("1_fil6k")
 xp_texture = ExtResource("2_cl4q8")
+max_health = 50.0
 xp_mult = 3.0
 is_elite = true
 

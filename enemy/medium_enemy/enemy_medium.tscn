@@ -34,6 +34,7 @@ radius = 64.070274
 [node name="EnemyMedium" type="CharacterBody2D" unique_id=613232181 groups=["enemy"]]
 script = ExtResource("1_7pkkj")
 xp_texture = ExtResource("2_mfa1r")
+max_health = 20.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=490525964]
 material = SubResource("ShaderMaterial_3i6hc")

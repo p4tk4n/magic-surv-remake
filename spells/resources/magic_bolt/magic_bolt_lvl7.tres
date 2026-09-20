@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_7fgx3")
-damage = 50.0
+damage = 3.5
 count = 5
 speed = 500.0
 cooldown_reduction = 0.4
