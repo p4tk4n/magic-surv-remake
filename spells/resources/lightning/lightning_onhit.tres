@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="SingleHitOnHit" format=3 uid="uid://vp78fhbqcn5l"]
+
+[ext_resource type="Script" uid="uid://cl2eh66auh7fp" path="res://strategies/on_hits/single_hit_on_hit.gd" id="1_e00bh"]
+
+[resource]
+script = ExtResource("1_e00bh")
+despawn_delay = 0.5
+metadata/_custom_type_script = "uid://cl2eh66auh7fp"

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="AtEnemyEmission" format=3 uid="uid://cykyim5lepu0m"]
+
+[ext_resource type="Script" uid="uid://dikckquwu6is3" path="res://strategies/emissions/at_enemy_emission.gd" id="1_ghwd0"]
+
+[resource]
+script = ExtResource("1_ghwd0")
+proj_offset = Vector2(0, -50)
+metadata/_custom_type_script = "uid://dikckquwu6is3"

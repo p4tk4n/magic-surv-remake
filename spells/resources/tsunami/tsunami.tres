@@ -15,13 +15,24 @@
 [ext_resource type="Resource" uid="uid://c327oab4nkhdd" path="res://spells/resources/tsunami/tsunami_lvl5.tres" id="8_rrayr"]
 [ext_resource type="Resource" uid="uid://dorsjishud3il" path="res://spells/resources/tsunami/tsunami_lvl6.tres" id="9_cmxfb"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_axy2l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s2h48")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}]
+
 [resource]
 script = ExtResource("2_mm4dd")
 spell_name = "Tsunami"
 icon = ExtResource("2_wwhak")
 projectile_scene = ExtResource("3_jg8w3")
-projectile_sprite = ExtResource("1_s2h48")
-cooldown = 5.0
+projectile_spriteframes = SubResource("SpriteFrames_axy2l")
+cooldown = 8.5
 levels = Array[ExtResource("1_1gwo5")]([ExtResource("4_qmnen"), ExtResource("5_wwhak"), ExtResource("6_i2yc7"), ExtResource("7_ryefy"), ExtResource("8_rrayr"), ExtResource("9_cmxfb")])
 emission_strategy = ExtResource("1_0f276")
 movement_strategy = ExtResource("4_klywy")

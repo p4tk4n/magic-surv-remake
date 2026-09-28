@@ -1,14 +1,14 @@
 class_name Projectile
 extends Area2D
 
-@onready var proj_sprite: Sprite2D = $ProjSprite
+@onready var proj_sprite: AnimatedSprite2D = $ProjSprite
 
 var controller: SpellController
 var movement: MovementStrategy
 var on_hit: OnHitStrategy
 
 var direction := Vector2.ZERO
-var sprite: Texture2D
+var spriteframes: SpriteFrames
 var lifetime: float = -1.0
 
 var spawn_grace_period: float = 0.0
@@ -22,9 +22,10 @@ var _hit_cooldowns: Dictionary = {}
 
 func _ready() -> void:
 	area_entered.connect(_on_area_entered)
-	if sprite:
-		proj_sprite.texture = sprite
-	
+	if spriteframes: 
+		proj_sprite.sprite_frames = spriteframes
+		proj_sprite.play("default")
+		
 func _process(delta: float) -> void:
 	if movement:
 		movement.move(self, delta)

@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_urdyn")
-damage = 2.0
-count = 3
+damage = 5.5
+count = 4
 speed = 500.0
 metadata/_custom_type_script = "uid://dv4pxyladt4xv"

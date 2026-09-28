@@ -1,0 +1,65 @@
+[gd_resource type="Resource" script_class="SpellData" format=3 uid="uid://bv08dgqh1j3tc"]
+
+[ext_resource type="Texture2D" uid="uid://u32luec407sy" path="res://sprites/lightning_icon.png" id="1_f8466"]
+[ext_resource type="Script" uid="uid://dv4pxyladt4xv" path="res://spells/base/spell_level_data.gd" id="1_iw1mu"]
+[ext_resource type="Resource" uid="uid://cykyim5lepu0m" path="res://spells/resources/lightning/lightning_emission.tres" id="1_vbutf"]
+[ext_resource type="Script" uid="uid://cyfvv4pm34y4i" path="res://spells/base/spell_data.gd" id="2_5dl3u"]
+[ext_resource type="PackedScene" uid="uid://bvryhkw5tw7s8" path="res://projectile/projectile.tscn" id="3_hk152"]
+[ext_resource type="Resource" uid="uid://suioupehu2bq" path="res://spells/resources/lightning/lightning_movement.tres" id="4_8mbsu"]
+[ext_resource type="Resource" uid="uid://chmwwx1efamdx" path="res://spells/resources/lightning/lightning_lvl1.tres" id="4_oojkv"]
+[ext_resource type="Resource" uid="uid://vp78fhbqcn5l" path="res://spells/resources/lightning/lightning_onhit.tres" id="5_0yu1l"]
+[ext_resource type="Resource" uid="uid://djtxal4h2snk" path="res://spells/resources/lightning/lightning_lvl2.tres" id="5_k5s0c"]
+[ext_resource type="Resource" uid="uid://dcqrow6w6g03t" path="res://spells/resources/lightning/lightning_lvl3.tres" id="6_k0wtm"]
+[ext_resource type="Resource" uid="uid://iejpyd8o3aui" path="res://spells/resources/lightning/lightning_lvl4.tres" id="7_3dxq7"]
+[ext_resource type="Resource" uid="uid://cdw4eqc2b3372" path="res://spells/resources/lightning/lightning_lvl5.tres" id="8_vkbwe"]
+[ext_resource type="Resource" uid="uid://bqpumn763soy3" path="res://spells/resources/lightning/lightning_lvl6.tres" id="9_d3f27"]
+[ext_resource type="Texture2D" uid="uid://wjj2j1gpr8qy" path="res://sprites/lightning_spriteframes.png" id="13_oojkv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5s0c"]
+atlas = ExtResource("13_oojkv")
+region = Rect2(0, 0, 32, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0wtm"]
+atlas = ExtResource("13_oojkv")
+region = Rect2(32, 0, 32, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dxq7"]
+atlas = ExtResource("13_oojkv")
+region = Rect2(64, 0, 32, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkbwe"]
+atlas = ExtResource("13_oojkv")
+region = Rect2(96, 0, 32, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6aa83"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5s0c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0wtm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dxq7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkbwe")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 12.0
+}]
+
+[resource]
+script = ExtResource("2_5dl3u")
+spell_name = "Lightning"
+icon = ExtResource("1_f8466")
+projectile_scene = ExtResource("3_hk152")
+projectile_spriteframes = SubResource("SpriteFrames_6aa83")
+cooldown = 2.0
+levels = Array[ExtResource("1_iw1mu")]([ExtResource("4_oojkv"), ExtResource("5_k5s0c"), ExtResource("6_k0wtm"), ExtResource("7_3dxq7"), ExtResource("8_vkbwe"), ExtResource("9_d3f27")])
+emission_strategy = ExtResource("1_vbutf")
+movement_strategy = ExtResource("4_8mbsu")
+on_hit_strategy = ExtResource("5_0yu1l")
+metadata/_custom_type_script = "uid://cyfvv4pm34y4i"

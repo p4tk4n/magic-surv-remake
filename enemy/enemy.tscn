@@ -32,9 +32,9 @@ radius = 47.0
 radius = 48.010414
 
 [node name="BasicEnemy" type="CharacterBody2D" unique_id=1385120321 groups=["enemy"]]
+motion_mode = 1
 script = ExtResource("1_p200p")
 xp_texture = ExtResource("2_e355f")
-max_health = 30.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=34220524]
 material = SubResource("ShaderMaterial_p200p")

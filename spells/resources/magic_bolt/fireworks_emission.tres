@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_7ifa7")
-stagger_delay = 0.08
+stagger_delay = 0.09
 spread_angle = 30.0
 metadata/_custom_type_script = "uid://dvkljyv525b2i"

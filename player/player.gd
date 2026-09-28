@@ -67,7 +67,7 @@ func _starting_timer(delta):
 		starting = false
 	
 func _add_starting_spell():
-	var starting_spell: SpellData = load("res://spells/resources/magic_bolt/magic_bolt.tres")
+	var starting_spell: SpellData = global.spell_data["Magic Bolt"]
 	spell_manager.add_spell(starting_spell)
 	
 func _physics_process(delta: float) -> void:
@@ -97,7 +97,6 @@ func movement(delta):
 	move_and_slide()
 
 func take_damage(amount) -> void:
-	print("took damage")
 	SignalBus.shake_screen.emit(1.2, 0.5)
 	current_health -= amount
 	health_bar.update_health_bar()

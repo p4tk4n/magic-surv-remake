@@ -4,4 +4,5 @@
 
 [resource]
 script = ExtResource("1_q4inp")
+spacing = 120.0
 metadata/_custom_type_script = "uid://coh7dpfg56itt"

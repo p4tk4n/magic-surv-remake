@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_6la2q")
-split_count = 5
+split_count = 4
+fragment_speed_multiplier = 0.8
 fragment_on_hit = ExtResource("1_tqi6w")
 metadata/_custom_type_script = "uid://baqbniu7fv55d"

@@ -26,7 +26,6 @@ func _process(delta: float) -> void:
 	_hit_timer -= delta
 	if _hit_timer <= 0.0:
 		_touching_player.take_damage(global.enemy_damage)
-		print("hit player")
 		_hit_timer = hit_interval
 
 func _physics_process(delta: float) -> void:
@@ -66,7 +65,6 @@ func take_damage(amount):
 func _on_hit_box_entered(area: Variant) -> void:
 	if area.owner.is_in_group("player"):
 		_touching_player = area.owner
-		print("enemy hit player, ",area.owner.name)
 		_hit_timer = 0.0
 	
 func _on_hit_box_exited(area: Variant) -> void:

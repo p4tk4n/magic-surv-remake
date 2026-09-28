@@ -24,7 +24,37 @@ var scenes: Dictionary = {
 	"settings": load("res://menus/settings_menu.tscn"),
 	"map": load("res://map/map.tscn")
 }
+var upgrades
+var passive_upgrades = [
+	"Wisdom"
+]
 
+var unavailable_upgrades = []
+
+var spell_data = { #data for spell controllers, basically spell backend
+	"Magic Bolt": load("res://spells/resources/magic_bolt/magic_bolt.tres"),
+	"Satellite": load("res://spells/resources/satellite/satellite.tres"),
+	"Tsunami": load("res://spells/resources/tsunami/tsunami.tres"),
+	"Fireball": load("res://spells/resources/fireball/fireball.tres"),
+	"Wisdom": load("res://spells/resources/Passives/wisdom.tres"),
+	
+}
+
+var spellbook = {     #for upgrade purposes, like an atlas with names: [spell description, spell icon]
+	"Magic Bolt": ["The default projectile", load("res://spells/resources/magic_bolt/magic_bolt.tres").icon],
+	"Satellite": ["An orbiting orb", load("res://spells/resources/satellite/satellite.tres").icon],
+	"Tsunami": ["A sweeping wave", load("res://spells/resources/tsunami/tsunami.tres").icon],
+	"Fireball": ["An exploding ball of fire", load("res://spells/resources/fireball/fireball.tres").icon],
+	"Wisdom": ["Damage % increase", load("res://sprites/wisdom_icon_demo.png")],
+	"Lightning": ["A bolt of electricity strikes down", load("res://spells/resources/lightning/lightning.tres").icon]
+}
+
+#btw vsetky komenty su moje, hlasim sa do sluzby ja, bajo jajo developer mega ultra max
+
+func _ready() -> void:
+	upgrades = get_upgrades_arr("res://spells/resources/")
+	spell_data = get_spell_data("res://spells/resources/", upgrades, passive_upgrades)
+	
 func _process(delta: float) -> void:
 	camera_rect_cache = _calc_camera_rect()
 	
@@ -37,34 +67,36 @@ func _calc_camera_rect():
 	var half_size = (viewport_size / zoom) / 2
 	
 	return Rect2(cam.global_position - half_size, half_size * 2.0)
+
+
+#var upgrades = [ #lowk mozno obsolete, ig ze by slo pouzit keys zo spellbook dictionary v zozname namiesto tohto
+	#"Magic Bolt",
+	#"Satellite",
+	#"Tsunami",
+	#"Fireball",
+	#
+#]
+
+func get_spell_data(path, upgrades, passives):
+	var output = {}
+	for name in upgrades:
+		var file_path = str(path) + str(_unformat_spellname(name)) + "/" +  str(_unformat_spellname(name)) + ".tres"
+		output[name] = load(file_path)
+		
+	for name in passives:
+		var file_path = str(path) + "Passives/" +  str(_unformat_spellname(name)) + ".tres"
+		output[name] = load(file_path)
+	return output
 	
-var upgrades = [ #lowk mozno obsolete, ig ze by slo pouzit keys zo spellbook dictionary v zozname namiesto tohto
-	"Magic Bolt",
-	"Satellite",
-	"Tsunami",
-	"Fireball"
-]
+func get_upgrades_arr(path):
+	var output_names: Array = []
+	for name: String in DirAccess.get_directories_at(path):
+		output_names.append(_format_spellname(name))
+	output_names.erase("Passives")
+	return output_names
 
-var passive_upgrades = [
-	"Wisdom"
-]
+func _format_spellname(name: String) -> String:
+	return name.replace("_", " ").capitalize()
 
-var unavailable_upgrades = []
-
-var spell_data = { #data for spell controllers, basically spell backend
-	"Magic Bolt": load("res://spells/resources/magic_bolt/magic_bolt.tres"),
-	"Satellite": load("res://spells/resources/satellite/satellite.tres"),
-	"Tsunami": load("res://spells/resources/tsunami/tsunami.tres"),
-	"Fireball": load("res://spells/resources/fireball/fireball.tres"),
-	"Wisdom": load("res://spells/resources/Passives/wisdom.tres")
-}
-
-var spellbook = {     #for upgrade purposes, like an atlas with names: [spell description, spell icon]
-	"Magic Bolt": ["The default projectile", load("res://spells/resources/magic_bolt/magic_bolt.tres").icon],
-	"Satellite": ["An orbiting orb", load("res://spells/resources/satellite/satellite.tres").icon],
-	"Tsunami": ["A sweeping wave", load("res://spells/resources/tsunami/tsunami.tres").icon],
-	"Fireball": ["An exploding ball of fire", load("res://spells/resources/fireball/fireball.tres").icon],
-	"Wisdom": ["Damage % increase", load("res://sprites/wisdom_icon_demo.png")]
-}
-
-#btw vsetky komenty su moje, hlasim sa do sluzby ja, bajo jajo developer mega ultra max
+func _unformat_spellname(name: String) -> String:
+	return name.to_lower().replace(" ", "_")

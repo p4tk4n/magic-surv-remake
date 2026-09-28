@@ -16,12 +16,24 @@
 [ext_resource type="PackedScene" uid="uid://bvryhkw5tw7s8" path="res://projectile/projectile.tscn" id="11_dkb03"]
 [ext_resource type="Texture2D" uid="uid://bq8i7oxnse6gd" path="res://sprites/magic_bolt_demo.png" id="14_gw5ib"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_8a8hk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_gw5ib")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}]
+
 [resource]
 script = ExtResource("2_1ysnt")
 spell_name = "Magic Bolt"
 icon = ExtResource("2_gw5ib")
 projectile_scene = ExtResource("11_dkb03")
-projectile_sprite = ExtResource("14_gw5ib")
+projectile_spriteframes = SubResource("SpriteFrames_8a8hk")
+cooldown = 0.75
 levels = Array[ExtResource("1_pfy2x")]([ExtResource("3_woq5b"), ExtResource("4_6xpts"), ExtResource("5_gw5ib"), ExtResource("6_jgk62"), ExtResource("7_cl6mw"), ExtResource("8_sjgxk")])
 emission_strategy = ExtResource("1_picq8")
 movement_strategy = ExtResource("9_7a4sr")

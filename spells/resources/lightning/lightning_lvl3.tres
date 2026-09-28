@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SpellLevelData" format=3 uid="uid://dcqrow6w6g03t"]
+
+[ext_resource type="Script" uid="uid://dv4pxyladt4xv" path="res://spells/base/spell_level_data.gd" id="1_7ibd0"]
+
+[resource]
+script = ExtResource("1_7ibd0")
+damage = 15.0
+count = 6
+speed = 0.0
+cooldown_reduction = 0.1
+metadata/_custom_type_script = "uid://dv4pxyladt4xv"

@@ -15,13 +15,24 @@
 [ext_resource type="Resource" uid="uid://dg0ei2sxivsb8" path="res://spells/resources/fireball/fireball_lvl5.tres" id="8_tck3w"]
 [ext_resource type="Resource" uid="uid://c8mcnlnrj6l5j" path="res://spells/resources/fireball/fireball_lvl6.tres" id="9_ffk8q"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_oojkv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_aio44")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}]
+
 [resource]
 script = ExtResource("2_leoyd")
 spell_name = "Fireball"
 icon = ExtResource("2_8a8hk")
 projectile_scene = ExtResource("3_tbhb3")
-projectile_sprite = ExtResource("1_aio44")
-cooldown = 3.0
+projectile_spriteframes = SubResource("SpriteFrames_oojkv")
+cooldown = 1.5
 levels = Array[ExtResource("1_hv05d")]([ExtResource("4_d23nq"), ExtResource("5_8a8hk"), ExtResource("6_xb4yy"), ExtResource("7_7hjk6"), ExtResource("8_tck3w"), ExtResource("9_ffk8q")])
 emission_strategy = ExtResource("1_qyy6f")
 movement_strategy = ExtResource("4_huaop")

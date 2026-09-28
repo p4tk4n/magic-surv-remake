@@ -3,7 +3,7 @@ extends Resource
 
 @export var mutation_name: String = ""
 @export var icon: Texture2D
-@export var projectile_sprite: Texture2D
+@export var projectile_spriteframes: SpriteFrames
 @export var description: String = ""
 
 @export var projectile_scene: PackedScene

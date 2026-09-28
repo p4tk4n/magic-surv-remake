@@ -17,7 +17,7 @@ var active_on_hit: OnHitStrategy
 
 var _live_projectiles: Array[Projectile] = []
 
-var projectile_sprite: Texture2D
+var projectile_spriteframes: SpriteFrames
 
 func setup(spell_data: SpellData, p: Node2D) -> void:
 	data = spell_data
@@ -72,8 +72,8 @@ func _apply_mutation(mutation: MutationData) -> void:
 	if mutation.cooldown > 0:
 		timer.wait_time = mutation.cooldown
 	
-	if mutation.projectile_sprite:
-		projectile_sprite = mutation.projectile_sprite
+	if mutation.projectile_spriteframes:
+		projectile_spriteframes = mutation.projectile_spriteframes
 	
 	current_stats = mutation.mutated_stats
 	is_mutated = true
@@ -89,10 +89,8 @@ func spawn_projectile(spawn_pos: Vector2 = Vector2.INF, override_on_hit: OnHitSt
 	proj.speed = current_stats.speed
 	proj.damage = calc_damage()
 	proj.global_position = spawn_pos if spawn_pos != Vector2.INF else player.global_position
-	if data.projectile_sprite:
-		proj.sprite = data.projectile_sprite
-	if projectile_sprite:
-		proj.sprite = projectile_sprite
+	if data.projectile_spriteframes: proj.spriteframes = data.projectile_spriteframes
+	if projectile_spriteframes: proj.spriteframes = projectile_spriteframes
 	proj.update_rotation()
 	get_tree().current_scene.add_child.call_deferred(proj)
 	_live_projectiles.append(proj)

@@ -34,9 +34,10 @@ radius = 96.0
 radius = 96.0
 
 [node name="enemy_elite" type="CharacterBody2D" unique_id=550760678 groups=["enemy"]]
+motion_mode = 1
 script = ExtResource("1_fil6k")
 xp_texture = ExtResource("2_cl4q8")
-max_health = 50.0
+max_health = 350.0
 xp_mult = 3.0
 is_elite = true
 
@@ -74,7 +75,7 @@ metadata/_custom_type_script = "uid://cc2orxcmr5cn2"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=422677398]
 shape = SubResource("CircleShape2D_fldlp")
 
-[node name="HealthBar" type="ProgressBar" parent="." unique_id=2122629186 node_paths=PackedStringArray("player")]
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=2122629186 node_paths=PackedStringArray("master")]
 offset_left = -81.0
 offset_top = 100.0
 offset_right = 81.0
@@ -82,7 +83,7 @@ offset_bottom = 105.0
 show_percentage = false
 script = ExtResource("10_cf4mr")
 health_gradient = ExtResource("11_2odkt")
-player = NodePath("..")
+master = NodePath("..")
 metadata/_custom_type_script = "uid://cidmv4ivmr0jd"
 metadata/_edit_use_anchors_ = true
 

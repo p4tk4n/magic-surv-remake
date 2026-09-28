@@ -15,7 +15,7 @@ extends Node
 var enemies_in_wave: int
 var next_wave_timer: float = 0.0
 var current_wave: int = 0
-
+ 
 @export_category("Boss waves")
 @export var waves_per_boss_wave: int = 5
 @export var boss_wave_mult: float = 1.5

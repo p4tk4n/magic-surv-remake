@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="LinearMovement" format=3 uid="uid://suioupehu2bq"]
+
+[ext_resource type="Script" uid="uid://cn78wgors32bn" path="res://strategies/movements/linear_movement.gd" id="1_0tmm1"]
+
+[resource]
+script = ExtResource("1_0tmm1")
+metadata/_custom_type_script = "uid://cn78wgors32bn"
