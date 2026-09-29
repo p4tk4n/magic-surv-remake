@@ -15,25 +15,28 @@
 [ext_resource type="Resource" uid="uid://bqpumn763soy3" path="res://spells/resources/lightning/lightning_lvl6.tres" id="9_d3f27"]
 [ext_resource type="Texture2D" uid="uid://wjj2j1gpr8qy" path="res://sprites/lightning_spriteframes.png" id="13_oojkv"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_oojkv"]
+atlas = ExtResource("13_oojkv")
+region = Rect2(0, 0, 32, 192)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_k5s0c"]
 atlas = ExtResource("13_oojkv")
-region = Rect2(0, 0, 32, 128)
+region = Rect2(32, 0, 32, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k0wtm"]
 atlas = ExtResource("13_oojkv")
-region = Rect2(32, 0, 32, 128)
+region = Rect2(64, 0, 32, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3dxq7"]
 atlas = ExtResource("13_oojkv")
-region = Rect2(64, 0, 32, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vkbwe"]
-atlas = ExtResource("13_oojkv")
-region = Rect2(96, 0, 32, 128)
+region = Rect2(96, 0, 32, 192)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6aa83"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oojkv")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_k5s0c")
 }, {
@@ -42,9 +45,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3dxq7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vkbwe")
 }],
 "loop": 0,
 "name": &"default",

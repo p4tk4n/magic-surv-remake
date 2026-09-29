@@ -35,7 +35,6 @@ radius = 64.070274
 motion_mode = 1
 script = ExtResource("1_7pkkj")
 xp_texture = ExtResource("2_mfa1r")
-max_health = 150.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=490525964]
 material = SubResource("ShaderMaterial_3i6hc")

@@ -9,6 +9,8 @@ extends Node
 var queued_upgrade_windows: int = 0
 var window_open: bool = false
 
+
+
 func _ready() -> void:
 	SignalBus.run_over.connect(reset)
 
@@ -18,13 +20,15 @@ func reset():
 	window_open = false
 	
 func level_up_player():
-	ui_xp_bar.value = 0.0
+	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	tween.tween_property(ui_xp_bar, "value", 0.0, 0.6)
 	trigger_upgrade_window()
 	ui_xp_bar.max_value = ui_xp_bar.max_value * global.level_xpreq_increase
 	
 func progress_xp_bar(mult):
 	var xp_added = global.current_xp_value * global.xp_value_mult * mult
-	ui_xp_bar.value += xp_added
+	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	tween.tween_property(ui_xp_bar,"value", ui_xp_bar.value + xp_added, 0.45)
 	global.player_xp += xp_added
 
 func trigger_upgrade_window():

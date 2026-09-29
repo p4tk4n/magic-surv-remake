@@ -6,11 +6,22 @@
 [ext_resource type="Resource" uid="uid://bituu7okg8m2h" path="res://spells/resources/magic_bolt/magic_bolt_lvl7.tres" id="2_vd8cg"]
 [ext_resource type="Resource" uid="uid://c51gr4cjfksc7" path="res://spells/resources/magic_bolt/fireworks_split_onhit.tres" id="3_epmhi"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_km7p8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_47eco")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [resource]
 script = ExtResource("1_ml5lg")
 mutation_name = "Fireworks"
 icon = ExtResource("2_47eco")
-projectile_sprite = ExtResource("2_47eco")
+projectile_spriteframes = SubResource("SpriteFrames_km7p8")
 description = "Splits on impact"
 emission_strategy = ExtResource("1_vd8cg")
 on_hit_strategy = ExtResource("3_epmhi")

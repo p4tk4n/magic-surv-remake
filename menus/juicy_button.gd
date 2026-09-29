@@ -3,7 +3,7 @@ extends TextureButton
 
 @export var hover_scale: float = 1.08
 @export var press_scale: float = 0.95
-@export var tween_duration: float = 0.12
+@export var tween_duration: float = 0.5
 
 @export var outline_shader: Shader = preload("res://shaders/outline.gdshader")
 @export var outline_color: Color = Color.WHITE

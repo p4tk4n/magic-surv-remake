@@ -15,8 +15,9 @@ func set_bg_color():
 	health_bar_style.bg_color = health_to_color(master.current_health, master.max_health)
 	
 func update_health_bar():
-	if master: value = master.current_health
-	else: return
+	if not master: return
+	var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
+	tween.tween_property(self, "value", master.current_health, 0.75)
 	health_bar_style.bg_color = health_to_color(master.current_health, master.max_health)
 
 func health_to_color(current: float, max: float) -> Color:

@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://6ohiei1opxkn" path="res://menus/bob_animation.gd" id="2_oblsv"]
 [ext_resource type="Texture2D" uid="uid://beis30rcgaave" path="res://sprites/main_menu_bg.png" id="3_hswy5"]
 [ext_resource type="Script" uid="uid://ynoedqt0jq1f" path="res://menus/juicy_button.gd" id="4_a63lr"]
-[ext_resource type="Texture2D" uid="uid://ddwqrg6rda0pp" path="res://sprites/quit_icon.png" id="4_rqbgu"]
 [ext_resource type="Texture2D" uid="uid://y17557mit3hv" path="res://sprites/default_button_blue.png" id="5_hswy5"]
 
 [node name="MainMenu" type="Control" unique_id=1981796075]
@@ -32,9 +31,9 @@ texture = ExtResource("3_hswy5")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.431
-anchor_top = 0.42666668
+anchor_top = 0.047999997
 anchor_right = 0.569
-anchor_bottom = 0.42666668
+anchor_bottom = 0.048
 offset_left = -345.5
 offset_right = 345.5
 offset_bottom = 137.0
@@ -51,21 +50,20 @@ metadata/_custom_type_script = "uid://6ohiei1opxkn"
 [node name="StartButton" type="TextureButton" parent="." unique_id=1061589261]
 custom_minimum_size = Vector2(400, 200)
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.32
-anchor_top = 0.55866665
-anchor_right = 0.68
-anchor_bottom = 0.6653334
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -228.0
+offset_right = 200.0
+offset_bottom = -28.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("5_hswy5")
 stretch_mode = 0
 script = ExtResource("4_a63lr")
-metadata/_edit_use_anchors_ = true
 
 [node name="BobAnimation" type="Node" parent="StartButton" unique_id=1246856259 node_paths=PackedStringArray("target")]
 script = ExtResource("2_oblsv")
@@ -74,29 +72,30 @@ amplitude = 3.0
 speed = 2.5
 metadata/_custom_type_script = "uid://6ohiei1opxkn"
 
-[node name="StartRunButton" type="Label" parent="StartButton" unique_id=1204528160]
+[node name="StartButtonLabel" type="Label" parent="StartButton" unique_id=1204528160]
 layout_mode = 1
-anchors_preset = -1
-anchor_top = -0.07
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.93
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 50
 text = "Start a run"
 horizontal_alignment = 1
 vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="SettingsButton" type="TextureButton" parent="." unique_id=1351033435]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 3
 anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = -200.0
-offset_bottom = 200.0
+offset_top = -200.0
 grow_horizontal = 0
+grow_vertical = 0
 offset_transform_position = Vector2(-60, 20)
 texture_normal = ExtResource("2_ij7vn")
 stretch_mode = 0
@@ -109,21 +108,41 @@ amplitude = 3.0
 metadata/_custom_type_script = "uid://6ohiei1opxkn"
 
 [node name="QuitButton" type="TextureButton" parent="." unique_id=253654753]
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = 4.0
+offset_right = 200.0
+offset_bottom = 204.0
+grow_horizontal = 2
+grow_vertical = 2
 offset_transform_position = Vector2(60, 20)
-texture_normal = ExtResource("4_rqbgu")
+texture_normal = ExtResource("5_hswy5")
 stretch_mode = 0
 script = ExtResource("4_a63lr")
-metadata/_edit_use_anchors_ = true
 
 [node name="BobAnimation" type="Node" parent="QuitButton" unique_id=767048208 node_paths=PackedStringArray("target")]
 script = ExtResource("2_oblsv")
 target = NodePath("..")
 amplitude = 3.0
 metadata/_custom_type_script = "uid://6ohiei1opxkn"
+
+[node name="QuitButtonLabel" type="Label" parent="QuitButton" unique_id=135651258]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "QUIT"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]

@@ -4,7 +4,7 @@
 
 [node name="HealthBar" type="ProgressBar" unique_id=575944334]
 offset_right = 40.0
-offset_bottom = 10.0
+offset_bottom = 5.0
 value = 100.0
 show_percentage = false
 script = ExtResource("1_bk2sr")
