@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://u8ymy3wluhyx" path="res://sprites/medium_enemy.png" id="3_ukt5i"]
 [ext_resource type="Script" uid="uid://dpdshd3cr65u8" path="res://node components/hitbox/hit_box.gd" id="4_ukt5i"]
 [ext_resource type="Script" uid="uid://cc2orxcmr5cn2" path="res://node components/hurtbox/hurt_box.gd" id="5_3i6hc"]
+[ext_resource type="Script" uid="uid://b5v1dlyu86soa" path="res://enemy/enemy_init_manager.gd" id="10_54q3h"]
+[ext_resource type="Script" uid="uid://bjqi1x86r5byj" path="res://enemy/enemy_health_manager.gd" id="11_qk05x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3i6hc"]
 resource_local_to_scene = true
@@ -21,9 +23,11 @@ shader_parameter/layer_2 = Color(1, 0, 0, 1)
 shader_parameter/size_2 = 0.05
 shader_parameter/layer_3 = Color(1, 0.5, 0, 1)
 shader_parameter/size_3 = 0.05
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2yrn5"]
-radius = 35.057095
+radius = 60.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3xd07"]
 radius = 63.0
@@ -74,5 +78,12 @@ metadata/_custom_type_script = "uid://cc2orxcmr5cn2"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=851629093]
 shape = SubResource("CircleShape2D_ukt5i")
 
-[connection signal="entered" from="HitBox" to="." method="_on_hit_box_entered"]
-[connection signal="exited" from="HitBox" to="." method="_on_hit_box_exited"]
+[node name="EnemyInitManager" type="Node" parent="." unique_id=155992823 node_paths=PackedStringArray("enemy")]
+script = ExtResource("10_54q3h")
+enemy = NodePath("..")
+metadata/_custom_type_script = "uid://b5v1dlyu86soa"
+
+[node name="EnemyHealthManager" type="Node" parent="." unique_id=1046795429 node_paths=PackedStringArray("enemy")]
+script = ExtResource("11_qk05x")
+enemy = NodePath("..")
+metadata/_custom_type_script = "uid://bjqi1x86r5byj"

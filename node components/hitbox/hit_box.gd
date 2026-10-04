@@ -5,19 +5,17 @@ extends Area2D
 @export var coll_mask: int = 1
 @export var coll_layer: int = 1
 
-
-signal entered(area)
-signal exited(area)
+#signal entered(area)
+#signal exited(area)
 
 func _ready() -> void:
 	collision_layer = coll_layer
 	collision_mask = coll_mask
-	area_entered.connect(_on_area_entered)
-	area_exited.connect(_on_area_exited)
-	#print(owner.name,"'s hitbox layer: ", collision_layer, ", mask: ", collision_mask)
-	
-func _on_area_entered(area: Area2D) -> void:
-	entered.emit(area)
-
-func _on_area_exited(area: Area2D) -> void:
-	exited.emit(area)
+	#area_entered.connect(_on_area_entered) #area_entered -> def area2d signal
+	#area_exited.connect(_on_area_exited)
+	#
+#func _on_area_entered(area: Area2D) -> void:
+	#entered.emit(area)
+#
+#func _on_area_exited(area: Area2D) -> void:
+	#exited.emit(area)

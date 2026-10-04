@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://c7ki6cgpu3x4a"]
+[gd_scene format=3 uid="uid://dpxhroew7ldjq"]
 
 [ext_resource type="Script" uid="uid://c7ewomowpdrcr" path="res://enemy/basic_enemy/basic_enemy.gd" id="1_p200p"]
 [ext_resource type="Shader" uid="uid://cbmr478u0us4b" path="res://shaders/burn_shader.gdshader" id="2_1wwld"]
@@ -9,8 +9,6 @@
 [ext_resource type="Script" uid="uid://fg4pe3so1c1u" path="res://enemy/EnemyFollow.gd" id="4_y5vj3"]
 [ext_resource type="Script" uid="uid://dpdshd3cr65u8" path="res://node components/hitbox/hit_box.gd" id="7_5ffra"]
 [ext_resource type="Script" uid="uid://cc2orxcmr5cn2" path="res://node components/hurtbox/hurt_box.gd" id="8_e355f"]
-[ext_resource type="Script" uid="uid://b5v1dlyu86soa" path="res://enemy/enemy_init_manager.gd" id="10_78jik"]
-[ext_resource type="Script" uid="uid://bjqi1x86r5byj" path="res://enemy/enemy_health_manager.gd" id="11_o3pv7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p200p"]
 resource_local_to_scene = true
@@ -39,6 +37,7 @@ radius = 48.010414
 motion_mode = 1
 script = ExtResource("1_p200p")
 xp_texture = ExtResource("2_e355f")
+max_health = 50.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=34220524]
 material = SubResource("ShaderMaterial_p200p")
@@ -77,12 +76,5 @@ metadata/_custom_type_script = "uid://cc2orxcmr5cn2"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=269930163]
 shape = SubResource("CircleShape2D_c0o56")
 
-[node name="EnemyInitManager" type="Node" parent="." unique_id=845507063 node_paths=PackedStringArray("enemy")]
-script = ExtResource("10_78jik")
-enemy = NodePath("..")
-metadata/_custom_type_script = "uid://b5v1dlyu86soa"
-
-[node name="EnemyHealthManager" type="Node" parent="." unique_id=1678667136 node_paths=PackedStringArray("enemy")]
-script = ExtResource("11_o3pv7")
-enemy = NodePath("..")
-metadata/_custom_type_script = "uid://bjqi1x86r5byj"
+[connection signal="entered" from="HitBox" to="." method="_on_hit_box_entered"]
+[connection signal="exited" from="HitBox" to="." method="_on_hit_box_exited"]
