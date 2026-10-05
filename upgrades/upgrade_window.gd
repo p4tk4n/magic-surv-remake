@@ -37,7 +37,6 @@ func shuffle_spells():
 				rand_spell,
 				global.spellbook[rand_spell][0]
 			)
-			
-			
+
 		else:
 			child.queue_free()

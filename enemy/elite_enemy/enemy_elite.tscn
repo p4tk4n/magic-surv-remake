@@ -37,10 +37,9 @@ radius = 96.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_fldlp"]
 radius = 96.0
 
-[node name="enemy_elite" type="CharacterBody2D" unique_id=550760678 node_paths=PackedStringArray("health_manager") groups=["enemy"]]
+[node name="enemy_elite" type="CharacterBody2D" unique_id=550760678 groups=["enemy"]]
 motion_mode = 1
 script = ExtResource("1_fil6k")
-health_manager = NodePath("EnemyHealthManager")
 xp_texture = ExtResource("2_cl4q8")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1495631626]
@@ -77,7 +76,7 @@ metadata/_custom_type_script = "uid://cc2orxcmr5cn2"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=422677398]
 shape = SubResource("CircleShape2D_fldlp")
 
-[node name="HealthBar" type="ProgressBar" parent="." unique_id=2122629186 node_paths=PackedStringArray("master")]
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=2122629186 node_paths=PackedStringArray("health_manager")]
 offset_left = -81.0
 offset_top = 100.0
 offset_right = 81.0
@@ -85,7 +84,7 @@ offset_bottom = 105.0
 show_percentage = false
 script = ExtResource("10_cf4mr")
 health_gradient = ExtResource("11_2odkt")
-master = NodePath("..")
+health_manager = NodePath("../EnemyHealthManager")
 metadata/_custom_type_script = "uid://cidmv4ivmr0jd"
 metadata/_edit_use_anchors_ = true
 
@@ -97,5 +96,7 @@ metadata/_custom_type_script = "uid://b5v1dlyu86soa"
 [node name="EnemyHealthManager" type="Node" parent="." unique_id=903206457 node_paths=PackedStringArray("enemy", "health_bar")]
 script = ExtResource("14_dmw1m")
 enemy = NodePath("..")
+max_health = 300.0
+is_elite = true
 health_bar = NodePath("../HealthBar")
 metadata/_custom_type_script = "uid://bjqi1x86r5byj"

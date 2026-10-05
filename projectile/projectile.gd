@@ -2,6 +2,7 @@ class_name Projectile
 extends Area2D
 
 @onready var proj_sprite: AnimatedSprite2D = $ProjSprite
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 var controller: SpellController
 var movement: MovementStrategy
@@ -26,6 +27,8 @@ func _ready() -> void:
 		proj_sprite.sprite_frames = spriteframes
 		proj_sprite.play("default")
 		
+		collision_shape.shape.radius = (min(spriteframes.get_frame_texture("default", 0).get_size().x, spriteframes.get_frame_texture("default", 0).get_size().y))/2
+		print(collision_shape.shape.radius)
 func _process(delta: float) -> void:
 	if movement:
 		movement.move(self, delta)

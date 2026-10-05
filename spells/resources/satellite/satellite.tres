@@ -13,17 +13,28 @@
 [ext_resource type="PackedScene" uid="uid://bvryhkw5tw7s8" path="res://projectile/projectile.tscn" id="9_g3x7d"]
 [ext_resource type="Resource" uid="uid://da7s7mbktshvf" path="res://spells/resources/satellite/satellite_movement.tres" id="10_axy2l"]
 [ext_resource type="Resource" uid="uid://bvnyv5b3mbxe0" path="res://spells/resources/satellite/satellite_onhit.tres" id="11_32ee8"]
-[ext_resource type="Texture2D" uid="uid://b6i7efbh78l3e" path="res://sprites/satellite_demo.png" id="13_axy2l"]
+[ext_resource type="Texture2D" uid="uid://cwojmyalil773" path="res://sprites/satellite_spriteframes.png" id="13_axy2l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32ee8"]
+atlas = ExtResource("13_axy2l")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8m4l0"]
+atlas = ExtResource("13_axy2l")
+region = Rect2(48, 0, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6aa83"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("13_axy2l")
+"texture": SubResource("AtlasTexture_32ee8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8m4l0")
 }],
-"loop": 0,
+"loop": 1,
 "name": &"default",
-"speed": 5.0
+"speed": 4.0
 }]
 
 [resource]

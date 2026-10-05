@@ -18,6 +18,8 @@ func reset():
 	ui_xp_bar.value = 0.0
 	queued_upgrade_windows = 0
 	window_open = false
+	for child in get_children():
+		child.queue_free()
 	
 func level_up_player():
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
@@ -44,9 +46,11 @@ func trigger_upgrade_window():
 		upgrade_window.shuffle_spells()
 
 func _upgrade_picked_spell(spell_name: String):
-	if spell_manager.active_spells.has(spell_name):
+	if spell_manager.active_spells.has(spell_name) or spell_manager.passive_spells.has(spell_name):
 		spell_manager.upgrade_spell(spell_name)
+		print("found spell, here are the passives: ",spell_manager.passive_spells)
 	else:
+		print("didnt find ",spell_name, " in active or passive spells, here are the passives: ",spell_manager.passive_spells)
 		spell_manager.add_spell(global.spell_data.get(spell_name))
 
 func show_next_window(spell):

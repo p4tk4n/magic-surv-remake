@@ -4,9 +4,11 @@
 [ext_resource type="Script" uid="uid://cc2orxcmr5cn2" path="res://node components/hurtbox/hurt_box.gd" id="2_kb6p2"]
 [ext_resource type="Script" uid="uid://2out7nuyfo2l" path="res://spells/base/spell_manager.gd" id="3_g1dw6"]
 [ext_resource type="Texture2D" uid="uid://81xn5mgpy5vm" path="res://sprites/player_spritesheet.png" id="3_wodsf"]
+[ext_resource type="Shader" uid="uid://b00i6tota50re" path="res://shaders/flash.gdshader" id="3_x7c3f"]
 [ext_resource type="Script" uid="uid://ccfg0kqja7idh" path="res://player/camera_2d.gd" id="5_hg6s5"]
 [ext_resource type="Script" uid="uid://cguwv74qsfh7" path="res://player/level_manager.gd" id="5_qjkh3"]
 [ext_resource type="Gradient" uid="uid://bjeas3ry3p3jg" path="res://node components/healthbar/health_gradient.tres" id="7_32hag"]
+[ext_resource type="Texture2D" uid="uid://b4rretpqx05pd" path="res://sprites/pickup_area_icon.png" id="7_s7qer"]
 [ext_resource type="Script" uid="uid://mdyf6ywuq8fq" path="res://player/virtual_joystick.gd" id="8_8t03j"]
 [ext_resource type="Theme" uid="uid://b0gupevtmims3" path="res://base_theme.tres" id="9_2ieo8"]
 [ext_resource type="Texture2D" uid="uid://dct1assy5d2pj" path="res://sprites/progress_bar_under.png" id="9_ebec5"]
@@ -19,6 +21,8 @@
 [ext_resource type="Texture2D" uid="uid://y17557mit3hv" path="res://sprites/default_button_blue.png" id="15_c35mf"]
 [ext_resource type="Script" uid="uid://cidmv4ivmr0jd" path="res://node components/healthbar/health_bar.gd" id="15_wodsf"]
 [ext_resource type="Script" uid="uid://bjesy54oeyqf6" path="res://player/animation_manager.gd" id="17_tqiix"]
+[ext_resource type="Script" uid="uid://b0gitf5sakdu2" path="res://player/player_health_manager.gd" id="20_65viv"]
+[ext_resource type="Script" uid="uid://doduc4qhhddlb" path="res://player/stat_update_manager.gd" id="22_bjvpn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4xfga"]
 size = Vector2(32, 32)
@@ -27,6 +31,9 @@ size = Vector2(32, 32)
 size = Vector2(64, 64)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qjkh3"]
+shader = ExtResource("3_x7c3f")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_32hag"]
 atlas = ExtResource("3_wodsf")
@@ -151,7 +158,7 @@ material = SubResource("ShaderMaterial_qjkh3")
 sprite_frames = SubResource("SpriteFrames_kb6p2")
 animation = &"idle"
 
-[node name="HealthBar" type="ProgressBar" parent="AnimatedSprite2D" unique_id=2099507207 node_paths=PackedStringArray("master")]
+[node name="HealthBar" type="ProgressBar" parent="AnimatedSprite2D" unique_id=2099507207 node_paths=PackedStringArray("health_manager")]
 custom_minimum_size = Vector2(0, 10)
 offset_left = -38.0
 offset_top = 34.0
@@ -160,7 +167,7 @@ offset_bottom = 44.0
 show_percentage = false
 script = ExtResource("15_wodsf")
 health_gradient = ExtResource("7_32hag")
-master = NodePath("../..")
+health_manager = NodePath("../../PlayerHealthManager")
 metadata/_custom_type_script = "uid://cidmv4ivmr0jd"
 metadata/_edit_use_anchors_ = true
 
@@ -171,6 +178,9 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" unique_id=420608754]
 shape = SubResource("CircleShape2D_3xd07")
 debug_color = Color(0.96104735, 0, 0.5153212, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="PickupArea" unique_id=147070515]
+texture = ExtResource("7_s7qer")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=721817792]
 script = ExtResource("5_hg6s5")
@@ -268,6 +278,8 @@ grow_horizontal = 0
 texture_normal = ExtResource("12_32hag")
 stretch_mode = 0
 script = ExtResource("13_tqiix")
+hover_scale = 1.1
+has_outline = false
 metadata/_edit_use_anchors_ = true
 
 [node name="DeathScreen" type="NinePatchRect" parent="UICanvasLayer" unique_id=462704771]
@@ -361,6 +373,16 @@ ui_control = NodePath("../UICanvasLayer/UI")
 [node name="AnimationManager" type="Node" parent="." unique_id=1870047453 node_paths=PackedStringArray("animated_sprite")]
 script = ExtResource("17_tqiix")
 animated_sprite = NodePath("../AnimatedSprite2D")
+
+[node name="PlayerHealthManager" type="Node" parent="." unique_id=689937007 node_paths=PackedStringArray("player", "health_bar")]
+script = ExtResource("20_65viv")
+player = NodePath("..")
+health_bar = NodePath("../AnimatedSprite2D/HealthBar")
+metadata/_custom_type_script = "uid://b0gitf5sakdu2"
+
+[node name="StatUpdateManager" type="Node" parent="." unique_id=1562712394 node_paths=PackedStringArray("pickup_area_coll_shape")]
+script = ExtResource("22_bjvpn")
+pickup_area_coll_shape = NodePath("../PickupArea/CollisionShape2D")
 
 [connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]
 [connection signal="value_changed" from="UICanvasLayer/UI/TopScreen/XpBar" to="." method="_on_xp_bar_value_changed"]

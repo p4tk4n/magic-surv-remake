@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 @onready var spell_manager: SpellManager = $SpellManager
 @onready var level_manager: Node = $LevelManager
-@onready var sprite_2d: Sprite2D = $PickupArea/Sprite2D
+@onready var sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var death_screen: NinePatchRect = $UICanvasLayer/DeathScreen
 @onready var run_time_label: Label = $UICanvasLayer/DeathScreen/BoxContainer/BoxContainer/time
 #@onready var health_bar: ProgressBar = $HealthBar
@@ -14,12 +14,13 @@ extends CharacterBody2D
 @onready var health_bar: HealthBar = $AnimatedSprite2D/HealthBar
 @onready var time_label: Label = $UICanvasLayer/UI/TimeLabel
 @onready var pause_screen: Panel = $UICanvasLayer/UI/PauseScreen
+@onready var health_manager: PlayerHealthManager = $PlayerHealthManager
 
 signal collected_xp(mult)
 
-var default_move_speed: float = global.player_stats.stats["base_move_speed"]
-var current_health: float
-var max_health: float = global.player_stats.stats["base_health"]
+var default_move_speed: float = global.player_stats.stats["Move Speed"]
+var default_pickup_area: float = global.player_stats.stats["Pickup Area"]
+
 @export var hit_vignette_flash_max: float = 0.5
 @export var hit_vignette_flash_decay: float = 2.0
 var _flash_amount: float = 0.0
@@ -39,23 +40,11 @@ var current_start_timer: float = 0.0
 func _ready() -> void:
 	starting = true
 	get_tree().paused = true
-	
+	health_manager.setup()
 	_add_starting_spell()
 	collected_xp.connect(level_manager.progress_xp_bar)
 	
 	death_screen.visible = false
-	
-	current_health = max_health
-	health_bar.min_value = 0
-	health_bar.max_value = max_health
-	health_bar.update_health_bar()
-	
-	if not is_god or OS.has_feature("mobile"): 
-		health_bar.value = current_health 
-	else:
-		health_bar.value = INF
-		current_health = INF
-	
 	time_label.text = format_time(elapsed_run_time)
 
 func _starting_timer(delta):
@@ -96,18 +85,6 @@ func movement(delta):
 
 	move_and_slide()
 
-func take_damage(amount) -> void:
-	SignalBus.shake_screen.emit(1.2, 0.5)
-	current_health -= amount
-	health_bar.update_health_bar()
-	#_update_health_bar()
-	red_vignette.material.set_shader_parameter("health_percent", current_health/max_health)
-	_flash_amount = hit_vignette_flash_max
-	red_vignette.set_instance_shader_parameter("flash_amount", _flash_amount)
-	if current_health <= 0:
-		timer_running = false
-		die()
-	
 func die():
 	var tween = create_tween()
 	tween.tween_method(tween_shader, 1.0, 0.0, 0.5)
@@ -121,7 +98,12 @@ func format_time(seconds: float) -> String:
 	var mins := total_sec / 60
 	var secs := total_sec % 60
 	return "%02d:%02d" % [mins, secs]
-	
+
+func flash_hit():
+	var tween := create_tween()
+	tween.tween_property(sprite_2d.material, "shader_parameter/flash_amount", 0.5, 0.0)
+	tween.tween_property(sprite_2d.material, "shader_parameter/flash_amount", 0.0, 0.2)
+
 func tween_shader(object, percent):
 	object.material.set_shader_parameter("percentage", percent)
 
@@ -138,7 +120,7 @@ func reset():
 	spell_manager.reset()
 	elapsed_run_time = 0.0
 	timer_running = true
-	current_health = max_health
+	health_manager.setup()
 	global_position = Vector2.ZERO
 	velocity = Vector2.ZERO
 	is_dead = false

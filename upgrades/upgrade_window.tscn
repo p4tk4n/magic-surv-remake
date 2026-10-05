@@ -32,14 +32,17 @@ theme_override_constants/separation = 50
 alignment = 1
 vertical = true
 
-[node name="Upgrade1" parent="MarginContainer/BoxContainer" unique_id=2075299843 instance=ExtResource("2_pn7dx")]
+[node name="Upgrade1" parent="MarginContainer/BoxContainer" unique_id=2075299843 node_paths=PackedStringArray("upgrade_window") instance=ExtResource("2_pn7dx")]
 layout_mode = 2
 size_flags_horizontal = 1
+upgrade_window = NodePath("../../..")
 
-[node name="Upgrade2" parent="MarginContainer/BoxContainer" unique_id=1434977044 instance=ExtResource("2_pn7dx")]
+[node name="Upgrade2" parent="MarginContainer/BoxContainer" unique_id=1434977044 node_paths=PackedStringArray("upgrade_window") instance=ExtResource("2_pn7dx")]
 layout_mode = 2
 size_flags_horizontal = 1
+upgrade_window = NodePath("../../..")
 
-[node name="Upgrade3" parent="MarginContainer/BoxContainer" unique_id=815872079 instance=ExtResource("2_pn7dx")]
+[node name="Upgrade3" parent="MarginContainer/BoxContainer" unique_id=815872079 node_paths=PackedStringArray("upgrade_window") instance=ExtResource("2_pn7dx")]
 layout_mode = 2
 size_flags_horizontal = 1
+upgrade_window = NodePath("../../..")

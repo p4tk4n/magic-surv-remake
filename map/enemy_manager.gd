@@ -8,7 +8,7 @@ extends Node
 
 @export_category("Base")
 @export var base_enemies_in_wave: int = 6
-@export var next_wave_timer_max: float = 5.0
+@export var next_wave_timer_max: float = 4.0
 @export var enemy_amount_increase: float = 1.3
 @export var max_enemies_alive: int = 150
 
@@ -85,7 +85,7 @@ func spawn_wave() -> void:
 	for i in spawn_count:
 		var enemy = scene_to_use.instantiate()
 		var random_spawn_offset = Vector2(randi_range(-50, 50), randi_range(-50, 50))
-		enemy.global_position = random_circle_point(player.global_position, 500) + random_spawn_offset
+		enemy.global_position = random_circle_point(player.global_position, 800) + random_spawn_offset
 		if enemy.has_method("apply_cycle_scaling"):
 			enemy.apply_cycle_scaling(cycle_count, stat_increase_per_cycle)
 		add_child(enemy)

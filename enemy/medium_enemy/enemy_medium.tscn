@@ -55,7 +55,7 @@ metadata/_custom_type_script = "uid://cf15fii4v33ha"
 [node name="EnemyFollow" type="Node" parent="StateMachine" unique_id=143196325 node_paths=PackedStringArray("enemy")]
 script = ExtResource("2_uh7kx")
 enemy = NodePath("../..")
-move_speed = 50.0
+move_speed = 45.0
 metadata/_custom_type_script = "uid://fg4pe3so1c1u"
 
 [node name="HitBox" type="Area2D" parent="." unique_id=926469046]
@@ -86,4 +86,5 @@ metadata/_custom_type_script = "uid://b5v1dlyu86soa"
 [node name="EnemyHealthManager" type="Node" parent="." unique_id=1046795429 node_paths=PackedStringArray("enemy")]
 script = ExtResource("11_qk05x")
 enemy = NodePath("..")
+max_health = 70.0
 metadata/_custom_type_script = "uid://bjqi1x86r5byj"

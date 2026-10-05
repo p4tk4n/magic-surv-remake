@@ -4,10 +4,9 @@ var current_xp_value: float = 1.0
 var xp_value_mult: float = 1.0
 var player_xp: float = 0
 var elite_xp_mult: float = 2.0
-var level_xpreq_increase: float = 1.15
+var level_xpreq_increase: float = 1.08
 
 var player_stats: PlayerStats = load("res://player/stats.tres")
-
 var enemy_damage: float = 10.0 #neni scaleable ani nic co je TRAPNEEE
 
 var camera_rect_cache: Rect2
@@ -26,7 +25,8 @@ var scenes: Dictionary = {
 }
 var upgrades
 var passive_upgrades = [
-	"Wisdom"
+	"Wisdom",
+	"Pickup Area"
 ]
 
 var unavailable_upgrades = []
@@ -37,7 +37,7 @@ var spell_data = { #data for spell controllers, basically spell backend
 	"Tsunami": load("res://spells/resources/tsunami/tsunami.tres"),
 	"Fireball": load("res://spells/resources/fireball/fireball.tres"),
 	"Wisdom": load("res://spells/resources/Passives/wisdom.tres"),
-	
+	"Pickup Area": load("res://spells/resources/Passives/pickup_area.tres")
 }
 
 var spellbook = {     #for upgrade purposes, like an atlas with names: [spell description, spell icon]
@@ -45,11 +45,14 @@ var spellbook = {     #for upgrade purposes, like an atlas with names: [spell de
 	"Satellite": ["An orbiting orb", load("res://spells/resources/satellite/satellite.tres").icon],
 	"Tsunami": ["A sweeping wave", load("res://spells/resources/tsunami/tsunami.tres").icon],
 	"Fireball": ["An exploding ball of fire", load("res://spells/resources/fireball/fireball.tres").icon],
-	"Wisdom": ["Damage % increase", load("res://sprites/wisdom_icon_demo.png")],
-	"Lightning": ["A bolt of electricity strikes down", load("res://spells/resources/lightning/lightning.tres").icon]
+	"Lightning": ["A bolt of electricity strikes down", load("res://spells/resources/lightning/lightning.tres").icon],
+	"Wisdom": ["Damage % increase", load("res://sprites/wisdom_icon_demo.png"), "mult"],
+	"Pickup Area": ["Area increases", load("res://sprites/pickup_area_icon.png"), "mult"]
+	
 }
 
 #btw vsetky komenty su moje, hlasim sa do sluzby ja, bajo jajo developer mega ultra max
+#yeah stale goin hard komentujem tu shit 
 
 func _ready() -> void:
 	upgrades = get_upgrades_arr("res://spells/resources/")

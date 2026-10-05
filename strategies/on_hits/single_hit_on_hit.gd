@@ -6,7 +6,6 @@ extends OnHitStrategy
 func resolve(projectile: Projectile, enemy: Node2D) -> void:
 	if enemy.has_method("take_damage"):
 		enemy.take_damage(projectile.damage)
-		print(projectile.damage)
 	
 	if despawn_delay:
 		await projectile.get_tree().create_timer(despawn_delay).timeout

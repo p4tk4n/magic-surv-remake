@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_v1u64")
 radius = 150.0
+angular_speed = 1.5
 metadata/_custom_type_script = "uid://dhautw4ikaux8"

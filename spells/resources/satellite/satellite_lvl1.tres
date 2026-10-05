@@ -5,4 +5,7 @@
 [resource]
 script = ExtResource("1_kf6li")
 damage = 5.0
+extra = {
+"angular_speed": 2.0
+}
 metadata/_custom_type_script = "uid://dv4pxyladt4xv"

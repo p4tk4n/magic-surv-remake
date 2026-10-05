@@ -2,10 +2,15 @@
 
 [ext_resource type="Script" uid="uid://c7ewomowpdrcr" path="res://enemy/basic_enemy/basic_enemy.gd" id="1_p200p"]
 [ext_resource type="Shader" uid="uid://cbmr478u0us4b" path="res://shaders/burn_shader.gdshader" id="2_1wwld"]
-[ext_resource type="Texture2D" uid="uid://dktvoadb6svqb" path="res://sprites/enemy_demo.png" id="2_pmsee"]
+[ext_resource type="Texture2D" uid="uid://dxlnpnfmk38om" path="res://sprites/xp_demo.png" id="2_2ffu0"]
 [ext_resource type="Script" uid="uid://cf15fii4v33ha" path="res://enemy/enemy_state_machine.gd" id="3_1wwld"]
 [ext_resource type="Texture2D" uid="uid://dyvl3huyyq0nt" path="res://shaders/burn_texture.tres" id="3_y5vj3"]
 [ext_resource type="Script" uid="uid://fg4pe3so1c1u" path="res://enemy/EnemyFollow.gd" id="4_y5vj3"]
+[ext_resource type="Texture2D" uid="uid://00jt11rnoyhn" path="res://sprites/basic_enemy.png" id="5_2ffu0"]
+[ext_resource type="Script" uid="uid://bjqi1x86r5byj" path="res://enemy/enemy_health_manager.gd" id="7_bg0oj"]
+[ext_resource type="Script" uid="uid://b5v1dlyu86soa" path="res://enemy/enemy_init_manager.gd" id="8_lkxhi"]
+[ext_resource type="Script" uid="uid://dpdshd3cr65u8" path="res://node components/hitbox/hit_box.gd" id="9_beq60"]
+[ext_resource type="Script" uid="uid://cc2orxcmr5cn2" path="res://node components/hurtbox/hurt_box.gd" id="10_2ffu0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p200p"]
 resource_local_to_scene = true
@@ -18,23 +23,25 @@ shader_parameter/layer_2 = Color(1, 0, 0, 1)
 shader_parameter/size_2 = 0.05
 shader_parameter/layer_3 = Color(1, 0.5, 0, 1)
 shader_parameter/size_3 = 0.05
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wk4eo"]
-radius = 32.0
+radius = 31.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_c0o56"]
-radius = 64.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_jq8tk"]
+radius = 46.010868
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3xd07"]
-radius = 60.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_j648v"]
+radius = 48.0
 
 [node name="enemy" type="CharacterBody2D" unique_id=1385120321 groups=["enemy"]]
 script = ExtResource("1_p200p")
-base_health = 10.0
+xp_texture = ExtResource("2_2ffu0")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=34220524]
 material = SubResource("ShaderMaterial_p200p")
-texture = ExtResource("2_pmsee")
+texture = ExtResource("5_2ffu0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1000161202]
 shape = SubResource("CircleShape2D_wk4eo")
@@ -46,20 +53,31 @@ initial_state = NodePath("EnemyFollow")
 [node name="EnemyFollow" type="Node" parent="StateMachine" unique_id=1839037175 node_paths=PackedStringArray("enemy")]
 script = ExtResource("4_y5vj3")
 enemy = NodePath("../..")
-move_speed = 85.0
+move_speed = 75.0
 
-[node name="HurtBox" type="Area2D" parent="." unique_id=1359038784]
-collision_layer = 2
-collision_mask = 2
+[node name="EnemyHealthManager" type="Node" parent="." unique_id=46133213 node_paths=PackedStringArray("enemy")]
+script = ExtResource("7_bg0oj")
+enemy = NodePath("..")
+max_health = 50.0
+metadata/_custom_type_script = "uid://bjqi1x86r5byj"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1383823361]
-shape = SubResource("CircleShape2D_c0o56")
+[node name="EnemyInitManager" type="Node" parent="." unique_id=1063479172 node_paths=PackedStringArray("enemy")]
+script = ExtResource("8_lkxhi")
+enemy = NodePath("..")
+metadata/_custom_type_script = "uid://b5v1dlyu86soa"
 
-[node name="HitBox" type="Area2D" parent="." unique_id=642352957]
-collision_layer = 0
-collision_mask = 4
+[node name="HitBox" type="Area2D" parent="." unique_id=1736412919]
+script = ExtResource("9_beq60")
+coll_mask = 3
+metadata/_custom_type_script = "uid://dpdshd3cr65u8"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1077788557]
-shape = SubResource("CircleShape2D_3xd07")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=374271599]
+shape = SubResource("CircleShape2D_jq8tk")
 
-[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
+[node name="HurtBox" type="Area2D" parent="." unique_id=9264796]
+script = ExtResource("10_2ffu0")
+coll_layer = 2
+metadata/_custom_type_script = "uid://cc2orxcmr5cn2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1227302857]
+shape = SubResource("CircleShape2D_j648v")

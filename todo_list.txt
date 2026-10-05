@@ -4,6 +4,7 @@ todo list:
 -big boss enemies
 -ground pickups like health, kill all magic stone, pick up all exp magic stone, big health pickup from bosses
 -stats data display in paused screen
+-add coins/other currency, reward after run end, display in main menu, ways to spend it
 
 Done:
 -add fireball
@@ -15,6 +16,10 @@ Done:
 -resized ui to fit mobile better
 -healthbar is a custom component now
 -made the basic enemy smaller
+-added lightning spell
+-white flash on player/enemy hits
+-deco tilemaplayer
+
 
 Spell adding process:
 	1.[spellname].tres file - spelldata resourrce

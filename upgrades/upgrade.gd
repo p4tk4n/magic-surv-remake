@@ -5,6 +5,8 @@ extends Button
 @onready var spell_name: Label = $MarginContainer/BoxContainer3/BoxContainer2/SpellName
 @onready var spell_desc: Label = $MarginContainer/BoxContainer3/BoxContainer2/SpellDesc
 
+@export var upgrade_window: Control
+
 var is_max_level: bool = false
 
 func set_params(new_icon: Texture2D, new_name: String, new_desc: String) -> void:
@@ -19,4 +21,6 @@ func set_params(new_icon: Texture2D, new_name: String, new_desc: String) -> void
 	queue_redraw()
 
 func _on_pressed() -> void:
-	get_parent().get_parent().get_parent().spell_picked.emit(spell_name.text)
+	upgrade_window.spell_picked.emit(spell_name.text)
+	print("Picked spell: ", spell_name.text)
+	
