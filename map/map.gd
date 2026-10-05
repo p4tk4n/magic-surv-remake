@@ -16,7 +16,7 @@ func place_fake_tiles(fake_tile_diameter: int):
 	for y in range(-deco_tile_radius,deco_tile_radius):
 		for x in range(-deco_tile_radius,deco_tile_radius):
 			if randf() < .8: continue
-			decoration_tile_map_layer.set_cell(Vector2i(x,y), 0, Vector2i(randi_range(0,2), 0))
+			decoration_tile_map_layer.set_cell(Vector2i(x,y), 0, Vector2i(randi_range(0,4), randi_range(0,1)))
 	
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):

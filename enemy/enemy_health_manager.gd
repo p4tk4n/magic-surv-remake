@@ -23,7 +23,7 @@ func _ready() -> void:
 func apply_cycle_scaling(cycle: int, increase_per_cycle: float) -> void:
 	var mult := 1.0 + (cycle * increase_per_cycle)
 	max_health *= mult
-	xp_mult = int(xp_mult * mult)
+	xp_mult = int(xp_mult * mult * global.xp_value_mult)
 	current_health = max_health
 	# if enemy has a damage/speed stat, scale those here too
 

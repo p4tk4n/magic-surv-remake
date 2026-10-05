@@ -15,7 +15,7 @@ extends Resource
 	"Health Increase" = 1.0, #in % too, actualyl most of this is % type
 	
 	"Move Speed" = 220.0,
-	"Pickup Area" = 96.0
+	"Pickup Area" = 128.0
 }
 
 signal stat_changed(stat_name: String, new_value: float)

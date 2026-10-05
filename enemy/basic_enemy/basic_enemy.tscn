@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cf15fii4v33ha" path="res://enemy/enemy_state_machine.gd" id="3_1wwld"]
 [ext_resource type="Texture2D" uid="uid://dyvl3huyyq0nt" path="res://shaders/burn_texture.tres" id="3_y5vj3"]
 [ext_resource type="Script" uid="uid://fg4pe3so1c1u" path="res://enemy/EnemyFollow.gd" id="4_y5vj3"]
-[ext_resource type="Texture2D" uid="uid://00jt11rnoyhn" path="res://sprites/basic_enemy.png" id="5_2ffu0"]
+[ext_resource type="Texture2D" uid="uid://bo8orej68kpsd" path="res://sprites/basic_enemy_spriteframes.png" id="5_2ffu0"]
 [ext_resource type="Script" uid="uid://bjqi1x86r5byj" path="res://enemy/enemy_health_manager.gd" id="7_bg0oj"]
 [ext_resource type="Script" uid="uid://b5v1dlyu86soa" path="res://enemy/enemy_init_manager.gd" id="8_lkxhi"]
 [ext_resource type="Script" uid="uid://dpdshd3cr65u8" path="res://node components/hitbox/hit_box.gd" id="9_beq60"]
@@ -26,6 +26,49 @@ shader_parameter/size_3 = 0.05
 shader_parameter/flash_amount = 0.0
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_j648v"]
+atlas = ExtResource("5_2ffu0")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hc71p"]
+atlas = ExtResource("5_2ffu0")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pomix"]
+atlas = ExtResource("5_2ffu0")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqfbv"]
+atlas = ExtResource("5_2ffu0")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7r4xi"]
+atlas = ExtResource("5_2ffu0")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3xd07"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j648v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hc71p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pomix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqfbv")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_7r4xi")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 10.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_wk4eo"]
 radius = 31.0
 
@@ -39,9 +82,10 @@ radius = 48.0
 script = ExtResource("1_p200p")
 xp_texture = ExtResource("2_2ffu0")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=34220524]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=2005575584]
 material = SubResource("ShaderMaterial_p200p")
-texture = ExtResource("5_2ffu0")
+sprite_frames = SubResource("SpriteFrames_3xd07")
+frame_progress = 0.20968346
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1000161202]
 shape = SubResource("CircleShape2D_wk4eo")

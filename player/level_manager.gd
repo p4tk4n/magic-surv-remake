@@ -28,7 +28,7 @@ func level_up_player():
 	ui_xp_bar.max_value = ui_xp_bar.max_value * global.level_xpreq_increase
 	
 func progress_xp_bar(mult):
-	var xp_added = global.current_xp_value * global.xp_value_mult * mult
+	var xp_added = global.current_xp_value * mult
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	tween.tween_property(ui_xp_bar,"value", ui_xp_bar.value + xp_added, 0.45)
 	global.player_xp += xp_added

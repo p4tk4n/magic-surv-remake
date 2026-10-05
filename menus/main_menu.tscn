@@ -30,16 +30,18 @@ texture = ExtResource("3_hswy5")
 [node name="GameTitle" type="Label" parent="." unique_id=568138872]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.431
-anchor_top = 0.047999997
-anchor_right = 0.569
-anchor_bottom = 0.048
+anchor_left = 0.5
+anchor_top = 0.063999996
+anchor_right = 0.5
+anchor_bottom = 0.064
 offset_left = -345.5
 offset_right = 345.5
 offset_bottom = 137.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 100
+theme_override_font_sizes/font_size = 80
 text = "Magic Survival"
+horizontal_alignment = 1
+vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="BobAnimation" type="Node" parent="GameTitle" unique_id=711707897 node_paths=PackedStringArray("target")]

@@ -26,6 +26,17 @@ shader_parameter/size_3 = 0.05
 shader_parameter/flash_amount = 0.0
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_2odkt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ukt5i")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_2yrn5"]
 radius = 60.0
 
@@ -40,9 +51,9 @@ motion_mode = 1
 script = ExtResource("1_7pkkj")
 xp_texture = ExtResource("2_mfa1r")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=490525964]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=631988541]
 material = SubResource("ShaderMaterial_3i6hc")
-texture = ExtResource("3_ukt5i")
+sprite_frames = SubResource("SpriteFrames_2odkt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1481190223]
 shape = SubResource("CircleShape2D_2yrn5")

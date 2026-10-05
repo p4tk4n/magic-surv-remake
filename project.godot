@@ -27,7 +27,6 @@ osSetup="*uid://ccy1rvcoqj6i1"
 
 window/size/viewport_width=1000
 window/size/viewport_height=1500
-window/stretch/aspect="expand"
 window/handheld/orientation=1
 
 [global_group]
