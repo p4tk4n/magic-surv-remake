@@ -1,4 +1,4 @@
-extends Node
+extends CanvasLayer
 
 var current_xp_value: float = 1.0
 var xp_value_mult: float = 1.09
@@ -18,11 +18,16 @@ var current_joystick_size: int = 1
 var window_size_pc := Vector2i(1000,1000)
 var window_size_mobile := Vector2i(1000,2000)
 
+var current_scene: PackedScene
+var previous_scene: PackedScene
+var game_paused: bool = false
+
 var scenes: Dictionary = {
 	"main_menu": load("res://menus/main_menu.tscn"),
 	"settings": load("res://menus/settings_menu.tscn"),
 	"map": load("res://map/map.tscn")
 }
+
 var upgrades
 var passive_upgrades = [
 	"Wisdom",
@@ -57,6 +62,24 @@ var spellbook = {     #for upgrade purposes, like an atlas with names: [spell de
 func _ready() -> void:
 	upgrades = get_upgrades_arr("res://spells/resources/")
 	spell_data = get_spell_data("res://spells/resources/", upgrades, passive_upgrades)
+	layer = 100
+	
+func switch_scene(new_scene: PackedScene) -> void:
+	previous_scene = current_scene
+	current_scene = new_scene
+	pause_game(false)
+	get_tree().change_scene_to_packed.call_deferred(current_scene)
+
+func open_scene(overlay_scene: PackedScene) -> void:
+	print("opening scene")
+	var instance = overlay_scene.instantiate()
+	add_child(instance)
+	pause_game(true)
+	instance.tree_exited.connect(func(): pause_game(false))
+
+func pause_game(paused: bool) -> void:
+	game_paused = paused
+	get_tree().paused = game_paused
 	
 func _process(delta: float) -> void:
 	camera_rect_cache = _calc_camera_rect()
@@ -70,7 +93,6 @@ func _calc_camera_rect():
 	var half_size = (viewport_size / zoom) / 2
 	
 	return Rect2(cam.global_position - half_size, half_size * 2.0)
-
 
 #var upgrades = [ #lowk mozno obsolete, ig ze by slo pouzit keys zo spellbook dictionary v zozname namiesto tohto
 	#"Magic Bolt",

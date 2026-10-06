@@ -14,6 +14,15 @@
 [ext_resource type="Script" uid="uid://b5v1dlyu86soa" path="res://enemy/enemy_init_manager.gd" id="12_2odkt"]
 [ext_resource type="Script" uid="uid://bjqi1x86r5byj" path="res://enemy/enemy_health_manager.gd" id="14_dmw1m"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_fkwij"]
+radius = 90.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vosot"]
+radius = 96.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fldlp"]
+radius = 96.0
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_112ik"]
 resource_local_to_scene = true
 shader = ExtResource("2_ted1d")
@@ -39,23 +48,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fkwij"]
-radius = 90.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_vosot"]
-radius = 96.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_fldlp"]
-radius = 96.0
-
 [node name="enemy_elite" type="CharacterBody2D" unique_id=550760678 groups=["enemy"]]
 motion_mode = 1
 script = ExtResource("1_fil6k")
 xp_texture = ExtResource("2_cl4q8")
-
-[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=341358370]
-material = SubResource("ShaderMaterial_112ik")
-sprite_frames = SubResource("SpriteFrames_qk05x")
+sprite_spin_speed = 45.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1653276070]
 shape = SubResource("CircleShape2D_fkwij")
@@ -111,3 +108,8 @@ max_health = 300.0
 is_elite = true
 health_bar = NodePath("../HealthBar")
 metadata/_custom_type_script = "uid://bjqi1x86r5byj"
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=341358370]
+material = SubResource("ShaderMaterial_112ik")
+sprite_frames = SubResource("SpriteFrames_qk05x")
+frame_progress = 0.15418652

@@ -82,6 +82,7 @@ animations = [{
 motion_mode = 1
 script = ExtResource("1_7pkkj")
 xp_texture = ExtResource("2_mfa1r")
+sprite_spin_speed = 80.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1481190223]
 shape = SubResource("CircleShape2D_2yrn5")

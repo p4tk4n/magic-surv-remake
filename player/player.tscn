@@ -11,10 +11,13 @@
 [ext_resource type="Script" uid="uid://mdyf6ywuq8fq" path="res://player/virtual_joystick.gd" id="8_8t03j"]
 [ext_resource type="Theme" uid="uid://b0gupevtmims3" path="res://base_theme.tres" id="9_2ieo8"]
 [ext_resource type="Texture2D" uid="uid://dct1assy5d2pj" path="res://sprites/progress_bar_under.png" id="9_ebec5"]
+[ext_resource type="Texture2D" uid="uid://bs6gflsjoxbhj" path="res://sprites/back_icon.png" id="10_s7qer"]
 [ext_resource type="Texture2D" uid="uid://c3u8dqk4a58ew" path="res://sprites/progress_bar_fill.png" id="10_yllr7"]
 [ext_resource type="Shader" uid="uid://coflurk872jy1" path="res://shaders/vignette.gdshader" id="11_ebec5"]
 [ext_resource type="Texture2D" uid="uid://cx30aoxufrxj1" path="res://sprites/pause_button.png" id="12_32hag"]
+[ext_resource type="Texture2D" uid="uid://cypy0wtj7iir" path="res://sprites/settings_icon.png" id="12_knn7v"]
 [ext_resource type="Texture2D" uid="uid://b0uorlxlyvcd" path="res://sprites/red_vignette.png" id="12_yllr7"]
+[ext_resource type="Script" uid="uid://6ohiei1opxkn" path="res://menus/bob_animation.gd" id="13_7pqkx"]
 [ext_resource type="Script" uid="uid://ynoedqt0jq1f" path="res://menus/juicy_button.gd" id="13_tqiix"]
 [ext_resource type="Texture2D" uid="uid://bglv4xehc542r" path="res://sprites/ui_panel_bg.png" id="14_c35mf"]
 [ext_resource type="Texture2D" uid="uid://y17557mit3hv" path="res://sprites/default_button_blue.png" id="15_c35mf"]
@@ -336,6 +339,7 @@ script = ExtResource("3_g1dw6")
 process_mode = 3
 
 [node name="UI" type="Control" parent="UICanvasLayer" unique_id=73427575]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -353,6 +357,44 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TextureButton" type="TextureButton" parent="UICanvasLayer/UI/PauseScreen" unique_id=631110084]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.024
+anchor_top = 0.026666664
+anchor_right = 0.184
+anchor_bottom = 0.13333334
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("10_s7qer")
+stretch_mode = 0
+script = ExtResource("13_tqiix")
+metadata/_edit_use_anchors_ = true
+
+[node name="SettingsButton" type="TextureButton" parent="UICanvasLayer/UI/PauseScreen" unique_id=194222979]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -200.0
+grow_horizontal = 0
+grow_vertical = 0
+offset_transform_position = Vector2(-60, 20)
+texture_normal = ExtResource("12_knn7v")
+stretch_mode = 0
+script = ExtResource("13_tqiix")
+
+[node name="BobAnimation" type="Node" parent="UICanvasLayer/UI/PauseScreen/SettingsButton" unique_id=1614213485 node_paths=PackedStringArray("target")]
+script = ExtResource("13_7pqkx")
+target = NodePath("..")
+amplitude = 3.0
+metadata/_custom_type_script = "uid://6ohiei1opxkn"
 
 [node name="VirtualJoystick" type="VirtualJoystick" parent="UICanvasLayer/UI" unique_id=1935999008]
 layout_mode = 1
@@ -528,6 +570,8 @@ script = ExtResource("22_bjvpn")
 pickup_area_coll_shape = NodePath("../PickupArea/CollisionShape2D")
 
 [connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]
+[connection signal="pressed" from="UICanvasLayer/UI/PauseScreen/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="UICanvasLayer/UI/PauseScreen/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="value_changed" from="UICanvasLayer/UI/TopScreen/XpBar" to="." method="_on_xp_bar_value_changed"]
 [connection signal="pressed" from="UICanvasLayer/UI/PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="pressed" from="UICanvasLayer/DeathScreen/BoxContainer/ReplayButton" to="." method="_on_button_pressed"]

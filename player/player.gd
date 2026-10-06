@@ -140,6 +140,11 @@ func _on_pause_button_pressed() -> void:
 	get_tree().paused = not get_tree().paused
 	pause_screen.visible = get_tree().paused
 
-
 func _on_replay_button_pressed() -> void:
 	_start_new_run()
+
+func _on_texture_button_pressed() -> void:
+	global.switch_scene(global.scenes["main_menu"])
+
+func _on_settings_button_pressed() -> void:
+	global.switch_scene(global.scenes["settings"])

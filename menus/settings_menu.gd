@@ -20,7 +20,8 @@ func _on_joystick_size_button_pressed() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().change_scene_to_packed(global.scenes["main_menu"])
+		global.switch_scene(global.scenes["main_menu"])
 
 func _on_texture_button_pressed() -> void:
-	get_tree().change_scene_to_packed(global.scenes["main_menu"])
+	global.switch_scene(global.previous_scene)
+	

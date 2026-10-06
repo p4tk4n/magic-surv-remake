@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://y17557mit3hv" path="res://sprites/default_button_blue.png" id="4_i7r6j"]
 
 [node name="SettingsMenu" type="Control" unique_id=1574923727]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

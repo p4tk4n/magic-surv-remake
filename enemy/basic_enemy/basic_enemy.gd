@@ -12,7 +12,7 @@ extends CharacterBody2D
 var hit_interval: float = 1.0
 var _hit_timer: float = 0.0
 var _touching_player: Node = null
-var sprite_spin_speed: float = 90.0 #in angles
+@export var sprite_spin_speed: float = 90.0 #in angles
 
 func _ready() -> void:
 	enemy_init_manager.setup()
