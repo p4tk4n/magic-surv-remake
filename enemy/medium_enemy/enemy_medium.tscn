@@ -6,11 +6,20 @@
 [ext_resource type="Shader" uid="uid://cbmr478u0us4b" path="res://shaders/burn_shader.gdshader" id="2_o253a"]
 [ext_resource type="Script" uid="uid://fg4pe3so1c1u" path="res://enemy/EnemyFollow.gd" id="2_uh7kx"]
 [ext_resource type="Texture2D" uid="uid://dyvl3huyyq0nt" path="res://shaders/burn_texture.tres" id="3_7pkkj"]
-[ext_resource type="Texture2D" uid="uid://u8ymy3wluhyx" path="res://sprites/medium_enemy.png" id="3_ukt5i"]
 [ext_resource type="Script" uid="uid://dpdshd3cr65u8" path="res://node components/hitbox/hit_box.gd" id="4_ukt5i"]
 [ext_resource type="Script" uid="uid://cc2orxcmr5cn2" path="res://node components/hurtbox/hurt_box.gd" id="5_3i6hc"]
+[ext_resource type="Texture2D" uid="uid://cip48xvc2gstf" path="res://sprites/medium_enemy_spriteframes.png" id="5_qk05x"]
 [ext_resource type="Script" uid="uid://b5v1dlyu86soa" path="res://enemy/enemy_init_manager.gd" id="10_54q3h"]
 [ext_resource type="Script" uid="uid://bjqi1x86r5byj" path="res://enemy/enemy_health_manager.gd" id="11_qk05x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2yrn5"]
+radius = 60.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3xd07"]
+radius = 63.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ukt5i"]
+radius = 64.070274
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3i6hc"]
 resource_local_to_scene = true
@@ -26,34 +35,53 @@ shader_parameter/size_3 = 0.05
 shader_parameter/flash_amount = 0.0
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7d7h"]
+atlas = ExtResource("5_qk05x")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxvjl"]
+atlas = ExtResource("5_qk05x")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ni10g"]
+atlas = ExtResource("5_qk05x")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1iu5y"]
+atlas = ExtResource("5_qk05x")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ms7m"]
+atlas = ExtResource("5_qk05x")
+region = Rect2(512, 0, 128, 128)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_2odkt"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_ukt5i")
+"texture": SubResource("AtlasTexture_g7d7h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxvjl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ni10g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1iu5y")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_5ms7m")
 }],
 "loop": 1,
 "name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2yrn5"]
-radius = 60.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_3xd07"]
-radius = 63.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ukt5i"]
-radius = 64.070274
-
 [node name="EnemyMedium" type="CharacterBody2D" unique_id=613232181 groups=["enemy"]]
 motion_mode = 1
 script = ExtResource("1_7pkkj")
 xp_texture = ExtResource("2_mfa1r")
-
-[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=631988541]
-material = SubResource("ShaderMaterial_3i6hc")
-sprite_frames = SubResource("SpriteFrames_2odkt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1481190223]
 shape = SubResource("CircleShape2D_2yrn5")
@@ -99,3 +127,9 @@ script = ExtResource("11_qk05x")
 enemy = NodePath("..")
 max_health = 70.0
 metadata/_custom_type_script = "uid://bjqi1x86r5byj"
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=631988541]
+material = SubResource("ShaderMaterial_3i6hc")
+sprite_frames = SubResource("SpriteFrames_2odkt")
+frame = 3
+frame_progress = 0.18174984

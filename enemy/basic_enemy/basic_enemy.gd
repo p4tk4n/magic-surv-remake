@@ -12,22 +12,26 @@ extends CharacterBody2D
 var hit_interval: float = 1.0
 var _hit_timer: float = 0.0
 var _touching_player: Node = null
+var sprite_spin_speed: float = 90.0 #in angles
 
 func _ready() -> void:
 	enemy_init_manager.setup()
 	sprite_2d.play("default")
 	
 func _process(delta: float) -> void:
+	rotate_player_sprite(sprite_spin_speed * delta)
 	if not _touching_player: return
-		
+	
 	_hit_timer -= delta
 	if _hit_timer <= 0.0:
 		_touching_player.health_manager.take_damage(global.enemy_damage)
 		_hit_timer = hit_interval
-	sprite_2d.rotation += deg_to_rad(delta * 100)
 	
 func _physics_process(delta: float) -> void:
 	move_and_slide()
+
+func rotate_player_sprite(angles: float):
+	sprite_2d.rotation += deg_to_rad(angles)
 
 func take_damage(damage: float):
 	health_manager.take_damage(damage)

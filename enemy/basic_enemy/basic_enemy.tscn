@@ -12,6 +12,15 @@
 [ext_resource type="Script" uid="uid://dpdshd3cr65u8" path="res://node components/hitbox/hit_box.gd" id="9_beq60"]
 [ext_resource type="Script" uid="uid://cc2orxcmr5cn2" path="res://node components/hurtbox/hurt_box.gd" id="10_2ffu0"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_wk4eo"]
+radius = 31.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jq8tk"]
+radius = 46.010868
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j648v"]
+radius = 48.0
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p200p"]
 resource_local_to_scene = true
 shader = ExtResource("2_1wwld")
@@ -69,23 +78,9 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_wk4eo"]
-radius = 31.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_jq8tk"]
-radius = 46.010868
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_j648v"]
-radius = 48.0
-
 [node name="enemy" type="CharacterBody2D" unique_id=1385120321 groups=["enemy"]]
 script = ExtResource("1_p200p")
 xp_texture = ExtResource("2_2ffu0")
-
-[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=2005575584]
-material = SubResource("ShaderMaterial_p200p")
-sprite_frames = SubResource("SpriteFrames_3xd07")
-frame_progress = 0.20968346
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1000161202]
 shape = SubResource("CircleShape2D_wk4eo")
@@ -125,3 +120,8 @@ metadata/_custom_type_script = "uid://cc2orxcmr5cn2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1227302857]
 shape = SubResource("CircleShape2D_j648v")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=2005575584]
+material = SubResource("ShaderMaterial_p200p")
+sprite_frames = SubResource("SpriteFrames_3xd07")
+frame_progress = 0.40314344

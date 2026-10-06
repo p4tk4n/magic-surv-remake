@@ -6,5 +6,5 @@
 script = ExtResource("1_c70uk")
 spell_name = "Pickup Area"
 stat_increase = "pickup_area_radius"
-increase_amount = [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]
+increase_amount = Array[float]([0.3, 0.3, 0.3, 0.3])
 metadata/_custom_type_script = "uid://bt00rve3w37u4"

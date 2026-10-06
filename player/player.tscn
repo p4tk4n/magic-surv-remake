@@ -23,11 +23,11 @@
 [ext_resource type="Script" uid="uid://b0gitf5sakdu2" path="res://player/player_health_manager.gd" id="20_65viv"]
 [ext_resource type="Script" uid="uid://doduc4qhhddlb" path="res://player/stat_update_manager.gd" id="22_bjvpn"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4xfga"]
-size = Vector2(32, 32)
+[sub_resource type="CircleShape2D" id="CircleShape2D_bq6q7"]
+radius = 18.027756
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6fhyq"]
-size = Vector2(64, 64)
+[sub_resource type="CircleShape2D" id="CircleShape2D_viffk"]
+radius = 18.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qjkh3"]
 shader = ExtResource("3_x7c3f")
@@ -287,7 +287,7 @@ motion_mode = 1
 script = ExtResource("1_rkbax")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1039361450]
-shape = SubResource("RectangleShape2D_4xfga")
+shape = SubResource("CircleShape2D_bq6q7")
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=1795972990]
 collision_layer = 4
@@ -297,12 +297,12 @@ coll_layer = 3
 metadata/_custom_type_script = "uid://cc2orxcmr5cn2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=295920206]
-shape = SubResource("RectangleShape2D_6fhyq")
+shape = SubResource("CircleShape2D_viffk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1138281442]
 material = SubResource("ShaderMaterial_qjkh3")
 sprite_frames = SubResource("SpriteFrames_kb6p2")
-animation = &"move_lowerright"
+animation = &"idle"
 
 [node name="HealthBar" type="ProgressBar" parent="AnimatedSprite2D" unique_id=2099507207 node_paths=PackedStringArray("health_manager")]
 custom_minimum_size = Vector2(0, 10)
