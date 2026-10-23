@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="TrailData" format=3 uid="uid://db8akvmq57nqy"]
+
+[ext_resource type="Script" uid="uid://bgal35x7l3tei" path="res://spells/effects/trail_data.gd" id="1_h7ul6"]
+
+[sub_resource type="Gradient" id="Gradient_n7x26"]
+offsets = PackedFloat32Array(0, 0.34033614, 0.49159664, 1)
+colors = PackedColorArray(1, 0.36862746, 0.08627451, 0, 1, 0.36862746, 0.08627451, 0.7490196, 1, 0.36862746, 0.08627451, 1, 1, 0.36862746, 0.08627451, 1)
+
+[sub_resource type="Curve" id="Curve_6aa83"]
+_data = [Vector2(0, 0.5510205), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[resource]
+script = ExtResource("1_h7ul6")
+color = Color(1, 0.36862746, 0.08627451, 1)
+gradient = SubResource("Gradient_n7x26")
+width = 32.0
+width_curve = SubResource("Curve_6aa83")
+max_points = 10
+point_spacing = 7.0
+metadata/_custom_type_script = "uid://bgal35x7l3tei"

@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://i70ylaxutnrc" path="res://experience/experience.gd" id="1_g8bga"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3xd07"]
+radius = 7.0
 
 [node name="Experience" type="Area2D" unique_id=1254741187 groups=["experience"]]
 collision_layer = 8

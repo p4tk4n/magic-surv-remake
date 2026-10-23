@@ -110,10 +110,6 @@ func tween_shader(object, percent):
 func _on_pickup_area_area_entered(area: Area2D) -> void:
 	if area is XPOrb:
 		area.start_chase(self)
-		
-func _on_xp_bar_value_changed(value: float) -> void:
-	if xp_bar.value >=  xp_bar.max_value:
-		level_manager.level_up_player()
 
 func reset():
 	global.player_xp = 0
@@ -125,6 +121,7 @@ func reset():
 	velocity = Vector2.ZERO
 	is_dead = false
 	global.unavailable_upgrades = []
+	global.can_level_up = true
 	health_bar.update_health_bar()
 	red_vignette.set_instance_shader_parameter("flash_amount", 0)
 	red_vignette.material.set_shader_parameter("health_percent", 1.0)

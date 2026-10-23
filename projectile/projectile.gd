@@ -8,6 +8,9 @@ var controller: SpellController
 var movement: MovementStrategy
 var on_hit: OnHitStrategy
 
+var speed: float
+var damage: float = 0.0
+var orbit_angle_offset: float = 0.0
 var direction := Vector2.ZERO
 var spriteframes: SpriteFrames
 var lifetime: float = -1.0
@@ -15,9 +18,8 @@ var lifetime: float = -1.0
 var spawn_grace_period: float = 0.0
 var has_hit := false
 
-var speed: float
-var damage: float = 0.0
-var orbit_angle_offset: float = 0.0
+var trail_data: TrailData
+var trail: ProjectileTrail
 
 var _hit_cooldowns: Dictionary = {}
 
@@ -26,15 +28,17 @@ func _ready() -> void:
 	if spriteframes: 
 		proj_sprite.sprite_frames = spriteframes
 		proj_sprite.play("default")
-		
 		collision_shape.shape.radius = (min(spriteframes.get_frame_texture("default", 0).get_size().x, spriteframes.get_frame_texture("default", 0).get_size().y))/2
-		print(collision_shape.shape.radius)
+	if trail_data:
+		trail = ProjectileTrail.new()
+		add_child(trail)
+		trail.setup(trail_data, self)
+		
 func _process(delta: float) -> void:
 	if movement:
 		movement.move(self, delta)
 	if spawn_grace_period > 0.0:
 		spawn_grace_period -= delta
-	#_check_offscreen_cleanup()
 	update_rotation()
 	_tick_lifetime(delta)
 	_tick_hit_cooldowns(delta)
@@ -92,9 +96,7 @@ func update_rotation() -> void:
 	pass
 	
 func _despawn():
-	var tween = create_tween()
-	tween.tween_property(proj_sprite, "modulate:a", 0.0, 0.5)
-	tween.tween_callback(queue_free)
+	queue_free()
 	
 func _tick_lifetime(delta: float) -> void:
 	if lifetime < 0.0:

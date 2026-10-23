@@ -4,6 +4,7 @@
 [ext_resource type="Shader" uid="uid://cbmr478u0us4b" path="res://shaders/burn_shader.gdshader" id="2_1wwld"]
 [ext_resource type="Texture2D" uid="uid://dxlnpnfmk38om" path="res://sprites/xp_demo.png" id="2_2ffu0"]
 [ext_resource type="Script" uid="uid://cf15fii4v33ha" path="res://enemy/enemy_state_machine.gd" id="3_1wwld"]
+[ext_resource type="Resource" uid="uid://b0s5gsl64jo8t" path="res://experience/xp_trail.tres" id="3_j648v"]
 [ext_resource type="Texture2D" uid="uid://dyvl3huyyq0nt" path="res://shaders/burn_texture.tres" id="3_y5vj3"]
 [ext_resource type="Script" uid="uid://fg4pe3so1c1u" path="res://enemy/EnemyFollow.gd" id="4_y5vj3"]
 [ext_resource type="Texture2D" uid="uid://bo8orej68kpsd" path="res://sprites/basic_enemy_spriteframes.png" id="5_2ffu0"]
@@ -81,6 +82,7 @@ animations = [{
 [node name="enemy" type="CharacterBody2D" unique_id=1385120321 groups=["enemy"]]
 script = ExtResource("1_p200p")
 xp_texture = ExtResource("2_2ffu0")
+xp_trail_data = ExtResource("3_j648v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1000161202]
 shape = SubResource("CircleShape2D_wk4eo")
@@ -97,7 +99,6 @@ move_speed = 75.0
 [node name="EnemyHealthManager" type="Node" parent="." unique_id=46133213 node_paths=PackedStringArray("enemy")]
 script = ExtResource("7_bg0oj")
 enemy = NodePath("..")
-max_health = 50.0
 metadata/_custom_type_script = "uid://bjqi1x86r5byj"
 
 [node name="EnemyInitManager" type="Node" parent="." unique_id=1063479172 node_paths=PackedStringArray("enemy")]

@@ -572,7 +572,6 @@ pickup_area_coll_shape = NodePath("../PickupArea/CollisionShape2D")
 [connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]
 [connection signal="pressed" from="UICanvasLayer/UI/PauseScreen/TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="UICanvasLayer/UI/PauseScreen/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="value_changed" from="UICanvasLayer/UI/TopScreen/XpBar" to="." method="_on_xp_bar_value_changed"]
 [connection signal="pressed" from="UICanvasLayer/UI/PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="pressed" from="UICanvasLayer/DeathScreen/BoxContainer/ReplayButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="UICanvasLayer/DeathScreen/BoxContainer/ReplayButton" to="." method="_on_replay_button_pressed"]

@@ -10,10 +10,9 @@ extends Resource
 var current_level: int = 0
 
 func level_up():
-	if current_level < increase_amount.size() - 1:
+	if current_level < increase_amount.size():
 		current_level += 1
-		
-	if current_level > increase_amount.size() - 1:
+	if current_level > increase_amount.size():
 		global.unavailable_upgrades.append(stat_increase)
 		return
 		

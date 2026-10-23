@@ -18,6 +18,7 @@ var active_on_hit: OnHitStrategy
 var _live_projectiles: Array[Projectile] = []
 
 var projectile_spriteframes: SpriteFrames
+var active_trail: TrailData
 
 func setup(spell_data: SpellData, p: Node2D) -> void:
 	data = spell_data
@@ -27,6 +28,7 @@ func setup(spell_data: SpellData, p: Node2D) -> void:
 	active_emission = data.emission_strategy
 	active_movement = data.movement_strategy
 	active_on_hit = data.on_hit_strategy
+	active_trail = data.trail
 	
 	if not data.is_persistent:
 		timer = Timer.new()
@@ -75,6 +77,11 @@ func _apply_mutation(mutation: MutationData) -> void:
 	if mutation.projectile_spriteframes:
 		projectile_spriteframes = mutation.projectile_spriteframes
 	
+	if mutation.trail:
+		active_trail = mutation.trail
+	else:
+		active_trail = null	
+	
 	current_stats = mutation.mutated_stats
 	is_mutated = true
 	mutated.emit(mutation)
@@ -87,10 +94,12 @@ func spawn_projectile(spawn_pos: Vector2 = Vector2.INF, override_on_hit: OnHitSt
 	proj.movement = active_movement
 	proj.on_hit = override_on_hit if override_on_hit else active_on_hit
 	proj.speed = current_stats.speed
+	proj.scale = Vector2(current_stats.area,current_stats.area)
 	proj.damage = calc_damage()
 	proj.global_position = spawn_pos if spawn_pos != Vector2.INF else player.global_position
 	if data.projectile_spriteframes: proj.spriteframes = data.projectile_spriteframes
 	if projectile_spriteframes: proj.spriteframes = projectile_spriteframes
+	proj.trail_data = active_trail
 	proj.update_rotation()
 	get_tree().current_scene.add_child.call_deferred(proj)
 	_live_projectiles.append(proj)

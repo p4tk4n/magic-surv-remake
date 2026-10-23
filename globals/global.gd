@@ -1,10 +1,12 @@
 extends CanvasLayer
 
 var current_xp_value: float = 1.0
-var xp_value_mult: float = 1.09
+var xp_value_mult: float = 1.08
 var player_xp: float = 0
 var elite_xp_mult: float = 2.0
-var level_xpreq_increase: float = 1.08
+var level_xpreq_increase: float = 1.095
+var player_level: int = 1
+var can_level_up: bool = true
 
 var player_stats: PlayerStats = load("res://player/stats.tres")
 var enemy_damage: float = 10.0 #neni scaleable ani nic co je TRAPNEEE

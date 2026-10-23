@@ -15,6 +15,7 @@
 [ext_resource type="Resource" uid="uid://bg88jl1g8rixp" path="res://spells/resources/magic_bolt/fireworks_mutation.tres" id="11_6xpts"]
 [ext_resource type="PackedScene" uid="uid://bvryhkw5tw7s8" path="res://projectile/projectile.tscn" id="11_dkb03"]
 [ext_resource type="Texture2D" uid="uid://bq8i7oxnse6gd" path="res://sprites/magic_bolt_demo.png" id="14_gw5ib"]
+[ext_resource type="Resource" uid="uid://c8flou2uks23y" path="res://spells/resources/magic_bolt/magic_bolt_trail.tres" id="16_jgk62"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8a8hk"]
 animations = [{
@@ -33,6 +34,7 @@ spell_name = "Magic Bolt"
 icon = ExtResource("2_gw5ib")
 projectile_scene = ExtResource("11_dkb03")
 projectile_spriteframes = SubResource("SpriteFrames_8a8hk")
+trail = ExtResource("16_jgk62")
 cooldown = 0.75
 levels = Array[ExtResource("1_pfy2x")]([ExtResource("3_woq5b"), ExtResource("4_6xpts"), ExtResource("5_gw5ib"), ExtResource("6_jgk62"), ExtResource("7_cl6mw"), ExtResource("8_sjgxk")])
 emission_strategy = ExtResource("1_picq8")

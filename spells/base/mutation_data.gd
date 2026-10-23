@@ -7,6 +7,7 @@ extends Resource
 @export var description: String = ""
 
 @export var projectile_scene: PackedScene
+@export var trail: TrailData
 @export var emission_strategy: EmissionStrategy
 @export var movement_strategy: MovementStrategy
 @export var on_hit_strategy: OnHitStrategy

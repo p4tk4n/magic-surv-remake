@@ -9,7 +9,9 @@ extends Node
 var queued_upgrade_windows: int = 0
 var window_open: bool = false
 
-
+var xp: float = 0.0
+var xp_req: float = 10.0
+var xp_tween: Tween
 
 func _ready() -> void:
 	SignalBus.run_over.connect(reset)
@@ -22,6 +24,11 @@ func reset():
 		child.queue_free()
 	
 func level_up_player():
+	if not global.can_level_up: return
+	if global.player_level < 100:
+		global.player_level += 1
+	else:
+		global.can_level_up = false
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	tween.tween_property(ui_xp_bar, "value", 0.0, 0.6)
 	trigger_upgrade_window()
@@ -29,10 +36,22 @@ func level_up_player():
 	
 func progress_xp_bar(mult):
 	var xp_added = global.current_xp_value * mult
-	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
-	tween.tween_property(ui_xp_bar,"value", ui_xp_bar.value + xp_added, 0.45)
 	global.player_xp += xp_added
+	xp += xp_added
+	
+	while xp >= xp_req:
+		xp -= xp_req
+		xp_req *= global.level_xpreq_increase
+		trigger_upgrade_window()
+	
+	_animate_bar()
 
+func _animate_bar():
+	if xp_tween: xp_tween.kill()
+	ui_xp_bar.max_value = xp_req
+	xp_tween = create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+	xp_tween.tween_property(ui_xp_bar, "value", xp, 0.45)
+		
 func trigger_upgrade_window():
 	if window_open:
 		queued_upgrade_windows += 1

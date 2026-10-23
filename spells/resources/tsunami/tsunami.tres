@@ -13,45 +13,14 @@
 [ext_resource type="Resource" uid="uid://cop2vgpxdtnai" path="res://spells/resources/tsunami/tsunami_lvl4.tres" id="7_ryefy"]
 [ext_resource type="Resource" uid="uid://c327oab4nkhdd" path="res://spells/resources/tsunami/tsunami_lvl5.tres" id="8_rrayr"]
 [ext_resource type="Resource" uid="uid://dorsjishud3il" path="res://spells/resources/tsunami/tsunami_lvl6.tres" id="9_cmxfb"]
-[ext_resource type="Texture2D" uid="uid://c0dp6x5221uuc" path="res://sprites/tsunami_spriteframes.png" id="13_wwhak"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i2yc7"]
-atlas = ExtResource("13_wwhak")
-region = Rect2(0, 0, 256, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ryefy"]
-atlas = ExtResource("13_wwhak")
-region = Rect2(256, 0, 256, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rrayr"]
-atlas = ExtResource("13_wwhak")
-region = Rect2(512, 0, 256, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cmxfb"]
-atlas = ExtResource("13_wwhak")
-region = Rect2(768, 0, 256, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e65cd"]
-atlas = ExtResource("13_wwhak")
-region = Rect2(1024, 0, 256, 128)
+[ext_resource type="Texture2D" uid="uid://c5ys4idakqfwi" path="res://sprites/tsunami_demo.png" id="13_wwhak"]
+[ext_resource type="Resource" uid="uid://crdl0x6g7q1vc" path="res://spells/resources/tsunami/tsunami_trail.tres" id="15_i2yc7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_axy2l"]
 animations = [{
 "frames": [{
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_i2yc7")
-}, {
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_ryefy")
-}, {
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_rrayr")
-}, {
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_cmxfb")
-}, {
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_e65cd")
+"duration": 1.0,
+"texture": ExtResource("13_wwhak")
 }],
 "loop": 1,
 "name": &"default",
@@ -64,6 +33,7 @@ spell_name = "Tsunami"
 icon = ExtResource("2_wwhak")
 projectile_scene = ExtResource("3_jg8w3")
 projectile_spriteframes = SubResource("SpriteFrames_axy2l")
+trail = ExtResource("15_i2yc7")
 cooldown = 8.5
 levels = Array[ExtResource("1_1gwo5")]([ExtResource("4_qmnen"), ExtResource("5_wwhak"), ExtResource("6_i2yc7"), ExtResource("7_ryefy"), ExtResource("8_rrayr"), ExtResource("9_cmxfb")])
 emission_strategy = ExtResource("1_0f276")

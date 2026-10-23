@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://de8kw0aiyb4sv" path="res://sprites/firework_demo.png" id="2_47eco"]
 [ext_resource type="Resource" uid="uid://bituu7okg8m2h" path="res://spells/resources/magic_bolt/magic_bolt_lvl7.tres" id="2_vd8cg"]
 [ext_resource type="Resource" uid="uid://c51gr4cjfksc7" path="res://spells/resources/magic_bolt/fireworks_split_onhit.tres" id="3_epmhi"]
+[ext_resource type="Resource" uid="uid://bou1u3qy1ygl" path="res://spells/resources/magic_bolt/firework_trail.tres" id="6_47eco"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_km7p8"]
 animations = [{
@@ -23,6 +24,7 @@ mutation_name = "Fireworks"
 icon = ExtResource("2_47eco")
 projectile_spriteframes = SubResource("SpriteFrames_km7p8")
 description = "Splits on impact"
+trail = ExtResource("6_47eco")
 emission_strategy = ExtResource("1_vd8cg")
 on_hit_strategy = ExtResource("3_epmhi")
 mutated_stats = ExtResource("2_vd8cg")

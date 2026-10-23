@@ -13,6 +13,7 @@ var hit_interval: float = 1.0
 var _hit_timer: float = 0.0
 var _touching_player: Node = null
 @export var sprite_spin_speed: float = 90.0 #in angles
+@export var xp_trail_data: TrailData
 
 func _ready() -> void:
 	enemy_init_manager.setup()
@@ -51,11 +52,16 @@ func flash_hit():
 	tween.tween_property(sprite_2d.material, "shader_parameter/flash_amount", 0.0, 0.2)
 	
 func _spawn_experience():
-	var xp = xp_scene.instantiate()
-	if xp_texture: xp.sprite = xp_texture
-	xp.global_position = global_position
-	xp.xp_mult = health_manager.xp_mult
-	get_tree().current_scene.add_child.call_deferred(xp)
+	var xp_amount: int = 1.0
+	if health_manager.is_elite: xp_amount = 3
+	for i in range(xp_amount):
+		var xp = xp_scene.instantiate()
+		var random_pos_offset = Vector2(randf_range(-50,50),randf_range(-50,50))
+		xp.global_position = global_position + random_pos_offset
+		if xp_texture: xp.sprite = xp_texture
+		xp.xp_mult = health_manager.xp_mult
+		xp.trail_data = xp_trail_data
+		get_tree().current_scene.add_child.call_deferred(xp)
 	 
 func _hit_box_entered(area: Variant) -> void:
 	if area.owner.is_in_group("player"):

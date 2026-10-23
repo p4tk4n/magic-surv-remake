@@ -7,6 +7,7 @@
 [ext_resource type="Shader" uid="uid://cbmr478u0us4b" path="res://shaders/burn_shader.gdshader" id="2_ted1d"]
 [ext_resource type="Script" uid="uid://fg4pe3so1c1u" path="res://enemy/EnemyFollow.gd" id="2_tq6i6"]
 [ext_resource type="Texture2D" uid="uid://dyvl3huyyq0nt" path="res://shaders/burn_texture.tres" id="3_fkwij"]
+[ext_resource type="Resource" uid="uid://xqu2aghkubdt" path="res://experience/xp_trail_elite.tres" id="3_mlxea"]
 [ext_resource type="Script" uid="uid://dpdshd3cr65u8" path="res://node components/hitbox/hit_box.gd" id="4_fldlp"]
 [ext_resource type="Script" uid="uid://cc2orxcmr5cn2" path="res://node components/hurtbox/hurt_box.gd" id="5_ted1d"]
 [ext_resource type="Script" uid="uid://cidmv4ivmr0jd" path="res://node components/healthbar/health_bar.gd" id="10_cf4mr"]
@@ -53,6 +54,7 @@ motion_mode = 1
 script = ExtResource("1_fil6k")
 xp_texture = ExtResource("2_cl4q8")
 sprite_spin_speed = 45.0
+xp_trail_data = ExtResource("3_mlxea")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1653276070]
 shape = SubResource("CircleShape2D_fkwij")

@@ -5,6 +5,7 @@ extends Resource
 @export var icon: Texture2D
 @export var projectile_scene: PackedScene
 @export var projectile_spriteframes: SpriteFrames
+@export var trail: TrailData
 @export var cooldown: float = 1.0
 @export var levels: Array[SpellLevelData] = []
 @export var is_persistent: bool = false
